@@ -1,0 +1,785 @@
+# Parcours de réservation et suivi à la personne
+
+## Réserver une séance de sport
+
+Réserver une séance de coaching individuel dans le cadre de son forfait, une séance de sport-santé en petit groupe de 4, un cours de cross training en groupe de 6, une séance de reprise du sport et réathlétisation ou un point de suivi à distance. Points d’entrée : section Rendez-vous, Bouton « Prendre rendez-vous » d’Aujourd’hui, Agenda, ou Coach IA (Bouton « Ouvrir la réservation »). Indicateur : « Étape {etape} sur {total} », le total dépend du type de séance.
+
+### Étape 1. 1. Choisir le type de séance
+
+**Champs** : Type de séance — choix unique, obligatoire — Coaching individuel / Sport-santé en petit groupe / Cross training / Reprise du sport et réathlétisation / Suivi à distance
+
+Titre : « Quelle séance voulez-vous réserver ? »
+Carte Coaching individuel : « Progresser à votre rythme avec un préparateur physique. Le nombre de séances dépend de votre forfait. »
+Carte Sport-santé en petit groupe : « Reprendre une activité en sécurité, à 4 personnes au plus, avec un éducateur en activité physique adaptée. Sport sur ordonnance accepté. [prix] »
+Carte Cross training : « Travailler la force et le cardio en groupe, 6 personnes au plus. 60 € par mois. »
+Carte Reprise du sport et réathlétisation : « Retrouver votre niveau après une blessure, avec un préparateur physique. [prix] »
+Carte Suivi à distance : « Garder le rythme entre deux venues au centre. [format du suivi] · [prix] »
+Bouton : « Continuer »
+Lien secondaire : « Demander au Coach IA »
+
+**Règles**
+
+- Sans forfait de coaching actif, la carte Coaching individuel affiche le Bouton « Voir les forfaits » à la place de « Continuer » (voir étape 2).
+- Sans abonnement cross training actif, la carte Cross training affiche le Bouton « Rejoindre le cross training » : 60 € par mois, [mode de paiement].
+- Reprise du sport et réathlétisation : [étape préalable éventuelle : bilan ou entretien], puis choix du créneau (étape 5). Durée : [durée]. Prix : [prix].
+- Étapes selon le type : Coaching individuel 1, 2, 5, 6 ; Sport-santé 1, 3, 5, 6 ; Suivi à distance 1, 4, 5, 6 ; Cross training et Reprise du sport 1, 5, 6. Le total de l’indicateur suit ce découpage.
+- Le Coach IA ne réserve pas lui-même. Son Bouton « Ouvrir la réservation » ouvre ce parcours à la première étape incomplète, prérempli (type de séance, jour, heure). L’utilisateur vérifie et valide toujours lui-même la réservation au récapitulatif.
+
+### Étape 2. 2. Coaching individuel : vérifier le forfait
+
+**Champs** : Forfait actif — lecture seule — Essentiel / Avancé / Performance / aucun · Séances restantes cette semaine — lecture seule — {n} · Préparateur physique — choix unique, facultatif — [noms des préparateurs physiques] / Sans préférence
+
+Titre : « Votre forfait »
+Ligne d’état : « Forfait {forfait}. Séances restantes cette semaine : {n}. »
+Exemple : « Forfait Avancé. Séances restantes cette semaine : 1. »
+Rappel des forfaits (affiché si aucun forfait n’est actif) :
+« Essentiel — 1 séance par semaine, un bilan d’entrée et votre programme. 140 € par mois. »
+« Avancé — 2 séances par semaine et des bilans intermédiaires. 250 € par mois. »
+« Performance — 3 séances par semaine et l’accès aux praticiens de santé du centre. 300 € par mois. »
+Encadré sans forfait : « Pour commencer, faisons le point avec un bilan d’entrée. Il est offert si vous vous engagez sur 3 mois. Sans engagement, il coûte 145 €. »
+Boutons (sans forfait) : « Choisir un forfait » / « Réserver votre bilan d’entrée »
+Bouton (forfait actif) : « Choisir un créneau »
+Lien (forfait actif) : « Gérer votre forfait »
+
+**Règles**
+
+- Nombre de séances par semaine : Essentiel 1, Avancé 2, Performance 3. Le décompte est hebdomadaire, jamais mensuel.
+- La semaine de décompte est [règle de décompte : du lundi au dimanche ou autre].
+- Séances non utilisées dans la semaine : [règle de report].
+- Bilan d’entrée : offert pour un engagement de 3 mois, sinon 145 €. Le Bouton « Réserver votre bilan d’entrée » ouvre le parcours reserver-bilan avec la carte Bilan d’entrée choisie.
+- Accès aux praticiens de santé du forfait Performance : [modalités d’accès].
+- Quota atteint : les créneaux de la semaine en cours restent visibles mais grisés, avec le message d’erreur « Quota atteint ».
+- Vocabulaire : « forfait » pour le coaching individuel (« Votre forfait », « Changer de forfait », « Gérer votre forfait », « Forfait {forfait} ») ; « formule » est réservé aux offres entreprises.
+
+### Étape 3. 3. Sport-santé en petit groupe : préciser votre situation
+
+**Champs** : Prescription d’activité physique adaptée — fichier PDF, JPG ou PNG, [taille maximale] Mo au plus, facultatif · Orientation par la Maison Sport-Santé de Fontainebleau — oui / non, facultatif · Limitation ou pathologie à signaler à l’éducateur — texte libre, 500 caractères, facultatif
+
+Titre : « Parlez-nous de votre situation »
+Texte : « L’éducateur en activité physique adaptée ajuste chaque exercice à votre santé. Ces informations l’aident à préparer votre séance. »
+Champ ordonnance : « Vous avez une ordonnance de sport ? Ajoutez-la ici. »
+Bouton d’ajout : « Ajouter votre ordonnance »
+Question : « Venez-vous de la part de la Maison Sport-Santé de Fontainebleau ? » Oui / Non
+Champ libre : « Une douleur, une maladie ou une limitation à signaler ? »
+Bouton : « Choisir un créneau »
+
+**Règles**
+
+- Groupe de 4 personnes au plus, encadré par un éducateur en activité physique adaptée.
+- L’ordonnance ajoutée est enregistrée dans Documents (Messages et documents), catégorie Ordonnances, avec la mention « Ajouté par vous ».
+- Première séance : [modalités d’accueil : entretien ou bilan préalable].
+- Partenariat avec la Maison Sport-Santé de Fontainebleau : [modalités du partenariat].
+- Prix : [prix].
+
+### Étape 4. 4. Suivi à distance : choisir le format
+
+**Champs** : Format du suivi — choix unique — [formats proposés : visio, téléphone, messagerie] · Sujet — texte libre, 280 caractères, facultatif
+
+Titre : « Votre suivi à distance »
+Texte : « Garder le rythme entre deux venues au centre. [format du suivi] · [prix] »
+Question : « Comment voulez-vous échanger avec votre préparateur ? »
+Champ sujet : « De quoi voulez-vous parler ? »
+Bouton : « Choisir un créneau »
+
+**Règles**
+
+- Format, prix, fréquence et contenu du suivi : [format du suivi], [prix], [fréquence des points], [contenu du suivi à distance]. Rien n’est affiché sur ce format tant que le centre ne l’a pas fourni.
+- Si le suivi comprend un programme d’exercices, il s’affiche dans Exercices à la maison.
+
+### Étape 5. 5. Choisir un créneau
+
+**Champs** : Date — calendrier sur 4 semaines, obligatoire · Créneau — liste, obligatoire · Places restantes — lecture seule, séances de groupe — {places} sur {capacite}
+
+Titre : « Choisissez un créneau »
+Carte créneau : « {date} · {heure} – {heure_fin} · {prestation} · avec {intervenant} »
+Exemple : « Jeudi 1er octobre · 18 h – [heure de fin] · Coaching individuel · avec [nom du préparateur physique] »
+Carte créneau de groupe : « {date} · {heure} · {prestation} · Il reste {places} places sur {capacite} »
+Exemple : « Samedi 3 octobre · 10 h · Sport-santé · Il reste 2 places sur 4 »
+Créneau complet : étiquette « Complet », Bouton « Rejoindre la liste d’attente »
+Aucun créneau : « Aucun créneau disponible cette semaine. Regardez la semaine suivante ou appelez le centre au 01 84 74 34 20. »
+Boutons : « Voir la semaine suivante » / « Appeler le centre »
+
+**Règles**
+
+- Créneaux proposés uniquement pendant les horaires du centre : du lundi au vendredi de 8 h à 20 h, le samedi de 9 h à 13 h. La séance doit finir avant la fermeture.
+- Durée d’une séance : [durée par type de séance]. {heure_fin} est calculée à partir de cette durée ; tant qu’elle n’est pas fournie, l’exemple affiche [heure de fin].
+- Horaires des cours de groupe : [horaires des cours de sport-santé et de cross training].
+- Capacité : sport-santé 4 personnes, cross training 6 personnes. Accord : « Il reste 1 place sur {capacite} » quand {places} vaut 1.
+- Réservation possible jusqu’à [délai minimal de réservation] avant le début.
+- Deux rendez-vous ne peuvent pas se chevaucher dans l’agenda de l’utilisateur.
+- Liste d’attente : la première personne inscrite est prévenue quand une place se libère. Elle a [délai pour accepter] pour la prendre.
+
+### Étape 6. 6. Vérifier et réserver
+
+**Champs** : Récapitulatif — lecture seule — type, date, heure, intervenant, lieu, prix ou décompte du forfait · Note pour l’intervenant — texte libre, 280 caractères, facultatif · Rappel — interrupteur, activé par défaut
+
+Titre : « Vérifiez votre réservation »
+Lignes : « {prestation} » / « {date}, {heure} » / « Avec {intervenant} » / « Hygie, 9, rue de la Petite Vitesse, 77210 Avon » / « Séance comprise dans votre forfait {forfait} ({utilisees} sur {incluses} cette semaine) »
+Exemple : « Coaching individuel » / « Jeudi 1er octobre, 18 h » / « Avec [nom du préparateur physique] » / « Séance comprise dans votre forfait Avancé (2 sur 2 cette semaine) »
+Champ note : « Un point à signaler pour cette séance ? »
+Interrupteur : « Recevoir un rappel »
+Mention : « Annulation sans frais jusqu’à [délai d’annulation] avant la séance. »
+Bouton : « Réserver ce créneau »
+
+**Règles**
+
+- Le créneau est bloqué pendant 5 minutes pendant la vérification, puis libéré.
+- Paiement des séances hors forfait : [mode de paiement].
+- Les rappels suivent les réglages du groupe Rappels du profil.
+
+### Confirmation
+
+Titre : « Votre séance est réservée »
+Texte : « {date} à {heure}, {prestation} avec {intervenant}. Vous recevrez un rappel selon vos réglages. Prévoyez une tenue de sport. »
+Exemple : « Jeudi 1er octobre à 18 h, coaching individuel avec [nom du préparateur physique]. »
+Adresse : « Hygie, 9, rue de la Petite Vitesse, 77210 Avon »
+Boutons : « Ajouter à votre calendrier » / « Voir votre agenda »
+
+### Erreurs
+
+- Créneau pris entre-temps : « Ce créneau vient d’être réservé. Choisissez-en un autre. »
+- Quota atteint : « Vous avez utilisé vos {n} séances de la semaine. Choisissez un créneau la semaine prochaine ou changez de forfait. » Bouton : « Voir les forfaits »
+- Forfait inactif : « Votre forfait n’est pas actif. Choisissez un forfait pour réserver. » Bouton : « Choisir un forfait »
+- Cours complet : « Ce cours est complet. Rejoignez la liste d’attente : nous vous prévenons si une place se libère. » Bouton : « Rejoindre la liste d’attente »
+- Chevauchement : « Vous avez déjà un rendez-vous à cette heure. Choisissez un autre créneau. »
+- Hors horaires : « Le centre est fermé à cette heure. Il vous accueille du lundi au vendredi de 8 h à 20 h et le samedi de 9 h à 13 h. »
+- Réservation trop tardive : « Ce créneau commence bientôt. Il ne peut plus être réservé en ligne. Appelez le centre au 01 84 74 34 20. » Bouton : « Appeler le centre »
+- Fichier refusé : « Ce fichier n’a pas pu être ajouté. Utilisez un PDF, un JPG ou un PNG de [taille maximale] Mo au plus. »
+- Réseau : « La connexion a échoué. Vérifiez votre réseau, puis réessayez. » Bouton : « Réessayer »
+
+## Réserver une séance de kinésithérapie
+
+Trouver le kinésithérapeute adapté à son motif, prendre rendez-vous sur Doctolib, où le cabinet gère ses rendez-vous, puis enregistrer ce rendez-vous dans l’agenda Hygie une fois qu’il est confirmé. Points d’entrée : section Rendez-vous, Kinésithérapie, Bouton « Choisir votre motif » (étape 1) ; carte d’un praticien dans Équipe, dont le bouton ouvre l’étape 3 avec le praticien prérempli ; carte « Rendez-vous kiné à enregistrer » d’Aujourd’hui (étape 4). Indicateur : « Étape {etape} sur 4 ».
+
+### Étape 1. 1. Indiquer le motif
+
+**Champs** : Motif — choix unique, obligatoire — Rééducation après une blessure ou une opération / Kinésithérapie du sport / Adolescent / Rééducation périnéale, pré ou post-partum / Suivi après un cancer du sein / Drainage lymphatique / Dry needling / Ostéopathie / Téléconsultation / Autre motif ou je ne sais pas
+
+Titre : « Pourquoi consultez-vous ? »
+Texte : « Indiquez votre motif. Nous vous montrons les kinésithérapeutes qui s’en occupent au centre. »
+Bouton : « Voir les praticiens »
+Encadré bas d’écran : « Vous cherchez un étiopathe ou un orthoptiste ? » Lien : « Voir les autres soins »
+Écran Autres soins : « Étiopathie : [nom du praticien], [modalités de rendez-vous]. L’étiopathie n’est pas remboursée par l’Assurance maladie. Certaines mutuelles la prennent en charge. [tarif] » / « Orthoptie : [nom du praticien], [modalités de rendez-vous]. »
+
+**Règles**
+
+- Le motif sert uniquement à filtrer les praticiens. Il n’est ni transmis à Doctolib ni utilisé pour un diagnostic.
+- « Autre motif ou je ne sais pas » affiche les 10 kinésithérapeutes.
+- Les motifs correspondent aux filtres de l’Équipe, dont « Périnée, pré et post-partum » et « Cancer du sein ».
+
+### Étape 2. 2. Choisir le praticien
+
+**Champs** : Carte praticien — lecture seule — photo, nom, spécialités, mention Téléconsultation · Sélection — un praticien, obligatoire
+
+Titre : « Les praticiens pour votre motif »
+Cartes (texte réel) :
+« Naomée Addra — Rééducation fonctionnelle, kinésithérapie du sport, adolescents »
+« Gautier Arcache — Rééducation fonctionnelle, ostéopathie »
+« Pierre Becker — Dry needling »
+« Romain Brelier-Murry — Kinésithérapie du sport »
+« Thomas Crasson — Téléconsultation »
+« Maya Maurer — Rééducation périnéale, pré et post-partum, cancer du sein, drainage lymphatique »
+« Alexis Ballard — Kinésithérapeute [spécialités] »
+« Théo Borragini — Kinésithérapeute [spécialités] »
+« Margot De Oliveira — Kinésithérapeute [spécialités] »
+« Jérémy Escriva — Kinésithérapeute [spécialités] »
+Bouton sur chaque carte : « Choisir ce praticien »
+Lien : « Voir tous les kinésithérapeutes »
+
+**Règles**
+
+- Correspondance motif → praticiens : rééducation après blessure ou opération → Naomée Addra, Gautier Arcache ; kinésithérapie du sport → Naomée Addra, Romain Brelier-Murry ; adolescent → Naomée Addra ; rééducation périnéale, pré ou post-partum, cancer du sein, drainage lymphatique → Maya Maurer ; dry needling → Pierre Becker ; ostéopathie → Gautier Arcache ; téléconsultation → Thomas Crasson.
+- Sous les praticiens spécialisés, la liste affiche « Autres kinésithérapeutes du centre » avec les 10 praticiens, sans classement.
+- Photo de chaque praticien : [photo].
+
+### Étape 3. 3. Continuer sur Doctolib
+
+**Champs** : Aucun champ — écran d’information avant la sortie de l’application
+
+Titre : « Rendez-vous sur Doctolib »
+Texte : « Le cabinet de kinésithérapie prend ses rendez-vous sur Doctolib. Vous allez quitter l’application. »
+Texte : « Des dépassements d’honoraires s’appliquent. [tarifs et montant des dépassements] »
+Texte : « Vous avez une ordonnance ? Gardez-la à portée de main. Vous pourrez l’ajouter à vos documents. »
+Bouton : « Continuer sur Doctolib »
+Lien : « Revenir aux praticiens »
+
+**Règles**
+
+- Le bouton ouvre la page Doctolib du praticien choisi dans le navigateur : [lien Doctolib de chaque praticien].
+- L’application ne transmet aucune donnée à Doctolib.
+- L’application garde en mémoire le praticien et le motif pour préremplir l’étape 4.
+- Depuis une carte de l’Équipe, cet écran s’ouvre directement avec le praticien prérempli ; « Revenir aux praticiens » ouvre alors l’étape 2 sans filtre.
+
+### Étape 4. 4. Ajouter le rendez-vous à l’agenda
+
+**Champs** : Praticien — prérempli, modifiable · Date — sélecteur de date, obligatoire, date à venir · Heure — sélecteur d’heure, obligatoire · Lieu — choix unique — Au cabinet / En téléconsultation · Motif — prérempli s’il a été choisi à l’étape 1, facultatif
+
+Affiché au retour dans l’application :
+Titre : « Avez-vous pris rendez-vous sur Doctolib ? »
+Boutons : « Ajouter à votre agenda » / « Le faire plus tard »
+Formulaire :
+Titre : « Votre rendez-vous »
+Texte : « Recopiez la date et l’heure confirmées par Doctolib. »
+Bouton : « Enregistrer ce rendez-vous »
+
+**Règles**
+
+- Le rendez-vous s’affiche dans l’agenda avec la mention « Pris sur Doctolib ».
+- L’application ne peut ni déplacer ni annuler ce rendez-vous. Dans l’agenda, il propose « Gérer sur Doctolib » et « Retirer de votre agenda » (voir parcours deplacer-annuler-rendez-vous).
+- « Le faire plus tard » affiche dans Aujourd’hui la carte « Rendez-vous kiné à enregistrer », avec le Bouton « Ajouter à votre agenda », pendant 7 jours.
+- Heure en dehors des horaires du centre : avertissement non bloquant ([horaires du cabinet de kinésithérapie, s’ils diffèrent]).
+
+### Confirmation
+
+Titre : « Votre rendez-vous est dans votre agenda »
+Texte : « {date} à {heure} avec {praticien}, {lieu}. Pour le déplacer ou l’annuler, passez par Doctolib. »
+Exemple : « Mardi 6 octobre à 9 h 30 avec Romain Brelier-Murry, au cabinet. »
+Boutons : « Voir votre agenda » / « Ajouter votre ordonnance »
+
+### Erreurs
+
+- Motif manquant : « Choisissez un motif pour continuer. »
+- Doctolib indisponible : « Doctolib ne s’ouvre pas. Vérifiez votre connexion ou appelez le centre au 01 84 74 34 20. » Bouton : « Réessayer »
+- Date passée : « Cette date est passée. Indiquez la date de votre rendez-vous. »
+- Champs vides : « Indiquez la date et l’heure de votre rendez-vous. »
+- Doublon : « Ce rendez-vous est déjà dans votre agenda. »
+- Heure inhabituelle (non bloquant) : « Cette heure est en dehors des horaires du centre. Vérifiez l’heure indiquée par Doctolib. » Boutons : « Corriger l’heure » / « Garder cette heure »
+
+## Réserver un bilan
+
+Choisir un bilan (bilan d’entrée, bilan fonctionnel, isocinétique, forces musculaires, sauts, profil force-vitesse), répondre à un court questionnaire, réserver un créneau, lire la préparation puis valider. Points d’entrée : section Rendez-vous (Bilans), Bouton « Réserver votre bilan d’entrée » (parcours sport, suivi), Bouton « Réserver un bilan » (résultats de bilans), ou Coach IA (Bouton « Ouvrir la réservation »). Indicateur : « Étape {etape} sur {total} », avec 5 étapes pour tous les bilans.
+
+### Étape 1. 1. Choisir le bilan
+
+**Champs** : Bilan — choix unique, obligatoire — Bilan d’entrée / Bilan fonctionnel / Bilan isocinétique / Bilan des forces musculaires / Sauts / Profil force-vitesse · Membres évalués (bilan des forces musculaires) — choix unique, obligatoire — Les deux côtés (120 €) / Un seul membre (80 €) · Membre concerné (si un seul membre) — choix unique — [membres pouvant être évalués]
+
+Titre : « Faites le point pour mieux avancer »
+Texte : « Chaque bilan de mesure dure une heure et se termine par un rapport et des axes de travail. Le bilan d’entrée sert à fixer vos objectifs et votre programme. »
+Cartes (bénéfice, puis prix) :
+« Bilan d’entrée — Fixer vos objectifs et construire votre programme. Offert pour un engagement de 3 mois, sinon 145 €. »
+« Bilan fonctionnel — Savoir comment vous bougez : mobilité, amplitudes, contrôle moteur, équilibre. 60 € »
+« Bilan isocinétique — Mesurer votre force et l’équilibre entre vos muscles, prévenir une blessure ou valider votre reprise après une blessure ou une opération des ligaments croisés. 80 € »
+« Bilan des forces musculaires — Repérer les différences de force entre votre côté droit et votre côté gauche. 120 €, 80 € pour un seul membre »
+« Sauts — Mesurer votre explosivité. 80 € »
+« Profil force-vitesse — Connaître votre puissance pour orienter votre entraînement. 80 € »
+Bouton sur chaque carte : « Choisir ce bilan »
+Aide : « Vous hésitez ? Posez la question au Coach IA ou appelez le centre au 01 84 74 34 20. »
+
+**Règles**
+
+- Tarifs : bilan d’entrée offert pour un engagement de 3 mois, sinon 145 € ; fonctionnel 60 € ; isocinétique 80 € ; forces musculaires 120 € ou 80 € pour un seul membre ; sauts 80 € ; profil force-vitesse 80 €.
+- Bilan d’entrée : [modalités de l’engagement de 3 mois], [durée du bilan d’entrée], [praticien du bilan d’entrée], [contenu du bilan d’entrée].
+- Sauts et profil force-vitesse réservés ensemble : [tarif combiné, s’il existe].
+- Bilans compris dans les forfaits : bilan d’entrée pour Essentiel, bilans intermédiaires pour Avancé ; [bilans physiologiques compris ou non dans les forfaits].
+- Tous les bilans, bilan d’entrée compris, passent par les 5 étapes : bilan, questionnaire, créneau, préparation, récapitulatif.
+- Coach IA : le Bouton « Ouvrir la réservation » ouvre ce parcours à la première étape incomplète, prérempli. Le questionnaire et le récapitulatif ne sont jamais sautés. L’utilisateur valide lui-même.
+
+### Étape 2. 2. Répondre au questionnaire préalable
+
+**Champs** : Objectif — choix unique, obligatoire — Reprendre après une blessure ou une opération / Prévenir une blessure / Améliorer vos performances / Faire le point · Sport pratiqué — texte court, obligatoire · Séances de sport par semaine — nombre de 0 à 7 et plus, obligatoire · Blessure ou opération ces 12 derniers mois — oui / non, obligatoire ; si oui : zone, date, type · Opération des ligaments croisés — oui / non, obligatoire pour le bilan isocinétique · Date de l’opération des ligaments croisés — date, obligatoire si la réponse précédente est oui · Accord du chirurgien ou du kinésithérapeute pour ce bilan — oui / non, même condition · Douleur actuelle — échelle de 0 à 10, obligatoire ; si 1 ou plus : zone · Autre information pour le praticien — texte libre, 500 caractères, facultatif
+
+Titre : « Quelques questions avant votre bilan »
+Texte : « Vos réponses aident le praticien à préparer votre bilan. Comptez deux minutes. »
+Questions : « Quel est votre objectif ? » / « Quel sport pratiquez-vous ? » / « Combien de séances de sport faites-vous par semaine ? » / « Avez-vous eu une blessure ou une opération ces 12 derniers mois ? » / « Avez-vous eu une opération des ligaments croisés ? » / « Quelle est la date de cette opération ? » / « Votre chirurgien ou votre kinésithérapeute est-il d’accord pour ce bilan ? » / « Avez-vous mal en ce moment ? 0 = aucune douleur, 10 = douleur insupportable. » / « Autre chose à signaler au praticien ? »
+Bouton : « Valider vos réponses »
+Écran si une réponse demande un avis : « Nous préférons en parler avec vous avant de fixer ce bilan. Le centre vous rappelle. » Boutons : « Demander un rappel » / « Appeler le centre »
+
+**Règles**
+
+- Composant : Questionnaire, le même que dans la section Rendez-vous.
+- Les réponses ne sont visibles que par le praticien qui réalise le bilan et par le référent.
+- Bilan isocinétique après opération des ligaments croisés : délai minimal après l’opération [délai] ; accord médical [requis ou non].
+- Douleur à [seuil de douleur empêchant un bilan] ou plus : réservation suspendue, demande de rappel proposée.
+- Le questionnaire est enregistré dans Documents (Messages et documents), catégorie Questionnaires.
+
+### Étape 3. 3. Choisir un créneau
+
+**Champs** : Date — calendrier, obligatoire · Créneau — liste, obligatoire — une heure pour les bilans de mesure, [durée du bilan d’entrée] pour le bilan d’entrée
+
+Titre : « Choisissez un créneau d’une heure » (bilan d’entrée : « Choisissez un créneau »)
+Carte créneau : « {date} · {heure} – {heure_fin} · {bilan} · avec {praticien} »
+Exemple : « Samedi 10 octobre · 10 h – 11 h · Bilan isocinétique · avec [nom du praticien] »
+Aucun créneau : « Aucun créneau disponible pour ce bilan sur ces dates. Regardez les semaines suivantes ou appelez le centre au 01 84 74 34 20. »
+Bouton : « Choisir ce créneau »
+
+**Règles**
+
+- Bilans de mesure : durée fixe d’une heure. Début du créneau de 8 h à 19 h du lundi au vendredi, de 9 h à 12 h le samedi.
+- Bilan d’entrée : le créneau doit finir avant la fermeture (20 h en semaine, 13 h le samedi).
+- Praticiens réalisant chaque bilan : [praticiens par bilan].
+
+### Étape 4. 4. Préparer votre bilan
+
+**Champs** : Consignes — lecture seule · Paiement — [mode de paiement : en ligne ou sur place]
+
+Titre : « Préparer votre bilan »
+« Venez en tenue de sport. [chaussures ou pieds nus selon le bilan] »
+« Prévoyez une heure sur place. Arrivez [délai d’arrivée] avant. » (bilan d’entrée : « Prévoyez [durée du bilan d’entrée] sur place. »)
+« Le bilan se déroule en trois temps : [contenu des trois temps]. » (bilans de mesure)
+« Avant le bilan : [consignes d’effort, par exemple la veille]. »
+« Vous avez des comptes rendus médicaux récents ? Ajoutez-les à vos documents. » Bouton : « Ajouter un document »
+« Vous recevez votre rapport et vos axes de travail [délai de remise du rapport] après le bilan, dans Documents. »
+Bouton : « Continuer »
+
+**Règles**
+
+- Les consignes restent accessibles depuis le rendez-vous dans l’agenda.
+- Le rapport est classé dans Documents, catégorie Rapports de bilan, avec la mention « Ajouté par le centre ».
+- Les comptes rendus médicaux ajoutés ici sont classés dans la catégorie Comptes rendus, avec la mention « Ajouté par vous ».
+
+### Étape 5. 5. Vérifier et réserver
+
+**Champs** : Récapitulatif — lecture seule — bilan, date, heure, praticien, prix, lieu
+
+Titre : « Vérifiez votre réservation »
+Lignes : « {bilan} » / « {date}, de {heure} à {heure_fin} » / « Avec {praticien} » / « {prix} » / « Hygie, 9, rue de la Petite Vitesse, 77210 Avon »
+Exemple : « Bilan isocinétique » / « Samedi 10 octobre, de 10 h à 11 h » / « Avec [nom du praticien] » / « 80 € »
+Bilan d’entrée, ligne prix : « Offert (engagement de 3 mois) » ou « 145 € »
+Mention : « Annulation sans frais jusqu’à [délai d’annulation] avant le bilan. »
+Bouton : « Réserver ce bilan »
+
+**Règles**
+
+- Remboursement en cas d’annulation d’un bilan payé en ligne : [règle de remboursement].
+
+### Confirmation
+
+Titre : « Votre bilan est réservé »
+Texte : « {bilan}, {date} de {heure} à {heure_fin}. {prix}. Venez en tenue de sport. Vos consignes sont dans votre agenda. »
+Exemple : « Bilan isocinétique, samedi 10 octobre de 10 h à 11 h. 80 €. »
+Boutons : « Voir votre agenda » / « Ajouter à votre calendrier »
+
+### Erreurs
+
+- Questionnaire incomplet : « Répondez aux questions obligatoires pour continuer. »
+- Date d’opération manquante : « Indiquez la date de votre opération. »
+- Date d’opération future : « Cette date est dans le futur. Vérifiez la date de votre opération. »
+- Membre non choisi : « Choisissez le membre à évaluer. »
+- Créneau pris entre-temps : « Ce créneau vient d’être réservé. Choisissez-en un autre. »
+- Paiement refusé : « Le paiement n’a pas abouti. Réessayez ou appelez le centre au 01 84 74 34 20. » Bouton : « Réessayer le paiement »
+- Réseau : « La connexion a échoué. Vérifiez votre réseau, puis réessayez. » Bouton : « Réessayer »
+
+## Réserver une séance de récupération et bien-être
+
+Réserver une séance de pressothérapie après le questionnaire de contre-indications, appeler Malika Pereira pour un massage, ou réserver un conseil en nutrition. Points d’entrée : section Récupération, section Rendez-vous, ou Coach IA (Bouton « Ouvrir la réservation »).
+
+### Étape 1. 1. Choisir le soin
+
+**Champs** : Soin — choix unique, obligatoire — Pressothérapie / Massage bien-être / Conseil en nutrition
+
+Titre : « Récupérer et prendre soin de vous »
+Carte Pressothérapie : « Récupérer après l’effort grâce au froid, à la compression et à la chaleur. Appareil Game Ready Med4 Elite. 20 € la séance. » Pastille : « Questionnaire validé » ou « Questionnaire requis ». Bouton : « Réserver une séance »
+Carte Massage bien-être : « [bénéfice à valider par Malika Pereira]. Deep tissue, drainage lymphatique (méthodes Renata França et Vodder), anti-cellulite, avec Malika Pereira, sur rendez-vous par téléphone. [prix] » Bouton : « Appeler le 06 24 11 42 19 » ; Lien : « Voir les massages »
+Carte Conseil en nutrition : « Trouver des repères alimentaires adaptés à votre quotidien et à votre activité. Conseil préventif, sans diagnostic. [prix] » Bouton : « Réserver un conseil en nutrition »
+
+**Règles**
+
+- Ordre d’affichage : bénéfice, puis appareil ou méthode, puis prix.
+- Pressothérapie : sans questionnaire validé, la pastille affiche « Questionnaire requis » et le Bouton ouvre l’étape 2 ; avec un questionnaire validé, la pastille affiche « Questionnaire validé » et le Bouton ouvre l’étape 3.
+- Aucun bénéfice de massage n’est affiché tant qu’il n’est pas validé par Malika Pereira.
+- Coach IA : le Bouton « Ouvrir la réservation » ouvre ce parcours à la première étape incomplète, prérempli. Exemple : « Pressothérapie · vendredi 25 septembre à 18 h 30 · 20 € · zone à choisir » ouvre l’étape 3 avec le créneau prérempli ; l’utilisateur choisit la zone et le besoin, puis valide au récapitulatif.
+
+### Étape 2. 2. Pressothérapie : questionnaire de contre-indications (première séance)
+
+**Champs** : Questions oui / non, toutes obligatoires — [questions de contre-indication fournies et validées par un praticien du centre] · Autre information à signaler — texte libre, facultatif · Case de certification — obligatoire
+
+Titre : « Avant votre première séance »
+Texte : « Ce questionnaire vérifie que la pressothérapie vous convient. Il est obligatoire avant la première séance. »
+Questions : « [questions de contre-indication fournies et validées par un praticien du centre] »
+Champ : « Autre chose à signaler au praticien ? »
+Case : « Je certifie que mes réponses sont exactes. »
+Bouton : « Valider le questionnaire »
+Écran si une réponse est « Oui » : « Une de vos réponses demande l’avis d’un praticien avant la séance. Le centre vous contacte. Vous pouvez aussi appeler le 01 84 74 34 20. » Boutons : « Demander un rappel » / « Appeler le centre »
+
+**Règles**
+
+- Questionnaire obligatoire avant la première séance : sans questionnaire validé, aucun créneau n’est proposé.
+- Une réponse « Oui » bloque la réservation jusqu’à la validation par un praticien du centre, qui débloque le compte depuis son espace.
+- Durée de validité du questionnaire : [durée]. À expiration, l’application demande une mise à jour avant la réservation suivante.
+- L’utilisateur peut mettre à jour ses réponses à tout moment depuis Documents (Messages et documents), catégorie Questionnaires.
+- Le questionnaire est enregistré dans Documents, catégorie Questionnaires, avec la mention « Ajouté par vous ».
+- Base de travail à valider, ne pas afficher : phlébite ou thrombose veineuse en cours ou récente ; maladie du cœur ou de la circulation ; plaie, infection ou maladie de peau sur la zone ; sensibilité au froid, par exemple syndrome de Raynaud ; grossesse ; fracture non consolidée sur la zone ; trouble de la sensibilité sur la zone ; traitement en cours.
+
+### Étape 3. 3. Pressothérapie : choisir la zone et le créneau
+
+**Champs** : Zone à traiter — choix unique, obligatoire — [zones disponibles avec les manchons Game Ready] · Besoin — choix unique, obligatoire — Récupérer après l’effort / [autres besoins à valider] / Autre · Date et créneau — calendrier et liste, obligatoires
+
+Titre : « Votre séance de pressothérapie »
+Questions : « Quelle zone voulez-vous traiter ? » / « Quel est votre besoin ? »
+Texte : « Froid, compression, chaleur ou alternance : [qui choisit le mode et comment]. »
+Carte créneau : « {date} · {heure} · Pressothérapie · 20 € »
+Exemple : « Vendredi 25 septembre · 18 h 30 · Pressothérapie · 20 € »
+Bouton : « Choisir ce créneau »
+
+**Règles**
+
+- Prix : 20 € la séance. Paiement : [mode de paiement].
+- Durée d’une séance : [durée].
+- Créneaux pendant les horaires du centre uniquement. La séance doit finir avant la fermeture.
+
+### Étape 4. 4. Massage : appeler Malika Pereira
+
+**Champs** : Type de massage — lecture seule — Deep tissue / Drainage lymphatique, méthode Renata França / Drainage lymphatique, méthode Vodder / Anti-cellulite · Après l’appel : type, date, heure — obligatoires pour ajouter le rendez-vous à l’agenda
+
+Titre : « Massages bien-être »
+Texte : « Malika Pereira réalise les massages sur rendez-vous, par téléphone. »
+« Deep tissue — [bénéfice à valider par Malika Pereira] · [durée] · [prix] »
+« Drainage lymphatique, méthode Renata França — [bénéfice à valider par Malika Pereira] · [durée] · [prix] »
+« Drainage lymphatique, méthode Vodder — [bénéfice à valider par Malika Pereira] · [durée] · [prix] »
+« Anti-cellulite — [bénéfice à valider par Malika Pereira] · [durée] · [prix] »
+Bouton : « Appeler le 06 24 11 42 19 »
+Au retour : « Vous avez fixé un rendez-vous ? Ajoutez-le à votre agenda. » Bouton : « Ajouter à votre agenda »
+
+**Règles**
+
+- L’application ne réserve pas les massages : elle lance l’appel au 06 24 11 42 19.
+- Horaires d’appel : [horaires de Malika Pereira].
+- Le rendez-vous ajouté s’affiche dans l’agenda avec la mention « Pris par téléphone ». Depuis l’agenda, il propose « Appeler Malika Pereira » et « Retirer de votre agenda ».
+
+### Étape 5. 5. Conseil en nutrition : choisir la formule et le créneau
+
+**Champs** : Formule — choix unique, obligatoire — Première séance : bilan [prix] / Séance de suivi [prix] / Forfait bilan et 4 suivis [prix] · Objectif — choix unique, facultatif — Mieux manger au quotidien / Accompagner votre pratique sportive / Retrouver de l’énergie / Autre · Date et créneau — obligatoires
+
+Titre : « Conseil en nutrition »
+Texte : « Un conseil préventif pour construire des repères simples, avec [nom du conseiller en nutrition]. Il ne pose pas de diagnostic et ne remplace pas un suivi médical. »
+Formules : « Première séance : bilan — [durée] · [prix] » / « Séance de suivi — [durée] · [prix] » / « Forfait bilan et 4 suivis — [prix] »
+Question : « Qu’attendez-vous de ce conseil ? »
+Bouton : « Choisir ce créneau »
+
+**Règles**
+
+- La séance de suivi n’est proposée qu’après une première séance bilan.
+- Forfait : 5 séances, réservées une par une. Validité du forfait : [durée].
+- Mode de réservation : [dans l’application ou par téléphone]. Si la réservation se fait par téléphone, l’écran suit le même modèle que les massages.
+- Si l’utilisateur signale une maladie, l’écran rappelle : « Pour une question médicale, parlez-en à votre médecin. »
+
+### Étape 6. 6. Vérifier et réserver (pressothérapie, conseil en nutrition)
+
+**Champs** : Récapitulatif — lecture seule — soin, date, heure, zone (pressothérapie), prix, lieu
+
+Titre : « Vérifiez votre réservation »
+Lignes : « {soin} » / « {date}, {heure} » / « Zone : {zone} » (pressothérapie) / « {prix} » / « Hygie, 9, rue de la Petite Vitesse, 77210 Avon »
+Exemple : « Pressothérapie » / « Vendredi 25 septembre, 18 h 30 » / « Zone : [une des zones disponibles] » / « 20 € »
+Mention : « Annulation sans frais jusqu’à [délai d’annulation] avant la séance. »
+Bouton : « Réserver ce créneau »
+
+**Règles**
+
+- Le créneau est bloqué pendant 5 minutes pendant la vérification, puis libéré.
+- Paiement : [mode de paiement].
+
+### Confirmation
+
+Pressothérapie :
+Titre : « Votre séance de pressothérapie est réservée »
+Texte : « {date} à {heure}. 20 €. [consignes de tenue]. »
+Exemple : « Vendredi 25 septembre à 18 h 30. 20 €. »
+Nutrition :
+Titre : « Votre conseil en nutrition est réservé »
+Texte : « {formule}, avec [nom du conseiller en nutrition], le {date} à {heure}. »
+Exemple : « Première séance : bilan, avec [nom du conseiller en nutrition], le mardi 29 septembre à 17 h. »
+Massage (après ajout) :
+Titre : « Votre massage est dans votre agenda »
+Texte : « {massage}, {date} à {heure}, avec Malika Pereira. »
+Boutons communs : « Voir votre agenda » / « Ajouter à votre calendrier »
+
+### Erreurs
+
+- Questionnaire incomplet : « Répondez à toutes les questions pour continuer. »
+- Certification manquante : « Cochez la case pour certifier vos réponses. »
+- Avis requis : « Une de vos réponses demande l’avis d’un praticien avant la séance. Le centre vous contacte. »
+- Questionnaire expiré : « Votre questionnaire doit être mis à jour avant cette réservation. » Bouton : « Mettre à jour votre questionnaire »
+- Zone manquante : « Choisissez la zone à traiter. »
+- Appel impossible : « L’appel n’a pas pu être lancé. Composez le 06 24 11 42 19. »
+- Suivi nutrition sans bilan : « Réservez d’abord votre première séance : bilan. » Bouton : « Réserver votre première séance »
+- Créneau pris entre-temps : « Ce créneau vient d’être réservé. Choisissez-en un autre. »
+- Paiement refusé : « Le paiement n’a pas abouti. Réessayez ou appelez le centre au 01 84 74 34 20. » Bouton : « Réessayer le paiement »
+
+## Déplacer ou annuler un rendez-vous
+
+Changer la date d’un rendez-vous ou l’annuler depuis l’agenda, selon la façon dont il a été pris : dans l’application, sur Doctolib ou par téléphone. Le Coach IA peut ouvrir ce parcours avec le rendez-vous prérempli (Bouton « Ouvrir la réservation ») ; l’utilisateur confirme lui-même.
+
+### Étape 1. 1. Ouvrir le rendez-vous
+
+**Champs** : Détail du rendez-vous — lecture seule — type, date, heure, intervenant, lieu, origine (application, Doctolib, téléphone)
+
+Rendez-vous pris dans l’application (sport, bilan, pressothérapie, nutrition) : Boutons « Déplacer le rendez-vous » / « Annuler le rendez-vous »
+Rendez-vous de kinésithérapie, mention « Pris sur Doctolib » : « Ce rendez-vous a été pris sur Doctolib. » Boutons : « Gérer sur Doctolib » / « Retirer de votre agenda »
+Massage, mention « Pris par téléphone » : « Ce rendez-vous a été pris par téléphone. » Boutons : « Appeler Malika Pereira » / « Retirer de votre agenda »
+Mention sous les boutons : « Annulation sans frais jusqu’à [délai d’annulation] avant le rendez-vous. »
+Rendez-vous au centre passé sans avoir eu lieu : Bouton « Prendre un autre rendez-vous »
+
+**Règles**
+
+- « Retirer de votre agenda » supprime le rendez-vous de l’application seulement. Doctolib : message « Ce rendez-vous reste actif sur Doctolib. Pensez à l’annuler aussi. » Téléphone : message « Ce rendez-vous reste prévu avec Malika Pereira. Pensez à l’annuler par téléphone. »
+- Un rendez-vous commencé ou passé ne peut plus être déplacé ni annulé.
+- Étape au centre manquée (planning du jour) : Bouton « Prendre un autre rendez-vous », qui ouvre Rendez-vous à l’étape Créneau, prestation préremplie. « Reporter à demain » est réservé aux étapes à la maison.
+
+### Étape 2. 2. Déplacer
+
+**Champs** : Nouvelle date — calendrier, obligatoire · Nouveau créneau — liste, obligatoire
+
+Titre : « Choisissez un nouveau créneau »
+Texte : « Votre créneau actuel reste réservé tant que vous n’avez pas confirmé le nouveau. »
+Rappel : « Créneau actuel : {date}, {heure} »
+Exemple : « Créneau actuel : jeudi 1er octobre, 18 h »
+Bouton : « Déplacer vers ce créneau »
+
+**Règles**
+
+- Mêmes règles que la réservation : horaires du centre, capacité des groupes, quota hebdomadaire du forfait, pas de chevauchement.
+- Déplacement dans les délais : sans frais. Au-delà : [règle en cas de déplacement tardif].
+- Le praticien ou l’intervenant reçoit une notification du changement.
+
+### Étape 3. 3. Annuler
+
+**Champs** : Raison — choix unique, facultatif — Empêchement / Maladie ou blessure / Autre · Message pour l’intervenant — texte libre, 280 caractères, facultatif
+
+Titre : « Annuler ce rendez-vous ? »
+Dans les délais : « Vous annulez plus de [délai d’annulation] avant. [conséquence : séance recréditée ou remboursement]. »
+Hors délais : « Vous annulez moins de [délai d’annulation] avant. [conséquence d’une annulation tardive]. »
+Question : « Voulez-vous nous dire pourquoi ? » Empêchement · Maladie ou blessure · Autre
+Boutons : « Confirmer l’annulation » / « Garder ce rendez-vous »
+
+**Règles**
+
+- Coaching individuel annulé dans les délais : [règle de recrédit sur le quota de la semaine].
+- Séance de groupe annulée : la place est proposée à la première personne de la liste d’attente.
+- Bilan, pressothérapie ou nutrition payés en ligne : [règle de remboursement].
+- Raison « Maladie ou blessure » : l’application propose ensuite « Voulez-vous prévenir votre référent ? » Boutons : « Prévenir votre référent » / « Continuer sans prévenir ».
+
+### Confirmation
+
+Déplacement :
+Titre : « Votre rendez-vous est déplacé »
+Texte : « Nouvelle date : {date} à {heure}. »
+Exemple : « Nouvelle date : vendredi 9 octobre à 12 h. »
+Annulation :
+Titre : « Votre rendez-vous est annulé »
+Texte : « [information sur le recrédit ou le remboursement]. »
+Boutons : « Prendre un autre rendez-vous » / « Voir votre agenda »
+
+### Erreurs
+
+- Rendez-vous commencé : « Ce rendez-vous a déjà commencé. Il ne peut plus être déplacé ni annulé. »
+- Aucun créneau : « Aucun autre créneau n’est disponible. Gardez ce rendez-vous ou appelez le centre au 01 84 74 34 20. »
+- Délai dépassé (si le déplacement tardif est interdit) : « Ce rendez-vous ne peut plus être déplacé en ligne. Appelez le centre au 01 84 74 34 20. »
+- Échec de l’annulation : « L’annulation n’a pas abouti. Votre rendez-vous est toujours réservé. Réessayez. » Bouton : « Réessayer »
+- Rendez-vous Doctolib : « Ce rendez-vous a été pris sur Doctolib. Déplacez-le ou annulez-le sur Doctolib. » Bouton : « Gérer sur Doctolib »
+
+## Suivi à la personne
+
+Le suivi à la personne applique le troisième temps de la méthode Hygie : accompagner dans la durée. L’onglet Suivi rassemble votre référent, vos objectifs, votre carnet de douleur et de forme, vos résultats de bilans et vos exercices à la maison. Il renvoie vers Messages et documents (Messagerie, Documents) et vers le groupe Rappels du profil.
+Texte d’accueil de l’onglet Suivi : « Votre progression, vos exercices et vos échanges avec votre référent, au même endroit. »
+Parcours affiché en tête : « Parcours Bien-être » ou « Parcours Performance ».
+Coach IA (encadré en bas de l’onglet) : « Une question sur votre programme, vos bilans ou le centre ? Posez-la au Coach IA. Il fonctionne avec un modèle Mistral hébergé en Europe. Il ne remplace pas l’avis d’un praticien. » Bouton : « Poser une question »
+Données de santé : « Vos données de santé sont hébergées par [hébergeur certifié HDS]. Seuls les praticiens qui vous suivent y ont accès. [règle d’accès des praticiens] » Bouton : « Gérer vos partages »
+Libellés communs : « référent », « Coach IA », « votre / vos » ; variables de gabarit entre accolades, faits manquants entre crochets.
+Toutes les valeurs chiffrées et tous les noms d’utilisateur ci-dessous sont des données de démonstration, marquées « Exemple ». Le jeu d’exemple est celui des sections : aujourd’hui = mercredi 23 septembre 2026 ; dernier bilan : bilan des forces musculaires du 12 septembre 2026 ; bilan isocinétique à venir le 10 octobre 2026 ; programme à la maison d’environ 15 minutes ; référent Johan Pereira.
+
+### Votre référent
+
+Carte en tête du suivi : photo, nom, métier, spécialités, prochain rendez-vous commun, autres intervenants qui vous suivent. Accès direct à la messagerie et à la prise de rendez-vous.
+
+Titre : « Votre référent »
+Texte : « Votre référent suit votre progression et adapte votre programme. »
+Boutons : « Écrire à votre référent » / « Prendre rendez-vous »
+Sous-titre : « Ils vous suivent aussi »
+État vide : « Le centre vous attribue un référent. Il apparaîtra ici. »
+
+```
+Exemple — Référent : Johan Pereira, étiopathe et préparateur physique. Parcours Performance, forfait Avancé. Prochain rendez-vous commun : jeudi 1er octobre 2026 à 18 h, coaching individuel. Vous suivent aussi : Romain Brelier-Murry, kinésithérapeute du sport. (Attribution fictive, pour la démonstration.)
+```
+
+### Vos objectifs et votre progression
+
+Un à trois objectifs fixés avec le référent, chacun avec un indicateur, une valeur de départ, une cible, une valeur actuelle, une échéance et une barre de progression. Résumé de la semaine : séances faites, exercices à la maison, activité. Les objectifs évoluent après chaque bilan intermédiaire.
+
+Titre : « Vos objectifs »
+Texte : « Vos objectifs sont fixés avec votre référent. Ils évoluent à chaque bilan. »
+Carte objectif : « {objectif} — Départ : {valeur_depart} · Aujourd’hui : {valeur_actuelle} · Cible : {cible} · Échéance : {echeance} »
+Bouton : « Proposer un objectif »
+Résumé : « Séances cette semaine : {seances_faites} sur {seances_prevues} · Exercices à la maison : {programme_fait} sur {programme_prevu} »
+État vide : « Aucun objectif pour l’instant. Vous les fixerez avec votre référent lors de votre bilan. » Bouton : « Réserver votre bilan d’entrée »
+
+```
+Exemple — Objectif 1 : « Reprendre la course à pied sans douleur » — départ 0 min, aujourd’hui 15 min en continu, cible 30 min, échéance 15 décembre 2026 (50 %). Objectif 2 : « Réduire l’écart de force des quadriceps sous 10 % » — départ 18 %, aujourd’hui 11 % (bilan des forces musculaires du 12 septembre 2026), cible 10 % (88 %). Objectif 3 : « Dormir 7 h par nuit » — moyenne actuelle 6 h 10. Semaine du 14 au 20 septembre 2026 : 2 séances sur 2 au centre, 3 séances sur 3 à la maison ; pas et calories : valeurs de la section Statistiques pour cette même semaine (valeurs de démonstration).
+```
+
+### Votre carnet de douleur et de forme
+
+Modèle unique de l’application, qui remplace le point hebdomadaire de 1 à 5 et l’échelle d’humeur. Saisie quotidienne en moins d’une minute : douleur de 0 à 10, zone sur une silhouette, moment de la douleur, forme de 0 à 10, sommeil de 0 à 10, remarque libre. Courbes avec le sélecteur « 7 j · 30 j · 90 j ». Accès depuis Aujourd’hui par le Bouton « Remplir votre carnet ». Le Coach IA peut aussi enregistrer une douleur dictée en conversation (Bouton « Enregistrer la douleur »). Si la douleur reste à [seuil d’alerte] ou plus deux jours de suite, l’application propose de prévenir le référent : rien n’est envoyé sans l’accord de l’utilisateur, il n’y a pas d’alerte automatique. Un seul interrupteur de partage, le même dans le profil : « Partager votre carnet avec votre référent ».
+
+Titre : « Comment allez-vous aujourd’hui ? »
+Échelle douleur : « Douleur : 0 = aucune douleur, 10 = douleur insupportable. »
+Question : « Où avez-vous mal ? »
+Question : « À quel moment avez-vous mal ? » Au repos · En bougeant · Pendant le sport · La nuit
+Échelle forme : « Forme : 0 = aucune énergie, 10 = pleine énergie. »
+Échelle sommeil : « Sommeil : 0 = nuit agitée, 10 = nuit reposante. »
+Champ : « Une remarque ? »
+Bouton : « Enregistrer votre journée »
+Sélecteur des courbes : « 7 j · 30 j · 90 j »
+Interrupteur : « Partager votre carnet avec votre référent »
+Alerte : « Votre douleur est à [seuil d’alerte] ou plus depuis deux jours. Voulez-vous prévenir votre référent ? » Boutons : « Prévenir votre référent » / « Continuer sans prévenir »
+Mention permanente : « En cas d’urgence, appelez le 15 ou le 112. »
+
+```
+Exemple — Genou droit, 7 derniers jours (du 17 au 23 septembre 2026) : douleur 5, 4, 4, 3, 3, 2, 2 ; forme 5, 6, 6, 7, 6, 7, 8 ; sommeil 6, 7, 7, 6, 8, 7, 8. Moment le plus fréquent : en bougeant. Remarque du 21 septembre (exemple) : « Gêne en descendant les escaliers. »
+```
+
+### Vos résultats de bilans
+
+Frise des bilans passés et à venir, comparaison de deux dates au choix, graphique par indicateur avec côté droit et côté gauche, explication de chaque indicateur en langage simple, axes de travail du référent, rapport complet en PDF (Documents, catégorie Rapports de bilan), suggestion du prochain bilan.
+
+Titre : « Vos résultats de bilans »
+Texte : « Comparez vos résultats d’un bilan à l’autre. Votre référent les commente avec vous. »
+Bouton : « Comparer deux bilans »
+Explications : « Écart de force : différence entre votre côté droit et votre côté gauche. Plus l’écart baisse, plus vos deux côtés travaillent de façon équilibrée. » / « Hauteur de saut : elle reflète votre explosivité. » / « Amplitude : jusqu’où votre articulation bouge, en degrés. »
+Sous-titre : « Axes de travail »
+Bouton : « Lire le rapport complet »
+Bilan réservé : « À venir : {bilan}, {date}. » Bouton : « Voir votre agenda »
+Suggestion : « Prochain bilan conseillé : {bilan}, vers le {date}. » Bouton : « Réserver un bilan »
+État vide : « Vous n’avez pas encore de résultats. Faites le point avec un bilan. » Bouton : « Réserver un bilan »
+
+```
+Exemple — Bilan fonctionnel, 3 juin 2026 ; bilan des forces musculaires, 12 septembre 2026 : écart de force des quadriceps 18 % → 11 %, écart des ischio-jambiers 4 %. À venir : bilan isocinétique, samedi 10 octobre 2026. Axes de travail (exemple) : « Renforcer le quadriceps droit pour ramener l’écart sous 10 %. » Rapport : « Rapport, bilan des forces musculaires, 12 septembre 2026 ».
+```
+
+### Exercices à la maison
+
+Programme assigné par le référent : jours conseillés, durée, liste d’exercices. Chaque exercice ouvre la Fiche exercice : objectif, position de départ, comment le faire, respiration, à éviter, séries, répétitions et repos, et trois photos : Étape 1 « Position de départ », Étape 2 « Fin du mouvement », Étape 3 « Erreur à éviter » (cadre rose). Minuteur intégré, Bouton « Marquer comme fait » pour chaque exercice. Après chaque exercice : échelle de ressenti Facile · Adapté · Difficile · Douloureux, puis « Douleur pendant l’exercice, de 0 à 10 ». En fin de séance, ces retours partent au référent.
+
+Titre : « Exercices à la maison »
+Texte : « Programme préparé par {praticien} le {date}. {n} séances par semaine, environ {duree} minutes. »
+Fiche exercice (rubriques) : « Objectif » / « Position de départ » / « Comment le faire » / « Respiration » / « À éviter » / « Séries et repos »
+Photos : « Étape 1 : Position de départ » / « Étape 2 : Fin du mouvement » / « Étape 3 : Erreur à éviter »
+Boutons : « Commencer la séance » / « Lancer le minuteur » / « Marquer comme fait » / « Terminer la séance »
+Ressenti : « Facile · Adapté · Difficile · Douloureux », puis « Douleur pendant l’exercice, de 0 à 10 »
+Sécurité : « Arrêtez l’exercice si la douleur dépasse [seuil fixé par votre référent] sur 10 ou si elle augmente pendant le mouvement. Signalez-le à votre référent. »
+Fin de séance : « Séance terminée. Vos ressentis et vos douleurs sont prêts à partir chez votre référent. » Bouton : « Envoyer à votre référent »
+État vide : « Votre référent ne vous a pas encore assigné de programme. » Bouton : « Écrire à votre référent »
+
+```
+Exemple — Le programme est celui de la section Exercices à la maison : les mêmes 5 exercices, environ 15 minutes par séance, 3 séances par semaine. Chaque fiche reprend la section Fiche exercice (exemple de respiration : « Soufflez en montant. »). Photos : [photos des exercices réalisées par le centre]. Semaine du 14 au 20 septembre 2026 (exemple) : lundi 5 exercices faits sur 5, mercredi 5 sur 5, vendredi 3 sur 5 ; douleur moyenne pendant les exercices 2 sur 10.
+```
+
+### Messagerie
+
+Dans Messages et documents. Conversation avec le référent et, si besoin, les autres intervenants qui vous suivent. Envoi de texte, photo ou document. Accusé de lecture. Délai de réponse affiché. Bandeau urgence permanent. Lien vers le Coach IA pour les questions générales.
+
+Titre : « Messagerie »
+Texte d’en-tête : « Écrivez à votre référent. Il vous répond [délai de réponse], [jours de réponse]. »
+Bandeau : « La messagerie ne sert pas aux urgences. En cas d’urgence, appelez le 15 ou le 112. »
+Champ : « Écrivez votre message »
+Boutons : « Envoyer » / « Joindre un fichier »
+Statuts : « Envoyé » / « Lu »
+Encadré : « Une question sur le centre ou votre programme ? Posez-la au Coach IA. » Bouton : « Demander au Coach IA »
+
+```
+Exemple — Mardi 22 septembre 2026, 19 h 12, vous : « Bonjour, j’ai une gêne au genou droit en descendant les escaliers depuis deux jours. Dois-je continuer le programme ? » Mercredi 23 septembre, 9 h 05, Johan Pereira (échange fictif) : « Bonjour. Continuez le programme sans forcer. Arrêtez un exercice s’il réveille la douleur. Notez votre douleur chaque jour dans le carnet. »
+```
+
+### Documents
+
+Dans Messages et documents. Catégories communes à toute l’application : Rapports de bilan · Ordonnances · Comptes rendus · Questionnaires · Autres documents · Factures [si disponibles]. Chaque document porte la mention « Ajouté par le centre » ou « Ajouté par vous ». Ajout par fichier ou photo, téléchargement, partage avec le référent, suppression réservée aux documents ajoutés par l’utilisateur.
+
+Titre : « Documents »
+Texte : « Retrouvez vos rapports de bilan, vos ordonnances et vos questionnaires. »
+Boutons : « Ajouter un document » / « Photographier une ordonnance » / « Télécharger » / « Partager avec votre référent »
+Mentions : « Ajouté par le centre » / « Ajouté par vous »
+Notification : « Le rapport de votre bilan est disponible. » Bouton : « Lire le rapport »
+Suppression : « Supprimer ce document ? Cette action est définitive. » Boutons : « Supprimer ce document » / « Garder le document »
+Document du centre : « Ce document a été ajouté par le centre. Il ne peut pas être supprimé. »
+Erreur : « Ce fichier n’a pas pu être ajouté. Utilisez un PDF, un JPG ou un PNG de [taille maximale] Mo au plus. »
+
+```
+Exemple — « Rapport, bilan des forces musculaires, 12 septembre 2026, PDF, 1,2 Mo » (Rapports de bilan, ajouté par le centre) ; « Ordonnance de kinésithérapie, 2 septembre 2026, photo » (Ordonnances, ajouté par vous) ; « Questionnaire de contre-indications, pressothérapie, 10 septembre 2026 » (Questionnaires, ajouté par vous) ; « Rapport, bilan fonctionnel, 3 juin 2026, PDF » (Rapports de bilan, ajouté par le centre).
+```
+
+### Rappels
+
+Groupe « Rappels » du profil, qui remplace le groupe Notifications. Réglage par type : Rendez-vous (la veille à {heure}, {delai} avant) · Programme à la maison ({jours} à {heure}) · Carnet (chaque jour à {heure}) · Bilan intermédiaire ({jours} jours avant) · Questionnaire de pressothérapie · Canal : [canaux disponibles]. Messages et Communauté restent des interrupteurs.
+
+Titre : « Rappels »
+Texte : « Choisissez quand l’application vous rappelle vos rendez-vous et vos exercices. »
+Lignes : « Rendez-vous : la veille à {heure}, {delai} avant » / « Programme à la maison : {jours} à {heure} » / « Carnet : chaque jour à {heure} » / « Bilan intermédiaire : {jours} jours avant » / « Questionnaire de pressothérapie » / « Canal : [canaux disponibles] »
+Boutons : « Activer les rappels » / « Enregistrer vos réglages »
+Textes des notifications :
+« Demain à {heure} : {prestation} chez Hygie, 9, rue de la Petite Vitesse, Avon. »
+« Rappel : {prestation} aujourd’hui à {heure}. »
+« Demain à {heure} : kinésithérapie avec {praticien}. Pour modifier ce rendez-vous, passez par Doctolib. »
+« Votre séance à la maison vous attend : {n} exercices, environ {duree} minutes. »
+« Comment allez-vous aujourd’hui ? Remplissez votre carnet. »
+« Votre prochain bilan intermédiaire approche. Prenez rendez-vous. »
+« Votre questionnaire de pressothérapie doit être mis à jour avant votre prochaine séance. »
+
+```
+Exemple de réglages : rendez-vous la veille à 18 h et 2 h avant ; programme à la maison le lundi, le mercredi et le vendredi à 19 h ; carnet chaque jour à 21 h ; bilan intermédiaire 7 jours avant la date conseillée. Exemples de notifications : « Rappel : Pressothérapie aujourd’hui à 19 h 15. » ; « Demain à 8 h 30 : kinésithérapie avec Romain Brelier-Murry. Pour modifier ce rendez-vous, passez par Doctolib. » ; « Votre séance à la maison vous attend : 5 exercices, environ 15 minutes. » (Réglages de démonstration, modifiables par l’utilisateur.)
+```
+
+## Faits à compléter
+
+- [prix] de la séance de sport-santé en petit groupe
+- [prix], [durée] et [étape préalable éventuelle : bilan ou entretien] de la reprise du sport et réathlétisation
+- [format du suivi] à distance ([formats proposés : visio, téléphone, messagerie]), [prix], [fréquence des points] et [contenu du suivi à distance]
+- [durée] d’une séance de coaching individuel, de sport-santé et de cross training (et donc [heure de fin] des créneaux)
+- [horaires des cours de sport-santé et de cross training]
+- [noms des préparateurs physiques] qui assurent le coaching individuel, la reprise du sport et le suivi à distance (exemples : [nom du préparateur physique])
+- [noms des éducateurs en activité physique adaptée]
+- [règle de décompte] de la semaine pour le quota des forfaits (du lundi au dimanche ou autre)
+- [règle de report] des séances non utilisées
+- [règle de recrédit] d’une séance de coaching annulée dans les délais
+- [fréquence des bilans intermédiaires] des forfaits
+- [mode de paiement] : en ligne, sur place, prélèvement
+- [modalités d’accès] aux praticiens de santé inclus dans le forfait Performance
+- [modalités d’accueil] en sport-santé : entretien ou bilan préalable
+- [modalités du partenariat] avec la Maison Sport-Santé de Fontainebleau
+- [délai minimal de réservation] avant le début d’une séance
+- [délai d’annulation] sans frais
+- [conséquence d’une annulation tardive]
+- [règle en cas de déplacement tardif]
+- [règle de remboursement] des bilans et séances payés en ligne
+- [délai pour accepter] une place libérée sur liste d’attente
+- [taille maximale] des fichiers ajoutés (même valeur dans la section Messages et documents)
+- [lien Doctolib de chaque praticien]
+- [spécialités] d’Alexis Ballard, Théo Borragini, Margot De Oliveira et Jérémy Escriva
+- [photo] de chaque praticien
+- [tarifs et montant des dépassements] d’honoraires en kinésithérapie
+- [horaires du cabinet de kinésithérapie], s’ils diffèrent de ceux du centre
+- [nom du praticien], [modalités de rendez-vous] et [tarif] en étiopathie
+- [nom du praticien] et [modalités de rendez-vous] en orthoptie
+- [durée du bilan d’entrée], [praticien du bilan d’entrée] et [contenu du bilan d’entrée]
+- [modalités de l’engagement de 3 mois] qui rend le bilan d’entrée offert
+- [praticiens par bilan] : qui réalise chaque bilan physiologique (exemples : [nom du praticien])
+- [membres pouvant être évalués] pour le bilan des forces musculaires
+- [tarif combiné] si sauts et profil force-vitesse sont réservés ensemble
+- [bilans physiologiques compris ou non dans les forfaits]
+- [délai] minimal après une opération des ligaments croisés pour le bilan isocinétique
+- [requis ou non] : accord médical pour le bilan isocinétique après opération
+- [seuil de douleur empêchant un bilan]
+- [contenu des trois temps] du bilan
+- [chaussures ou pieds nus selon le bilan]
+- [consignes d’effort] avant un bilan
+- [délai d’arrivée] avant un rendez-vous
+- [délai de remise du rapport] de bilan
+- [questions de contre-indication fournies et validées par un praticien du centre] pour la pressothérapie (la liste des règles n’est qu’une base de travail, à ne pas afficher)
+- [durée] de validité du questionnaire de contre-indications
+- [durée] d’une séance de pressothérapie
+- [zones disponibles avec les manchons Game Ready]
+- [autres besoins à valider] en pressothérapie
+- [qui choisit le mode et comment] : froid, compression, chaleur ou alternance
+- [consignes de tenue] pour la pressothérapie
+- [bénéfice à valider par Malika Pereira], [durée] et [prix] de chaque massage : deep tissue, drainage Renata França, drainage Vodder, anti-cellulite
+- [horaires de Malika Pereira] pour les appels
+- [nom du conseiller en nutrition]
+- [prix] et [durée] de la première séance bilan, de la séance de suivi et du forfait bilan et 4 suivis en nutrition
+- [dans l’application ou par téléphone] : mode de réservation du conseil en nutrition
+- [durée] de validité du forfait nutrition
+- [hébergeur certifié HDS] des données de santé
+- [règle d’accès des praticiens] au carnet, aux bilans et aux documents
+- [délai de réponse] et [jours de réponse] de la messagerie
+- [seuil d’alerte] de douleur dans le carnet
+- [seuil fixé par votre référent] pour arrêter un exercice
+- [photos des exercices réalisées par le centre]
+- [si disponibles] : factures dans l’application
+- [canaux disponibles] pour les rappels : notification, e-mail, SMS
