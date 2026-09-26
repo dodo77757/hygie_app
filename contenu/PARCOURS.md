@@ -84,7 +84,6 @@ Bouton : « Choisir un créneau »
 **Règles**
 
 - Format, prix, fréquence et contenu du suivi : [format du suivi], [prix], [fréquence des points], [contenu du suivi à distance]. Rien n’est affiché sur ce format tant que le centre ne l’a pas fourni.
-- Si le suivi comprend un programme d’exercices, il s’affiche dans Exercices à la maison.
 
 ### Étape 5. 5. Choisir un créneau
 
@@ -569,8 +568,8 @@ Boutons : « Prendre un autre rendez-vous » / « Voir votre agenda »
 
 ## Suivi à la personne
 
-Le suivi à la personne applique le troisième temps de la méthode Hygie : accompagner dans la durée. L’onglet Suivi rassemble votre référent, vos objectifs, votre carnet de douleur et de forme, vos résultats de bilans et vos exercices à la maison. Il renvoie vers Messages et documents (Messagerie, Documents) et vers le groupe Rappels du profil.
-Texte d’accueil de l’onglet Suivi : « Votre progression, vos exercices et vos échanges avec votre référent, au même endroit. »
+Le suivi à la personne applique le troisième temps de la méthode Hygie : accompagner dans la durée. L’onglet Suivi rassemble votre référent, vos objectifs, votre carnet de douleur et de forme et vos résultats de bilans. Il renvoie vers Messages et documents (Messagerie, Documents) et vers le groupe Rappels du profil.
+Texte d’accueil de l’onglet Suivi : « Votre progression et vos échanges avec votre référent, au même endroit. »
 Parcours affiché en tête : « Parcours Bien-être » ou « Parcours Performance ».
 Coach IA (encadré en bas de l’onglet) : « Une question sur votre programme, vos bilans ou le centre ? Posez-la au Coach IA. Il fonctionne avec un modèle Mistral hébergé en Europe. Il ne remplace pas l’avis d’un praticien. » Bouton : « Poser une question »
 Données de santé : « Vos données de santé sont hébergées par [hébergeur certifié HDS]. Seuls les praticiens qui vous suivent y ont accès. [règle d’accès des praticiens] » Bouton : « Gérer vos partages »
@@ -593,13 +592,12 @@ Exemple — Référent : Johan Pereira, étiopathe et préparateur physique. Par
 
 ### Vos objectifs et votre progression
 
-Un à trois objectifs fixés avec le référent, chacun avec un indicateur, une valeur de départ, une cible, une valeur actuelle, une échéance et une barre de progression. Résumé de la semaine : séances faites, exercices à la maison, activité. Les objectifs évoluent après chaque bilan intermédiaire.
+
 
 Titre : « Vos objectifs »
 Texte : « Vos objectifs sont fixés avec votre référent. Ils évoluent à chaque bilan. »
 Carte objectif : « {objectif} — Départ : {valeur_depart} · Aujourd’hui : {valeur_actuelle} · Cible : {cible} · Échéance : {echeance} »
 Bouton : « Proposer un objectif »
-Résumé : « Séances cette semaine : {seances_faites} sur {seances_prevues} · Exercices à la maison : {programme_fait} sur {programme_prevu} »
 État vide : « Aucun objectif pour l’instant. Vous les fixerez avec votre référent lors de votre bilan. » Bouton : « Réserver votre bilan d’entrée »
 
 ```
@@ -645,24 +643,6 @@ Suggestion : « Prochain bilan conseillé : {bilan}, vers le {date}. » Bouton :
 Exemple — Bilan fonctionnel, 3 juin 2026 ; bilan des forces musculaires, 12 septembre 2026 : écart de force des quadriceps 18 % → 11 %, écart des ischio-jambiers 4 %. À venir : bilan isocinétique, samedi 10 octobre 2026. Axes de travail (exemple) : « Renforcer le quadriceps droit pour ramener l’écart sous 10 %. » Rapport : « Rapport, bilan des forces musculaires, 12 septembre 2026 ».
 ```
 
-### Exercices à la maison
-
-Programme assigné par le référent : jours conseillés, durée, liste d’exercices. Chaque exercice ouvre la Fiche exercice : objectif, position de départ, comment le faire, respiration, à éviter, séries, répétitions et repos, et trois photos : Étape 1 « Position de départ », Étape 2 « Fin du mouvement », Étape 3 « Erreur à éviter » (cadre rose). Minuteur intégré, Bouton « Marquer comme fait » pour chaque exercice. Après chaque exercice : échelle de ressenti Facile · Adapté · Difficile · Douloureux, puis « Douleur pendant l’exercice, de 0 à 10 ». En fin de séance, ces retours partent au référent.
-
-Titre : « Exercices à la maison »
-Texte : « Programme préparé par {praticien} le {date}. {n} séances par semaine, environ {duree} minutes. »
-Fiche exercice (rubriques) : « Objectif » / « Position de départ » / « Comment le faire » / « Respiration » / « À éviter » / « Séries et repos »
-Photos : « Étape 1 : Position de départ » / « Étape 2 : Fin du mouvement » / « Étape 3 : Erreur à éviter »
-Boutons : « Commencer la séance » / « Lancer le minuteur » / « Marquer comme fait » / « Terminer la séance »
-Ressenti : « Facile · Adapté · Difficile · Douloureux », puis « Douleur pendant l’exercice, de 0 à 10 »
-Sécurité : « Arrêtez l’exercice si la douleur dépasse [seuil fixé par votre référent] sur 10 ou si elle augmente pendant le mouvement. Signalez-le à votre référent. »
-Fin de séance : « Séance terminée. Vos ressentis et vos douleurs sont prêts à partir chez votre référent. » Bouton : « Envoyer à votre référent »
-État vide : « Votre référent ne vous a pas encore assigné de programme. » Bouton : « Écrire à votre référent »
-
-```
-Exemple — Le programme est celui de la section Exercices à la maison : les mêmes 5 exercices, environ 15 minutes par séance, 3 séances par semaine. Chaque fiche reprend la section Fiche exercice (exemple de respiration : « Soufflez en montant. »). Photos : [photos des exercices réalisées par le centre]. Semaine du 14 au 20 septembre 2026 (exemple) : lundi 5 exercices faits sur 5, mercredi 5 sur 5, vendredi 3 sur 5 ; douleur moyenne pendant les exercices 2 sur 10.
-```
-
 ### Messagerie
 
 Dans Messages et documents. Conversation avec le référent et, si besoin, les autres intervenants qui vous suivent. Envoi de texte, photo ou document. Accusé de lecture. Délai de réponse affiché. Bandeau urgence permanent. Lien vers le Coach IA pour les questions générales.
@@ -676,7 +656,7 @@ Statuts : « Envoyé » / « Lu »
 Encadré : « Une question sur le centre ou votre programme ? Posez-la au Coach IA. » Bouton : « Demander au Coach IA »
 
 ```
-Exemple — Mardi 22 septembre 2026, 19 h 12, vous : « Bonjour, j’ai une gêne au genou droit en descendant les escaliers depuis deux jours. Dois-je continuer le programme ? » Mercredi 23 septembre, 9 h 05, Johan Pereira (échange fictif) : « Bonjour. Continuez le programme sans forcer. Arrêtez un exercice s’il réveille la douleur. Notez votre douleur chaque jour dans le carnet. »
+
 ```
 
 ### Documents
@@ -701,20 +681,19 @@ Exemple — « Rapport, bilan des forces musculaires, 12 septembre 2026, PDF, 1,
 Groupe « Rappels » du profil, qui remplace le groupe Notifications. Réglage par type : Rendez-vous (la veille à {heure}, {delai} avant) · Programme à la maison ({jours} à {heure}) · Carnet (chaque jour à {heure}) · Bilan intermédiaire ({jours} jours avant) · Questionnaire de pressothérapie · Canal : [canaux disponibles]. Messages et Communauté restent des interrupteurs.
 
 Titre : « Rappels »
-Texte : « Choisissez quand l’application vous rappelle vos rendez-vous et vos exercices. »
+Texte : « Choisissez quand l’application vous rappelle vos rendez-vous et votre carnet. »
 Lignes : « Rendez-vous : la veille à {heure}, {delai} avant » / « Programme à la maison : {jours} à {heure} » / « Carnet : chaque jour à {heure} » / « Bilan intermédiaire : {jours} jours avant » / « Questionnaire de pressothérapie » / « Canal : [canaux disponibles] »
 Boutons : « Activer les rappels » / « Enregistrer vos réglages »
 Textes des notifications :
 « Demain à {heure} : {prestation} chez Hygie, 9, rue de la Petite Vitesse, Avon. »
 « Rappel : {prestation} aujourd’hui à {heure}. »
 « Demain à {heure} : kinésithérapie avec {praticien}. Pour modifier ce rendez-vous, passez par Doctolib. »
-« Votre séance à la maison vous attend : {n} exercices, environ {duree} minutes. »
 « Comment allez-vous aujourd’hui ? Remplissez votre carnet. »
 « Votre prochain bilan intermédiaire approche. Prenez rendez-vous. »
 « Votre questionnaire de pressothérapie doit être mis à jour avant votre prochaine séance. »
 
 ```
-Exemple de réglages : rendez-vous la veille à 18 h et 2 h avant ; programme à la maison le lundi, le mercredi et le vendredi à 19 h ; carnet chaque jour à 21 h ; bilan intermédiaire 7 jours avant la date conseillée. Exemples de notifications : « Rappel : Pressothérapie aujourd’hui à 19 h 15. » ; « Demain à 8 h 30 : kinésithérapie avec Romain Brelier-Murry. Pour modifier ce rendez-vous, passez par Doctolib. » ; « Votre séance à la maison vous attend : 5 exercices, environ 15 minutes. » (Réglages de démonstration, modifiables par l’utilisateur.)
+
 ```
 
 ## Faits à compléter
@@ -780,6 +759,5 @@ Exemple de réglages : rendez-vous la veille à 18 h et 2 h avant ; programme à
 - [délai de réponse] et [jours de réponse] de la messagerie
 - [seuil d’alerte] de douleur dans le carnet
 - [seuil fixé par votre référent] pour arrêter un exercice
-- [photos des exercices réalisées par le centre]
 - [si disponibles] : factures dans l’application
 - [canaux disponibles] pour les rappels : notification, e-mail, SMS

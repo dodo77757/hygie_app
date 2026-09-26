@@ -16,7 +16,7 @@
         "ListRow",
         "Toast"
       ],
-      "copy": "### En-tête\n- Logo Hygie : trois points, un par pôle (Santé, Sport, Récupération & bien-être)\n- Bonjour {prenom}\n- Bouton icône « Ouvrir les notifications » (pastille du nombre de non-lus)\n- Bouton icône « Ouvrir votre profil » (avatar dans un anneau rose)\n\n### Barre d’onglets flottante\nPilule aubergine, boutons ronds, icônes au trait arrondi. Libellés accessibles :\n- « Voir votre journée » : section Aujourd’hui\n- « Voir votre agenda » : section Agenda\n- « Prendre rendez-vous » : section Prendre rendez-vous (bouton central, bleu électrique, plus grand)\n- « Parler au Coach IA » : section Coach IA\n- « Voir votre suivi » : section Suivi personnalisé\n\n### Notifications\nTitre : Notifications\nGabarits :\n- Rappel : {prestation} aujourd’hui à {heure}.\n- Rappel : {prestation} demain à {heure}.\n- {praticien} vous a envoyé un message.\n- Le rapport de votre {bilan} est disponible.\n- Vos exercices du jour vous attendent.\n- Votre carnet du jour vous attend.\n- Bouton « Tout marquer comme lu »\n- Vide : Aucune notification pour le moment.\n\n### Bandeau hors ligne\nVous êtes hors ligne. Vos saisies restent sur votre téléphone et partiront au retour du réseau.\n\n### Retour du réseau\nConnexion rétablie. Vos données sont à jour.",
+      "copy": "### En-tête\n- Logo Hygie : trois points, un par pôle (Santé, Sport, Récupération & bien-être)\n- Bonjour {prenom}\n- Bouton icône « Ouvrir les notifications » (pastille du nombre de non-lus)\n- Bouton icône « Ouvrir votre profil » (avatar dans un anneau rose)\n\n### Barre d’onglets flottante\nPilule aubergine, boutons ronds, icônes au trait arrondi. Libellés accessibles :\n- « Voir votre journée » : section Aujourd’hui\n- « Voir votre agenda » : section Agenda\n- « Prendre rendez-vous » : section Prendre rendez-vous (bouton central, bleu électrique, plus grand)\n- « Parler au Coach IA » : section Coach IA\n- « Voir votre suivi » : section Suivi personnalisé\n\n### Notifications\nTitre : Notifications\nGabarits :\n- Rappel : {prestation} aujourd’hui à {heure}.\n- Rappel : {prestation} demain à {heure}.\n- {praticien} vous a envoyé un message.\n- Le rapport de votre {bilan} est disponible.\n- Votre carnet du jour vous attend.\n- Bouton « Tout marquer comme lu »\n- Vide : Aucune notification pour le moment.\n\n### Bandeau hors ligne\nVous êtes hors ligne. Vos saisies restent sur votre téléphone et partiront au retour du réseau.\n\n### Retour du réseau\nConnexion rétablie. Vos données sont à jour.",
       "data": "{\"exemple\": true, \"_note\": \"Valeurs d’exemple pour la maquette. À remplacer par les données réelles. Journée de référence de toute la maquette : mercredi 23 septembre 2026, vers 13 h.\", \"date_reference_maquette\": \"mercredi 23 septembre 2026\", \"prenom\": \"Camille\", \"non_lus\": 3, \"notifications\": [{\"texte\": \"Rappel : Pressothérapie aujourd’hui à 19 h 15.\", \"section\": \"agenda\"}, {\"texte\": \"Johan Pereira vous a envoyé un message.\", \"section\": \"messages-documents\"}, {\"texte\": \"Le rapport de votre bilan des forces musculaires est disponible.\", \"section\": \"bilans\"}]}",
       "interactions": [
         "Toucher un onglet fait défiler la page jusqu’à l’ancre de la section ; défilement sans animation si l’utilisateur a demandé de réduire les animations.",
@@ -113,7 +113,7 @@
       "id": "aujourdhui",
       "title": "Aujourd’hui",
       "origin": "kit+hygie",
-      "purpose": "Montrer en un coup d’œil l’activité du jour, le carnet à remplir, le prochain rendez-vous, les exercices à faire, le défi en cours et le dernier message du référent.",
+      "purpose": "Montrer en un coup d’œil l’activité du jour, le carnet à remplir, le prochain rendez-vous, le défi en cours et le dernier message du référent.",
       "kit_screen": "Activité du jour : date en étiquette, courbe, carte Calories à barres fines avec barre mise en avant coiffée d’une pastille icône",
       "components": [
         "Header",
@@ -126,8 +126,8 @@
         "Button",
         "IconButton"
       ],
-      "copy": "Étiquette : {date_du_jour}\n### Votre journée\n\n### Pas\n{pas} pas · objectif {objectif_pas}\nCourbe de la journée\n\n### Calories brûlées\n{kcal} kcal\nBarres fines par tranche horaire ; la barre en cours est mise en avant et coiffée d’une pastille flamme.\n\n### Hydratation\n{eau} L sur {objectif_eau} L\nBouton icône « Ajouter un verre d’eau »\n\n### Sommeil\n{sommeil} cette nuit (pastille lune)\n\n### Votre carnet\nNotez votre douleur, votre forme et votre sommeil, de 0 à 10.\nBouton « Remplir votre carnet »\nUne fois rempli : Carnet rempli à {heure_carnet}.\n\n### Prochain rendez-vous\n{prestation} avec {praticien}\n{jour} à {heure} · Hygie, Avon\n- Bouton « Voir le détail »\n- Bouton « Ajouter à votre calendrier »\n\n### Rendez-vous kiné à enregistrer\nLe {date_doctolib}, vous avez continué sur Doctolib pour prendre rendez-vous avec {praticien_doctolib}.\nAjoutez ce rendez-vous pour le retrouver dans votre agenda.\n- Bouton « Ajouter à votre agenda »\n- Lien « Je n’ai pas pris de rendez-vous »\n\n### Vos exercices à la maison\n{nb_exercices} exercices · {duree} min · prescrits par {referent}\nBouton « Commencer les exercices »\n\n### Votre défi — {titre_defi} · {progression_defi} %\nJauge de progression\nBouton « Voir le défi »\n\n### Message de votre référent\n{referent} : « {extrait_message} »\nBouton « Répondre »\n\n### Accès rapides\n- Bouton « Prendre rendez-vous »\n- Bouton « Scanner un aliment »\n- Bouton « Noter une douleur »\n- Bouton « Parler au Coach IA »",
-      "data": "{\"exemple\": true, \"_note\": \"Valeurs d’exemple pour la maquette. À remplacer par les données réelles.\", \"date_du_jour\": \"MERCREDI 23 SEPTEMBRE\", \"pas\": 6240, \"objectif_pas\": 8000, \"courbe_pas\": [0, 120, 850, 1400, 2100, 2900, 3600, 4800, 5500, 6240], \"kcal\": 412, \"calories_par_tranche\": [{\"tranche\": \"8 h\", \"kcal\": 35}, {\"tranche\": \"10 h\", \"kcal\": 60}, {\"tranche\": \"12 h\", \"kcal\": 95, \"mise_en_avant\": true, \"pastille\": \"flamme\"}], \"eau\": 1.2, \"objectif_eau\": 2, \"sommeil\": \"7 h 10\", \"carnet_rempli\": false, \"prochain_rdv\": {\"prestation\": \"Coaching individuel\", \"praticien\": \"Johan Pereira\", \"jour\": \"Aujourd’hui\", \"heure\": \"18 h\"}, \"kine_a_enregistrer\": {\"affichee\": true, \"date_doctolib\": \"lundi 21 septembre\", \"praticien_doctolib\": \"Romain Brelier-Murry\", \"affichage\": \"7 jours après le passage par Doctolib\"}, \"nb_exercices\": 5, \"duree\": 15, \"referent\": \"Johan Pereira\", \"defi\": {\"titre_defi\": \"8 000 pas par jour\", \"progression_defi\": 29}, \"extrait_message\": \"Pensez à noter votre ressenti après la séance de ce soir.\"}",
+      "copy": "Étiquette : {date_du_jour}\n### Votre journée\n\n### Pas\n{pas} pas · objectif {objectif_pas}\nCourbe de la journée\n\n### Calories brûlées\n{kcal} kcal\nBarres fines par tranche horaire ; la barre en cours est mise en avant et coiffée d’une pastille flamme.\n\n### Hydratation\n{eau} L sur {objectif_eau} L\nBouton icône « Ajouter un verre d’eau »\n\n### Sommeil\n{sommeil} cette nuit (pastille lune)\n\n### Votre carnet\nNotez votre douleur, votre forme et votre sommeil, de 0 à 10.\nBouton « Remplir votre carnet »\nUne fois rempli : Carnet rempli à {heure_carnet}.\n\n### Prochain rendez-vous\n{prestation} avec {praticien}\n{jour} à {heure} · Hygie, Avon\n- Bouton « Voir le détail »\n- Bouton « Ajouter à votre calendrier »\n\n### Rendez-vous kiné à enregistrer\nLe {date_doctolib}, vous avez continué sur Doctolib pour prendre rendez-vous avec {praticien_doctolib}.\nAjoutez ce rendez-vous pour le retrouver dans votre agenda.\n- Bouton « Ajouter à votre agenda »\n- Lien « Je n’ai pas pris de rendez-vous »\n\n### Votre défi — {titre_defi} · {progression_defi} %\nJauge de progression\nBouton « Voir le défi »\n\n### Message de votre référent\n{referent} : « {extrait_message} »\nBouton « Répondre »\n\n### Accès rapides\n- Bouton « Prendre rendez-vous »\n- Bouton « Scanner un aliment »\n- Bouton « Noter une douleur »\n- Bouton « Parler au Coach IA »",
+      "data": "{\"exemple\": true, \"_note\": \"Valeurs d’exemple pour la maquette. À remplacer par les données réelles.\", \"date_du_jour\": \"MERCREDI 23 SEPTEMBRE\", \"pas\": 6240, \"objectif_pas\": 8000, \"courbe_pas\": [0, 120, 850, 1400, 2100, 2900, 3600, 4800, 5500, 6240], \"kcal\": 412, \"calories_par_tranche\": [{\"tranche\": \"8 h\", \"kcal\": 35}, {\"tranche\": \"10 h\", \"kcal\": 60}, {\"tranche\": \"12 h\", \"kcal\": 95, \"mise_en_avant\": true, \"pastille\": \"flamme\"}], \"eau\": 1.2, \"objectif_eau\": 2, \"sommeil\": \"7 h 10\", \"carnet_rempli\": false, \"prochain_rdv\": {\"prestation\": \"Coaching individuel\", \"praticien\": \"Johan Pereira\", \"jour\": \"Aujourd’hui\", \"heure\": \"18 h\"}, \"kine_a_enregistrer\": {\"affichee\": true, \"date_doctolib\": \"lundi 21 septembre\", \"praticien_doctolib\": \"Romain Brelier-Murry\", \"affichage\": \"7 jours après le passage par Doctolib\"}, \"referent\": \"Johan Pereira\", \"defi\": {\"titre_defi\": \"8 000 pas par jour\", \"progression_defi\": 29}, \"extrait_message\": \"Pensez à noter votre ressenti après la séance de ce soir.\"}",
       "interactions": [
         "Toucher une carte chiffrée mène à Statistiques, sélecteur réglé sur Jour.",
         "Toucher une barre de calories affiche la valeur de la tranche dans une infobulle.",
@@ -135,7 +135,6 @@
         "« Remplir votre carnet » et « Noter une douleur » ouvrent le carnet dans Suivi personnalisé ; la carte affiche ensuite « Carnet rempli à {heure_carnet}. »",
         "« Ajouter à votre agenda » ouvre l’étape « Votre rendez-vous » de Prendre rendez-vous, praticien prérempli ; la carte kiné reste 7 jours après le passage par Doctolib, puis disparaît.",
         "« Je n’ai pas pris de rendez-vous » retire la carte kiné.",
-        "« Commencer les exercices » ouvre la séance à la maison en mode guidé, depuis Exercices à la maison.",
         "« Voir le défi » ouvre Communauté, onglet Défis ; la carte du défi n’apparaît que si vous avez rejoint un défi.",
         "« Répondre » ouvre la conversation dans Messages et documents.",
         "« Parler au Coach IA » fait défiler jusqu’à Coach IA.",
@@ -147,7 +146,6 @@
         "Carnet à remplir : Bouton « Remplir votre carnet » mis en avant.",
         "Carnet rempli : « Carnet rempli à {heure_carnet}. »",
         "Vide, aucun rendez-vous : « Aucun rendez-vous prévu. » avec Bouton « Prendre rendez-vous ».",
-        "Vide, aucun exercice prescrit : « Votre référent vous proposera des exercices après votre bilan. »",
         "Sans défi : la carte du défi est masquée.",
         "Erreur de synchronisation : « Synchronisation impossible. Dernière mise à jour à {heure_maj}. » avec Bouton « Réessayer ».",
         "Hors ligne : valeurs en gris clair avec l’heure de la dernière mise à jour.",
@@ -240,7 +238,7 @@
         "ListRow",
         "EmptyState"
       ],
-      "copy": "### Votre planning\n{date_du_jour}\n\nRail vertical, un point par étape :\n- {heure} · {titre} · {sous_titre}\n- Étape faite à la maison : point plein et coche, « Fait à {heure_faite} »\n- Étape faite au centre : point plein et coche, « Faite »\n- Étape active : carte agrandie et Bouton « Commencer » (icône lecture)\n- Étape à venir : point vide\n- Étape manquée à la maison : « Non réalisée » et Bouton « Reporter à demain »\n- Étape manquée au centre : « Non réalisée » et Bouton « Prendre un autre rendez-vous »\n\n{faites} étapes faites sur {total}\n\n### Votre programme de la semaine\nÉtabli par {referent} après votre bilan du {date_bilan}.\nBande des jours : L · M · M · J · V · S · D, une pastille par séance prévue\nCarte séance : {titre} · {duree} · {lieu}\nLe Coach IA peut proposer un ajustement. Votre référent le valide avant qu’il n’apparaisse ici.\nBouton « Voir le programme complet »\n\n### Messages\n- Rien de prévu aujourd’hui. Profitez-en pour récupérer. Bouton « Voir les exercices à la maison »\n- Toutes vos étapes sont faites.",
+      "copy": "### Votre planning\n{date_du_jour}\n\nRail vertical, un point par étape :\n- {heure} · {titre} · {sous_titre}\n- Étape faite au centre : point plein et coche, « Faite »\n- Étape active : carte agrandie et Bouton « Commencer » (icône lecture)\n- Étape à venir : point vide\n- Étape manquée au centre : « Non réalisée » et Bouton « Prendre un autre rendez-vous »\n\n{faites} étapes faites sur {total}\n\n### Votre programme de la semaine\nÉtabli par {referent} après votre bilan du {date_bilan}.\nBande des jours : L · M · M · J · V · S · D, une pastille par séance prévue\nCarte séance : {titre} · {duree} · {lieu}\nLe Coach IA peut proposer un ajustement. Votre référent le valide avant qu’il n’apparaisse ici.\nBouton « Voir le programme complet »\n\n### Messages\n- Rien de prévu aujourd’hui. Profitez-en pour récupérer.\n- Toutes vos étapes sont faites.",
       "data": "{\"exemple\": true, \"_note\": \"Valeurs d’exemple pour la maquette. À remplacer par les données réelles. Même liste que l’agenda, plus la marche.\", \"date_du_jour\": \"MERCREDI 23 SEPTEMBRE\", \"faites\": 3, \"total\": 6, \"etapes\": [{\"heure\": \"7 h 30\", \"titre\": \"Mobilité du matin\", \"sous_titre\": \"À la maison · 10 min\", \"pole\": \"maison\", \"lieu\": \"maison\", \"statut\": \"faite\", \"heure_faite\": \"7 h 42\"}, {\"heure\": \"8 h 30\", \"titre\": \"Kinésithérapie\", \"sous_titre\": \"Au centre · avec Romain Brelier-Murry · pris sur Doctolib\", \"pole\": \"sante\", \"lieu\": \"centre\", \"statut\": \"faite\"}, {\"heure\": \"12 h 30\", \"titre\": \"Marche\", \"sous_titre\": \"Marche 02 km\", \"pole\": \"sport\", \"lieu\": \"maison\", \"statut\": \"faite\", \"heure_faite\": \"12 h 58\"}, {\"heure\": \"18 h\", \"titre\": \"Coaching individuel\", \"sous_titre\": \"Au centre · avec Johan Pereira\", \"pole\": \"sport\", \"lieu\": \"centre\", \"statut\": \"active\"}, {\"heure\": \"19 h 15\", \"titre\": \"Pressothérapie\", \"sous_titre\": \"Au centre · [durée]\", \"pole\": \"recuperation\", \"lieu\": \"centre\", \"statut\": \"a_venir\"}, {\"heure\": \"21 h\", \"titre\": \"Étirements du soir\", \"sous_titre\": \"À la maison · 8 min\", \"pole\": \"maison\", \"lieu\": \"maison\", \"statut\": \"a_venir\"}], \"programme_semaine\": {\"referent\": \"Johan Pereira\", \"date_bilan\": \"12 septembre\", \"jours\": {\"lun\": [\"Coaching individuel · [durée] · au centre\"], \"mar\": [\"Mobilité · 15 min · à la maison\"], \"mer\": [\"Mobilité du matin · 10 min · à la maison\", \"Coaching individuel · [durée] · au centre\", \"Étirements du soir · 8 min · à la maison\"], \"jeu\": [], \"ven\": [\"Mobilité · 15 min · à la maison\"], \"sam\": [], \"dim\": []}}}",
       "interactions": [
         "« Commencer » ouvre Séance en cours pour une séance, ou la fiche de l’étape pour une marche ou une pause hydratation.",
@@ -279,7 +277,7 @@
         "ExerciseCard",
         "TextField"
       ],
-      "copy": "Étiquette : SÉANCE EN COURS\n### {nom_seance}\nExercice {i} sur {n} · {nom_exercice}\nSérie {serie} sur {series}\n\nGrand chiffre : {reps_faites} / {reps_cibles} répétitions\nBouton icône « Retirer une répétition » · Bouton icône « Ajouter une répétition »\nCharge : {charge} kg · Bouton icône « Baisser la charge » · Bouton icône « Augmenter la charge »\nTempo : {tempo}\nBouton « Valider la série »\nLien « Voir la fiche de l’exercice »\nBouton icône « Mettre la séance en pause »\n\n### Repos\nMinuteur : {repos} s\n- Bouton « Passer le repos »\n- Bouton « Ajouter 15 secondes »\nEnsuite : {exercice_suivant}\n\n### Douleur\nBouton « Signaler une douleur »\nOù avez-vous mal ? Cou · Épaules · Dos · Hanches · Genoux · Chevilles · Autre\nQuelle intensité, de 0 à 10 ?\nBouton « Enregistrer et adapter la séance »\nArrêtez l’exercice. Votre douleur est notée dans votre carnet.\nVoulez-vous prévenir votre référent ?\n- Bouton « Prévenir votre référent »\n- Bouton « Continuer sans prévenir »\nSi la douleur est forte ou inhabituelle, appelez le centre au 01 84 74 34 20. En cas d’urgence, appelez le 15 ou le 112.\n\n### Séance terminée\n{duree} · {kcal} kcal · {series_total} séries\nQuel effort avez-vous ressenti, de 1 à 10 ?\nChamp « Un mot pour votre référent »\nBouton « Enregistrer la séance »\nSéance enregistrée. Votre référent la verra dans votre suivi.",
+      "copy": "Étiquette : SÉANCE EN COURS\n### {nom_seance}\nExercice {i} sur {n} · {nom_exercice}\nSérie {serie} sur {series}\n\nGrand chiffre : {reps_faites} / {reps_cibles} répétitions\nBouton icône « Retirer une répétition » · Bouton icône « Ajouter une répétition »\nCharge : {charge} kg · Bouton icône « Baisser la charge » · Bouton icône « Augmenter la charge »\nTempo : {tempo}\nBouton « Valider la série »\nBouton icône « Mettre la séance en pause »\n\n### Repos\nMinuteur : {repos} s\n- Bouton « Passer le repos »\n- Bouton « Ajouter 15 secondes »\nEnsuite : {exercice_suivant}\n\n### Douleur\nBouton « Signaler une douleur »\nOù avez-vous mal ? Cou · Épaules · Dos · Hanches · Genoux · Chevilles · Autre\nQuelle intensité, de 0 à 10 ?\nBouton « Enregistrer et adapter la séance »\nArrêtez l’exercice. Votre douleur est notée dans votre carnet.\nVoulez-vous prévenir votre référent ?\n- Bouton « Prévenir votre référent »\n- Bouton « Continuer sans prévenir »\nSi la douleur est forte ou inhabituelle, appelez le centre au 01 84 74 34 20. En cas d’urgence, appelez le 15 ou le 112.\n\n### Séance terminée\n{duree} · {kcal} kcal · {series_total} séries\nQuel effort avez-vous ressenti, de 1 à 10 ?\nChamp « Un mot pour votre référent »\nBouton « Enregistrer la séance »\nSéance enregistrée. Votre référent la verra dans votre suivi.",
       "data": "{\"exemple\": true, \"_note\": \"Valeurs d’exemple pour la maquette. À remplacer par les données réelles.\", \"nom_seance\": \"Renforcement bas du corps\", \"i\": 2, \"n\": 5, \"nom_exercice\": \"Squat goblet\", \"serie\": 2, \"series\": 3, \"reps_faites\": 8, \"reps_cibles\": 12, \"charge\": 12, \"tempo\": \"descente 3 s, remontée 1 s\", \"repos\": 60, \"exercice_suivant\": \"Fente arrière\", \"seuil_alerte\": \"[seuil d’alerte]\", \"fin\": {\"duree\": \"42 min\", \"kcal\": 285, \"series_total\": 14}}",
       "interactions": [
         "− et + ajustent les répétitions ; « Valider la série » lance le minuteur de repos.",
@@ -288,8 +286,7 @@
         "Glisser vers la gauche passe à l’exercice suivant ; confirmation si la série n’est pas validée.",
         "« Signaler une douleur » met la séance en pause et ouvre une feuille ; la douleur s’enregistre dans le carnet.",
         "À [seuil d’alerte] ou plus, l’exercice est retiré de la séance. Le référent n’est prévenu que si vous touchez « Prévenir votre référent » : aucun envoi automatique.",
-        "L’écran reste allumé pendant la séance.",
-        "Pour une séance à la maison, chaque exercice affiche d’abord ses photos et ses consignes."
+        "L’écran reste allumé pendant la séance."
       ],
       "states": [
         "Prête : récapitulatif des exercices et Bouton « Commencer la séance ».",
@@ -301,76 +298,6 @@
         "Succès : écran « Séance terminée ».",
         "Erreur d’enregistrement : « La séance n’a pas pu être envoyée. Elle est gardée sur votre téléphone. » avec Bouton « Réessayer ».",
         "Hors ligne : séance complète utilisable, envoi au retour du réseau."
-      ]
-    },
-    {
-      "id": "exercices-maison",
-      "title": "Exercices à la maison",
-      "origin": "hygie",
-      "purpose": "Donner le programme du jour prescrit par le référent et une bibliothèque d’exercices filtrable, pour prolonger le travail fait au centre.",
-      "kit_screen": "Listes à sous-titres (« Run 02 km ») et cartes de séance du kit",
-      "components": [
-        "SectionHeader",
-        "ExerciseCard",
-        "TextField",
-        "Chip",
-        "StatCard",
-        "Button",
-        "EmptyState",
-        "Skeleton"
-      ],
-      "copy": "### Exercices à la maison\nPréparés par votre référent pour prolonger le travail fait au centre.\n\n### Votre programme du jour\nPrescrit par {referent} le {date_prescription}\n{nb_exercices} exercices · {duree} min · {faits} faits sur {nb_exercices}\nBouton « Commencer le programme »\nCarte exercice : photo · {nom} · {dosage} · {materiel} · À faire ou Fait\nBouton « Marquer comme fait »\n\n### Bibliothèque\nChamp « Rechercher un exercice »\n- Objectif : Mobilité · Renforcement · Étirements · Prévention · Équilibre · Respiration\n- Zone : Cou · Épaules · Dos · Hanches · Genoux · Chevilles · Tout le corps\n- Matériel : Sans matériel · Élastique · Tapis · Haltères · Chaise\n- Niveau : Débutant · Intermédiaire · Confirmé\nPastille « Hors programme » sur les exercices non prescrits\nBouton « Demander l’avis de votre référent »\n\nFaites uniquement les exercices validés par votre référent. Arrêtez en cas de douleur.\n\n### Messages\n- Votre référent vous proposera des exercices après votre bilan. Bouton « Réserver votre bilan d’entrée »\n- Aucun exercice ne correspond à ces filtres. Bouton « Effacer les filtres »\n- Programme du jour terminé. Votre référent est informé.",
-      "data": "{\"exemple\": true, \"_note\": \"Valeurs d’exemple pour la maquette. À remplacer par les données réelles. Contenus des exercices à fournir et valider par le centre.\", \"referent\": \"Johan Pereira\", \"date_prescription\": \"12 septembre\", \"nb_exercices\": 5, \"duree\": 15, \"faits\": 2, \"programme\": [{\"nom\": \"Chat-vache\", \"dosage\": \"2 × 10\", \"materiel\": \"Tapis\", \"statut\": \"fait\"}, {\"nom\": \"Pont fessier\", \"dosage\": \"3 × 12\", \"materiel\": \"Tapis\", \"statut\": \"fait\"}, {\"nom\": \"Squat à la chaise\", \"dosage\": \"3 × 10\", \"materiel\": \"Chaise\", \"statut\": \"a_faire\"}, {\"nom\": \"Équilibre sur une jambe\", \"dosage\": \"3 × 30 s par côté\", \"materiel\": \"Sans matériel\", \"statut\": \"a_faire\"}, {\"nom\": \"Rotation thoracique\", \"dosage\": \"2 × 8 par côté\", \"materiel\": \"Tapis\", \"statut\": \"a_faire\"}], \"bibliotheque_extrait\": [{\"nom\": \"Gainage planche\", \"objectif\": \"Renforcement\", \"zone\": \"Tout le corps\", \"niveau\": \"Débutant\"}, {\"nom\": \"Étirement des ischio-jambiers\", \"objectif\": \"Étirements\", \"zone\": \"Hanches\", \"niveau\": \"Débutant\"}, {\"nom\": \"Respiration abdominale\", \"objectif\": \"Respiration\", \"zone\": \"Tout le corps\", \"niveau\": \"Débutant\"}, {\"nom\": \"Rotation externe à l’élastique\", \"objectif\": \"Prévention\", \"zone\": \"Épaules\", \"niveau\": \"Intermédiaire\"}]}",
-      "interactions": [
-        "« Commencer le programme » ouvre Séance en cours en mode maison : photos, consignes, minuteur.",
-        "Toucher une carte ouvre la fiche exercice.",
-        "« Marquer comme fait » coche la carte, remplit la jauge du programme, puis demande le ressenti et la douleur pendant l’exercice, de 0 à 10.",
-        "Filtres combinables ; le nombre de résultats s’affiche sous le champ de recherche.",
-        "« Demander l’avis de votre référent » envoie l’exercice dans Messages avec une question préremplie."
-      ],
-      "states": [
-        "Chargement : cartes en squelette.",
-        "Vide, aucun programme : message et bouton de réservation du bilan d’entrée.",
-        "Vide, filtres : « Aucun exercice ne correspond à ces filtres. »",
-        "Succès : « Programme du jour terminé. Votre référent est informé. »",
-        "Erreur : « Impossible de charger les exercices. » avec Bouton « Réessayer ».",
-        "Hors ligne : programme du jour et photos disponibles s’ils ont été téléchargés ; bibliothèque limitée aux exercices déjà ouverts."
-      ]
-    },
-    {
-      "id": "fiche-exercice",
-      "title": "Fiche exercice",
-      "origin": "hygie",
-      "purpose": "Expliquer un exercice pas à pas avec photos (départ, fin du mouvement, erreur à éviter), respiration, dosage prescrit, points de vigilance et variantes, pour le faire seul en sécurité.",
-      "kit_screen": "Planificateur d’entraînement (carte d’exercice en grand) et grandes cartes arrondies",
-      "components": [
-        "IconButton",
-        "PhotoSteps",
-        "Chip",
-        "StatCard",
-        "ListRow",
-        "Timer",
-        "Button",
-        "ScaleInput",
-        "Sheet"
-      ],
-      "copy": "Bouton icône « Revenir à la liste »\n### {nom_exercice}\nPuces : {objectif} · {zone} · {niveau} · {materiel}\n\nPhotos en étapes (carrousel, points de pagination) :\n- Étape 1 · Position de départ\n- Étape 2 · Fin du mouvement\n- Étape 3 · Erreur à éviter (cadre rose)\nLégende : {legende_etape}\n\n### À quoi sert cet exercice\n{benefice}\n\n### Comment le faire\n1. {consigne_1}\n2. {consigne_2}\n3. {consigne_3}\n\n### Respiration\n{respiration}\n\n### Votre dosage\nFixé par {referent}\n{series} séries · {reps} répétitions · repos {repos} s · {tempo}\n\n### Points de vigilance\n- {vigilance_1}\n- {vigilance_2}\n\n### Erreurs fréquentes\n- {erreur_1}\n- {erreur_2}\n\n### Pour adapter\n- Plus facile : {variante_facile}\n- Plus difficile : {variante_difficile}\n\n### Boutons\n- Bouton « Lancer le minuteur »\n- Bouton « Marquer comme fait »\n- Bouton « Poser une question à votre référent »\n\n### Après l’exercice\nComment s’est passé cet exercice ? Facile · Adapté · Difficile · Douloureux\nDouleur pendant l’exercice, de 0 à 10\nVotre retour est envoyé à votre référent.\nBouton « Envoyer votre retour »",
-      "data": "{\"exemple\": true, \"_note\": \"Valeurs d’exemple pour la maquette. À remplacer par les données réelles. Texte et photos à fournir et valider par le centre.\", \"nom_exercice\": \"Pont fessier\", \"objectif\": \"Renforcement\", \"zone\": \"Hanches\", \"niveau\": \"Débutant\", \"materiel\": \"Tapis\", \"photos\": [{\"etape\": 1, \"type\": \"etape\", \"alt\": \"Personne allongée sur le dos, genoux pliés, pieds à plat au sol\", \"legende\": \"Position de départ\"}, {\"etape\": 2, \"type\": \"etape\", \"alt\": \"Bassin levé, genoux, hanches et épaules alignés\", \"legende\": \"Fin du mouvement\"}, {\"etape\": 3, \"type\": \"erreur\", \"alt\": \"Erreur à éviter : bassin monté trop haut, bas du dos creusé\", \"legende\": \"Erreur à éviter\"}], \"benefice\": \"Renforcer les fessiers et stabiliser le bassin.\", \"consignes\": [\"Allongez-vous sur le dos, genoux pliés, pieds à plat, écartés de la largeur du bassin.\", \"Serrez les fessiers et montez le bassin jusqu’à aligner genoux, hanches et épaules.\", \"Tenez 2 secondes, puis redescendez lentement.\"], \"respiration\": \"Soufflez en montant.\", \"referent\": \"Johan Pereira\", \"series\": 3, \"reps\": 12, \"repos\": 45, \"tempo\": \"montée 2 s, tenue 2 s, descente 3 s\", \"vigilance\": [\"Gardez le bas du dos neutre, sans le creuser.\", \"Arrêtez en cas de douleur.\"], \"erreurs\": [\"Pousser sur la pointe des pieds.\", \"Laisser les genoux s’écarter en montant.\"], \"variante_facile\": \"Réduire l’amplitude de la montée.\", \"variante_difficile\": \"Faire l’exercice sur une jambe.\"}",
-      "interactions": [
-        "Glisser horizontalement change de photo ; toucher une photo l’ouvre en plein écran avec zoom.",
-        "La photo « Erreur à éviter » porte un cadre rose et une icône croix ; son texte alternatif commence par « Erreur à éviter : ».",
-        "« Lancer le minuteur » ouvre un minuteur de série puis de repos selon le dosage.",
-        "« Marquer comme fait » ouvre l’échelle de ressenti, puis l’échelle « Douleur pendant l’exercice, de 0 à 10 » ; « Envoyer votre retour » transmet les deux au référent.",
-        "« Poser une question à votre référent » ouvre Messages avec la fiche jointe.",
-        "Chaque photo a un texte alternatif lu par les lecteurs d’écran."
-      ],
-      "states": [
-        "Chargement : photos en squelette.",
-        "Photo indisponible : cadre pastel avec « Photo à venir ».",
-        "Exercice hors programme : bandeau « Cet exercice ne fait pas partie de votre programme. Demandez l’avis de votre référent avant de le faire. »",
-        "Succès : « Exercice fait. Merci pour votre retour. »",
-        "Erreur : « Impossible d’enregistrer. » avec Bouton « Réessayer ».",
-        "Hors ligne : fiche lisible si déjà téléchargée ; retour envoyé au retour du réseau."
       ]
     },
     {
@@ -474,14 +401,13 @@
         "EmptyState",
         "Skeleton"
       ],
-      "copy": "### Vos bilans\nChaque bilan physiologique dure une heure, en trois temps. Il se conclut par un rapport et des axes de travail.\nSélecteur : Résultats · Historique\n\n### Historique\nLigne : {type_bilan} · {date} · {praticien} · Rapport disponible, En cours de rédaction ou À venir\n\n### Détail d’un bilan\nÉtiquette : {date_bilan}\n**{type_bilan}**\n\nAsymétrie droite / gauche\nBarre double centrée par groupe musculaire : Gauche {valeur_gauche} · Droite {valeur_droite} · Écart {ecart} %\n\nÉvolution\nCourbe depuis le bilan précédent : {variation}\n\nCe que cela veut dire\n{interpretation_praticien}\n\nVos axes de travail\n1. {axe_1}\n2. {axe_2}\n3. {axe_3}\n\n- Bouton « Télécharger le rapport »\n- Bouton « Voir les exercices associés »\n- Bouton « Réserver votre bilan intermédiaire »\n- Bouton « Poser une question au praticien »\n\nVos résultats sont interprétés par votre praticien. Le Coach IA peut vous les expliquer, sans remplacer cet échange.\n\n### Messages\n- Vous n’avez pas encore de bilan. Le bilan d’entrée fixe vos objectifs et construit votre programme. Bouton « Réserver votre bilan d’entrée »\n- Votre rapport est en cours de rédaction. Vous recevrez une notification.",
+      "copy": "### Vos bilans\nChaque bilan physiologique dure une heure, en trois temps. Il se conclut par un rapport et des axes de travail.\nSélecteur : Résultats · Historique\n\n### Historique\nLigne : {type_bilan} · {date} · {praticien} · Rapport disponible, En cours de rédaction ou À venir\n\n### Détail d’un bilan\nÉtiquette : {date_bilan}\n**{type_bilan}**\n\nAsymétrie droite / gauche\nBarre double centrée par groupe musculaire : Gauche {valeur_gauche} · Droite {valeur_droite} · Écart {ecart} %\n\nÉvolution\nCourbe depuis le bilan précédent : {variation}\n\nCe que cela veut dire\n{interpretation_praticien}\n\nVos axes de travail\n1. {axe_1}\n2. {axe_2}\n3. {axe_3}\n\n- Bouton « Télécharger le rapport »\n- Bouton « Réserver votre bilan intermédiaire »\n- Bouton « Poser une question au praticien »\n\nVos résultats sont interprétés par votre praticien. Le Coach IA peut vous les expliquer, sans remplacer cet échange.\n\n### Messages\n- Vous n’avez pas encore de bilan. Le bilan d’entrée fixe vos objectifs et construit votre programme. Bouton « Réserver votre bilan d’entrée »\n- Votre rapport est en cours de rédaction. Vous recevrez une notification.",
       "data": "{\"exemple\": true, \"_note\": \"Résultats fictifs pour la maquette. Ne pas présenter comme des normes. Seul jeu d’exemple de référence pour toute la maquette.\", \"historique\": [{\"type_bilan\": \"Bilan des forces musculaires\", \"date\": \"12 septembre 2026\", \"praticien\": \"[praticien]\", \"statut\": \"Rapport disponible\"}, {\"type_bilan\": \"Bilan fonctionnel\", \"date\": \"3 juin 2026\", \"praticien\": \"[praticien]\", \"statut\": \"Rapport disponible\"}, {\"type_bilan\": \"Bilan isocinétique\", \"date\": \"10 octobre 2026\", \"praticien\": \"[praticien]\", \"statut\": \"À venir\"}], \"detail\": {\"type_bilan\": \"Bilan des forces musculaires\", \"date_bilan\": \"SAMEDI 12 SEPTEMBRE\", \"mesures\": [{\"groupe\": \"Quadriceps\", \"valeur_gauche\": 182, \"valeur_droite\": 205, \"unite\": \"N·m\", \"ecart\": 11}, {\"groupe\": \"Ischio-jambiers\", \"valeur_gauche\": 110, \"valeur_droite\": 114, \"unite\": \"N·m\", \"ecart\": 4}, {\"groupe\": \"Mollets\", \"valeur_gauche\": 96, \"valeur_droite\": 99, \"unite\": \"N·m\", \"ecart\": 3}], \"seuil_ecart_mis_en_avant\": \"[fixé par le praticien]\", \"variation\": \"écart du quadriceps passé de 18 % à 11 % depuis le 3 juin\", \"interpretation_praticien\": \"La force du quadriceps gauche progresse. L’écart reste à réduire avant la reprise des sauts.\", \"axes\": [\"Renforcer le quadriceps gauche\", \"Travailler l’équilibre sur une jambe\", \"Reprendre la course de façon progressive\"]}}",
       "interactions": [
         "Le sélecteur bascule entre le dernier bilan et l’historique.",
         "Toucher une ligne de l’historique ouvre le détail.",
         "Toucher une barre double affiche les valeurs exactes et l’unité.",
         "L’écart est coloré en rose au-dessus du seuil fixé par le praticien, en menthe en dessous.",
-        "« Voir les exercices associés » ouvre Exercices à la maison filtré sur les axes de travail.",
         "« Réserver votre bilan intermédiaire » ouvre Prendre rendez-vous à l’étape Prestation, catégorie Bilan.",
         "« Télécharger le rapport » ouvre le PDF ; il est aussi rangé dans Documents, catégorie Rapports de bilan."
       ],
@@ -513,8 +439,8 @@
         "SectionHeader",
         "Toast"
       ],
-      "copy": "### Votre suivi\n\n### Votre référent\n{referent} · {fonction}\nParcours {parcours} · Forfait {forfait} · depuis le {date_debut}\n- Bouton « Écrire à votre référent »\n- Bouton « Prendre rendez-vous »\n\n### Vos objectifs\nFixés ensemble lors de votre bilan.\n- {objectif} — départ {valeur_depart}, aujourd’hui {valeur_actuelle} · cible {cible} · échéance {echeance}\nJauge de progression\nBouton « Voir le détail »\n\n### Prochain bilan\n{type_bilan} · {date_prochain_bilan} à {heure_prochain_bilan}\nBouton « Voir votre agenda »\nSans bilan prévu : Bilan intermédiaire à prévoir vers le {date_bilan_intermediaire}. Bouton « Réserver votre bilan intermédiaire »\n\n### Votre carnet\nChaque jour, notez votre douleur, votre forme et votre sommeil.\n- Douleur, de 0 à 10\n- Zone : silhouette à toucher ; liste équivalente : Cou · Épaules · Dos · Hanches · Genoux · Chevilles · Autre\n- Moment : Au repos · Pendant l’effort · Après l’effort\n- Forme, de 0 à 10\n- Sommeil, de 0 à 10\n- Champ « Une note pour votre référent » (facultatif)\nBouton « Enregistrer votre carnet »\n\nCourbes : Douleur · Forme · Sommeil\nSélecteur : 7 j · 30 j · 90 j\n\n### Alerte douleur\nVotre douleur est à [seuil d’alerte] ou plus depuis deux jours. Voulez-vous prévenir votre référent ?\n- Bouton « Prévenir votre référent »\n- Bouton « Continuer sans prévenir »\n\n### Votre parcours en chiffres\n{seances_faites} séances au centre · {taux_exercices} % des exercices à la maison faits · {nb_bilans} bilans",
-      "data": "{\"exemple\": true, \"_note\": \"Valeurs d’exemple pour la maquette. À remplacer par les données réelles. Objectifs cohérents avec le bilan des forces musculaires du 12 septembre 2026.\", \"referent\": \"Johan Pereira\", \"fonction\": \"préparateur physique\", \"parcours\": \"Performance\", \"forfait\": \"Avancé\", \"date_debut\": \"1er juin\", \"objectifs\": [{\"objectif\": \"Reprendre la course 3 fois par semaine\", \"valeur_depart\": \"0 fois par semaine\", \"valeur_actuelle\": \"1 fois par semaine\", \"cible\": \"3 fois par semaine\", \"echeance\": \"décembre 2026\", \"progression\": 33}, {\"objectif\": \"Réduire l’écart de force des quadriceps sous 10 %\", \"valeur_depart\": \"18 %\", \"valeur_actuelle\": \"11 %\", \"cible\": \"moins de 10 %\", \"echeance\": \"novembre 2026\", \"progression\": 88}], \"prochain_bilan\": {\"type_bilan\": \"Bilan isocinétique\", \"date_prochain_bilan\": \"samedi 10 octobre\", \"heure_prochain_bilan\": \"10 h\"}, \"carnet_7_jours\": {\"periode\": \"du 17 au 23 septembre\", \"douleur\": [1, 1, 0, 1, 1, 3, null], \"forme\": [7, 7, 8, 6, 7, 6, null], \"sommeil\": [7, 6, 8, 7, 7, 6, null], \"_note\": \"Carnet du mercredi 23 pas encore rempli.\"}, \"seuil_alerte\": \"[seuil d’alerte]\", \"seances_faites\": 18, \"taux_exercices\": 76, \"nb_bilans\": 2}",
+      "copy": "### Votre suivi\n\n### Votre référent\n{referent} · {fonction}\nParcours {parcours} · Forfait {forfait} · depuis le {date_debut}\n- Bouton « Écrire à votre référent »\n- Bouton « Prendre rendez-vous »\n\n### Vos objectifs\nFixés ensemble lors de votre bilan.\n- {objectif} — départ {valeur_depart}, aujourd’hui {valeur_actuelle} · cible {cible} · échéance {echeance}\nJauge de progression\nBouton « Voir le détail »\n\n### Prochain bilan\n{type_bilan} · {date_prochain_bilan} à {heure_prochain_bilan}\nBouton « Voir votre agenda »\nSans bilan prévu : Bilan intermédiaire à prévoir vers le {date_bilan_intermediaire}. Bouton « Réserver votre bilan intermédiaire »\n\n### Votre carnet\nChaque jour, notez votre douleur, votre forme et votre sommeil.\n- Douleur, de 0 à 10\n- Zone : silhouette à toucher ; liste équivalente : Cou · Épaules · Dos · Hanches · Genoux · Chevilles · Autre\n- Moment : Au repos · Pendant l’effort · Après l’effort\n- Forme, de 0 à 10\n- Sommeil, de 0 à 10\n- Champ « Une note pour votre référent » (facultatif)\nBouton « Enregistrer votre carnet »\n\nCourbes : Douleur · Forme · Sommeil\nSélecteur : 7 j · 30 j · 90 j\n\n### Alerte douleur\nVotre douleur est à [seuil d’alerte] ou plus depuis deux jours. Voulez-vous prévenir votre référent ?\n- Bouton « Prévenir votre référent »\n- Bouton « Continuer sans prévenir »\n\n### Votre parcours en chiffres\n{seances_faites} séances au centre · {nb_bilans} bilans",
+      "data": "{\"exemple\": true, \"_note\": \"Valeurs d’exemple pour la maquette. À remplacer par les données réelles. Objectifs cohérents avec le bilan des forces musculaires du 12 septembre 2026.\", \"referent\": \"Johan Pereira\", \"fonction\": \"préparateur physique\", \"parcours\": \"Performance\", \"forfait\": \"Avancé\", \"date_debut\": \"1er juin\", \"objectifs\": [{\"objectif\": \"Reprendre la course 3 fois par semaine\", \"valeur_depart\": \"0 fois par semaine\", \"valeur_actuelle\": \"1 fois par semaine\", \"cible\": \"3 fois par semaine\", \"echeance\": \"décembre 2026\", \"progression\": 33}, {\"objectif\": \"Réduire l’écart de force des quadriceps sous 10 %\", \"valeur_depart\": \"18 %\", \"valeur_actuelle\": \"11 %\", \"cible\": \"moins de 10 %\", \"echeance\": \"novembre 2026\", \"progression\": 88}], \"prochain_bilan\": {\"type_bilan\": \"Bilan isocinétique\", \"date_prochain_bilan\": \"samedi 10 octobre\", \"heure_prochain_bilan\": \"10 h\"}, \"carnet_7_jours\": {\"periode\": \"du 17 au 23 septembre\", \"douleur\": [1, 1, 0, 1, 1, 3, null], \"forme\": [7, 7, 8, 6, 7, 6, null], \"sommeil\": [7, 6, 8, 7, 7, 6, null], \"_note\": \"Carnet du mercredi 23 pas encore rempli.\"}, \"seuil_alerte\": \"[seuil d’alerte]\", \"seances_faites\": 18, \"nb_bilans\": 2}",
       "interactions": [
         "Toucher un objectif ouvre son détail : historique des valeurs et prochaines étapes.",
         "Carnet : la douleur, la forme et le sommeil sont obligatoires ; zone et moment s’affichent quand la douleur est au-dessus de 0.",
@@ -663,7 +589,7 @@
         "Button",
         "StatusBanner"
       ],
-      "copy": "### Votre Coach IA\nIl répond sur votre programme, vos bilans et le centre. Il peut agir pour vous dans l’application, avec votre accord.\nLe Coach IA fonctionne avec un modèle Mistral hébergé en Europe. Il ne remplace ni un avis médical ni votre référent.\n\nBonjour {prenom}. Que voulez-vous faire aujourd’hui ?\n\n### Suggestions\n- Expliquer mon dernier bilan\n- J’ai mal au genou, que faire ?\n- Réserver une séance de pressothérapie\n- Quels sont les horaires du centre ?\n- Me proposer des exercices pour le dos\n\n### Carte d’action\n{titre_action}\n{details_action}\n- Réserver, déplacer ou annuler un rendez-vous : Bouton « Ouvrir la réservation ». Le parcours s’ouvre prérempli ; vous vérifiez et validez vous-même.\n- Noter une douleur : Bouton « Enregistrer la douleur »\n- Prévenir votre référent : Bouton « Envoyer au référent »\n- Bouton « Modifier la demande »\nRien ne se fait sans votre accord.\n\nActions possibles : préparer une réservation, un déplacement ou une annulation ; noter une douleur dans votre carnet ; noter un repas ou de l’eau ; ouvrir un bilan ou un exercice ; envoyer un message à votre référent ; proposer un ajustement de programme, validé ensuite par votre référent.\n\n### Champ\nChamp « Écrire au Coach IA »\nBouton icône « Dicter un message » · Bouton icône « Envoyer le message »\n\n### Limites\nPour une question médicale, parlez-en à votre référent. Bouton « Écrire à votre référent »\nDouleur dans la poitrine, malaise, essoufflement inhabituel : appelez le 15 ou le 112.\n\n### Messages\n- Le Coach IA ne répond pas pour le moment. Bouton « Réessayer »\n- Le Coach IA a besoin d’une connexion.",
+      "copy": "### Votre Coach IA\nIl répond sur votre programme, vos bilans et le centre. Il peut agir pour vous dans l’application, avec votre accord.\nLe Coach IA fonctionne avec un modèle Mistral hébergé en Europe. Il ne remplace ni un avis médical ni votre référent.\n\nBonjour {prenom}. Que voulez-vous faire aujourd’hui ?\n\n### Suggestions\n- Expliquer mon dernier bilan\n- J’ai mal au genou, que faire ?\n- Réserver une séance de pressothérapie\n- Quels sont les horaires du centre ?\n\n### Carte d’action\n{titre_action}\n{details_action}\n- Réserver, déplacer ou annuler un rendez-vous : Bouton « Ouvrir la réservation ». Le parcours s’ouvre prérempli ; vous vérifiez et validez vous-même.\n- Noter une douleur : Bouton « Enregistrer la douleur »\n- Prévenir votre référent : Bouton « Envoyer au référent »\n- Bouton « Modifier la demande »\nRien ne se fait sans votre accord.\n\nActions possibles : préparer une réservation, un déplacement ou une annulation ; noter une douleur dans votre carnet ; noter un repas ou de l’eau ; ouvrir un bilan ; envoyer un message à votre référent ; proposer un ajustement de programme, validé ensuite par votre référent.\n\n### Champ\nChamp « Écrire au Coach IA »\nBouton icône « Dicter un message » · Bouton icône « Envoyer le message »\n\n### Limites\nPour une question médicale, parlez-en à votre référent. Bouton « Écrire à votre référent »\nDouleur dans la poitrine, malaise, essoufflement inhabituel : appelez le 15 ou le 112.\n\n### Messages\n- Le Coach IA ne répond pas pour le moment. Bouton « Réessayer »\n- Le Coach IA a besoin d’une connexion.",
       "data": "{\"exemple\": true, \"_note\": \"Valeurs d’exemple pour la maquette. À remplacer par les données réelles. Échange fictif. Le vendredi 25 septembre 2026, le centre est ouvert de 8 h à 20 h.\", \"prenom\": \"Camille\", \"echange\": [{\"auteur\": \"vous\", \"texte\": \"Quels sont les horaires du centre ?\"}, {\"auteur\": \"coach\", \"texte\": \"Le centre est ouvert du lundi au vendredi de 8 h à 20 h, et le samedi de 9 h à 13 h.\"}, {\"auteur\": \"vous\", \"texte\": \"J’ai un peu mal au genou droit depuis hier. Je fais ma séance ce soir ?\"}, {\"auteur\": \"coach\", \"texte\": \"Merci de me le dire. De 0 à 10, quelle est votre douleur ?\"}, {\"auteur\": \"vous\", \"texte\": \"Environ 3.\"}, {\"auteur\": \"coach\", \"texte\": \"Je vous propose de noter cette douleur dans votre carnet et de prévenir votre référent. Il vous dira s’il faut adapter la séance de ce soir. Si la douleur augmente, arrêtez l’effort.\"}, {\"auteur\": \"coach\", \"type\": \"action\", \"titre_action\": \"Noter une douleur\", \"details_action\": \"Genou droit · 3 sur 10 · aujourd’hui · envoi à Johan Pereira\", \"bouton\": \"Enregistrer la douleur\"}, {\"auteur\": \"vous\", \"texte\": \"Pouvez-vous me réserver une pressothérapie vendredi soir ?\"}, {\"auteur\": \"coach\", \"texte\": \"Votre questionnaire est validé. J’ai préparé la réservation. Il reste à choisir la zone, puis à valider le récapitulatif.\"}, {\"auteur\": \"coach\", \"type\": \"action\", \"titre_action\": \"Réserver une pressothérapie\", \"details_action\": \"Pressothérapie · vendredi 25 septembre à 18 h 30 · 20 € · zone à choisir\", \"bouton\": \"Ouvrir la réservation\"}]}",
       "interactions": [
         "Toucher une suggestion l’envoie comme message.",
@@ -702,7 +628,7 @@
         "Toggle",
         "EmptyState"
       ],
-      "copy": "### La communauté Hygie\nSélecteur : Fil · Défis · Classement\n\n### Fil\nChamp « Partagez une séance, un progrès, une question »\nBouton « Publier »\nPublication : avatar · {pseudo} · {temps} · texte · photo facultative\nBouton icône « Encourager » ({encouragements}) · Bouton icône « Commenter » ({commentaires}) · Bouton icône « Signaler la publication »\nNe partagez pas d’information médicale personnelle.\n\n### Défis\nCarte défi : {titre} · {periode} · {participants} participants · jauge {progression} %\nBouton « Rejoindre le défi » ou Bouton « Quitter le défi »\n\n### Classement\nSélecteur : Semaine · Mois\nLigne : rang · avatar · {pseudo} · {points} points ; votre ligne mise en avant\nLes points viennent des séances faites, des exercices à la maison et des défis. [règle de calcul des points]\nInterrupteur « Apparaître dans le classement »\n\n### Messages\n- Aucune publication pour le moment. Bouton « Écrire une publication »\n- Publication retirée. Elle ne respecte pas la charte de la communauté.\n- Vous avez rejoint le défi.",
+      "copy": "### La communauté Hygie\nSélecteur : Fil · Défis · Classement\n\n### Fil\nChamp « Partagez une séance, un progrès, une question »\nBouton « Publier »\nPublication : avatar · {pseudo} · {temps} · texte · photo facultative\nBouton icône « Encourager » ({encouragements}) · Bouton icône « Commenter » ({commentaires}) · Bouton icône « Signaler la publication »\nNe partagez pas d’information médicale personnelle.\n\n### Défis\nCarte défi : {titre} · {periode} · {participants} participants · jauge {progression} %\nBouton « Rejoindre le défi » ou Bouton « Quitter le défi »\n\n### Classement\nSélecteur : Semaine · Mois\nLigne : rang · avatar · {pseudo} · {points} points ; votre ligne mise en avant\nLes points viennent des séances faites et des défis. [règle de calcul des points]\nInterrupteur « Apparaître dans le classement »\n\n### Messages\n- Aucune publication pour le moment. Bouton « Écrire une publication »\n- Publication retirée. Elle ne respecte pas la charte de la communauté.\n- Vous avez rejoint le défi.",
       "data": "{\"exemple\": true, \"_note\": \"Valeurs d’exemple pour la maquette. À remplacer par les données réelles. Membres fictifs. Semaine en cours : du lundi 21 au dimanche 27 septembre 2026.\", \"publications\": [{\"pseudo\": \"Léa M.\", \"temps\": \"il y a 2 h\", \"texte\": \"Première semaine de cross training terminée. Merci au groupe pour l’énergie.\", \"encouragements\": 14, \"commentaires\": 3}, {\"pseudo\": \"Karim B.\", \"temps\": \"hier\", \"texte\": \"Reprise de la course validée après mon bilan. 5 km ce matin.\", \"encouragements\": 22, \"commentaires\": 6}], \"defis\": [{\"titre\": \"8 000 pas par jour\", \"periode\": \"du 21 au 27 septembre\", \"participants\": 37, \"progression\": 29, \"rejoint\": true}, {\"titre\": \"5 séances de mobilité\", \"periode\": \"cette semaine\", \"participants\": 21, \"progression\": 40, \"rejoint\": false}, {\"titre\": \"1,5 L d’eau par jour\", \"periode\": \"14 jours\", \"participants\": 29, \"progression\": 20, \"rejoint\": false}], \"classement\": [{\"rang\": 1, \"pseudo\": \"Sophie D.\", \"points\": 420}, {\"rang\": 2, \"pseudo\": \"Karim B.\", \"points\": 395}, {\"rang\": 3, \"pseudo\": \"Léa M.\", \"points\": 360}, {\"rang\": 8, \"pseudo\": \"Vous\", \"points\": 245, \"vous\": true}]}",
       "interactions": [
         "Le sélecteur bascule entre Fil, Défis et Classement.",
@@ -1310,7 +1236,7 @@
         "stress (1 à 5, Parlons de vous)",
         "effort (1 à 10, fin de séance)",
         "carnet (0 à 10 : douleur, forme, sommeil)",
-        "pain (0 à 10, séance et fiche exercice)"
+        "pain (0 à 10, séance et carnet)"
       ]
     },
     {
@@ -1386,45 +1312,6 @@
         "rest (plein écran bleu)",
         "exercise",
         "inline"
-      ]
-    },
-    {
-      "name": "ExerciseCard",
-      "origin": "hygie",
-      "summary": "Carte d’exercice avec photo, dosage, matériel et statut.",
-      "props": [
-        "name: string",
-        "photo: {src, alt}",
-        "dosage: string",
-        "equipment?: string",
-        "level?: string",
-        "status: todo | done",
-        "prescribedBy?: string",
-        "offProgram: boolean",
-        "onOpen()",
-        "onDone() (« Marquer comme fait »)"
-      ],
-      "variants": [
-        "program",
-        "library",
-        "compact",
-        "off-program"
-      ]
-    },
-    {
-      "name": "PhotoSteps",
-      "origin": "hygie",
-      "summary": "Carrousel de trois photos légendées : position de départ, fin du mouvement, erreur à éviter (cadre rose).",
-      "props": [
-        "photos: {src, alt, caption, kind: step | error}[]",
-        "index: number",
-        "onChange(index)",
-        "onZoom(index)"
-      ],
-      "variants": [
-        "default",
-        "fullscreen",
-        "error-frame (cadre rose et icône croix)"
       ]
     },
     {
@@ -1716,5 +1603,6 @@
         "chart"
       ]
     }
-  ]
+  ],
+  "open_questions": []
 }

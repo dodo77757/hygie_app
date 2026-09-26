@@ -1,8 +1,10 @@
 # Contenu de la page unique Hygie
 
-Texte réel, données d'exemple et comportements de chaque section de la page mobile. Les valeurs visuelles (couleurs, polices, tailles) viendront du design system du kit Figma, dans `design-system/`.
+Texte réel, données d'exemple et comportements de chaque section de la page mobile. Les valeurs visuelles (couleurs, polices, tailles, composants) viennent du design system « StriveWell × Hygie » : https://claude.ai/artifact/6S4eMFbzu7fpdJ1sB1JoKC
 
 Les faits manquants sont écrits entre crochets, par exemple `[prix]`. Les chiffres de démonstration (pas, calories, résultats de bilan) sont des exemples : la journée de référence de la maquette est le mercredi 23 septembre 2026.
+
+Les exercices à la maison sont retirés pour l'instant : ils viendront de la bibliothèque d'exercices d'Hygie, avec leurs photos.
 
 ## Sommaire
 
@@ -14,20 +16,18 @@ Les faits manquants sont écrits entre crochets, par exemple `[prix]`. Les chiff
 6. [Agenda](#agenda) · kit+hygie
 7. [Votre planning du jour](#planning-jour) · kit+hygie
 8. [Séance en cours](#seance) · kit+hygie
-9. [Exercices à la maison](#exercices-maison) · hygie
-10. [Fiche exercice](#fiche-exercice) · hygie
-11. [Prendre rendez-vous](#rendez-vous) · hygie
-12. [L’équipe](#equipe) · hygie
-13. [Mes bilans](#bilans) · hygie
-14. [Suivi personnalisé](#suivi) · hygie
-15. [Messages et documents](#messages-documents) · hygie
-16. [Récupération & bien-être](#recuperation) · hygie
-17. [Nutrition](#nutrition) · kit+hygie
-18. [Coach IA](#coach-ia) · kit+hygie
-19. [Communauté](#communaute) · kit
-20. [Forfaits et tarifs](#offres) · kit+hygie
-21. [Le centre Hygie](#centre) · hygie
-22. [Profil et réglages](#profil) · kit+hygie
+9. [Prendre rendez-vous](#rendez-vous) · hygie
+10. [L’équipe](#equipe) · hygie
+11. [Mes bilans](#bilans) · hygie
+12. [Suivi personnalisé](#suivi) · hygie
+13. [Messages et documents](#messages-documents) · hygie
+14. [Récupération & bien-être](#recuperation) · hygie
+15. [Nutrition](#nutrition) · kit+hygie
+16. [Coach IA](#coach-ia) · kit+hygie
+17. [Communauté](#communaute) · kit
+18. [Forfaits et tarifs](#offres) · kit+hygie
+19. [Le centre Hygie](#centre) · hygie
+20. [Profil et réglages](#profil) · kit+hygie
 
 <a id="navigation"></a>
 ## 1. Cadre de page et navigation
@@ -61,7 +61,6 @@ Gabarits :
 - Rappel : {prestation} demain à {heure}.
 - {praticien} vous a envoyé un message.
 - Le rapport de votre {bilan} est disponible.
-- Vos exercices du jour vous attendent.
 - Votre carnet du jour vous attend.
 - Bouton « Tout marquer comme lu »
 - Vide : Aucune notification pour le moment.
@@ -321,7 +320,7 @@ Bilan offert pour un engagement de 3 mois, sinon 145 €.
 
 **Origine** : kit+hygie · **Écran du kit** : Activité du jour : date en étiquette, courbe, carte Calories à barres fines avec barre mise en avant coiffée d’une pastille icône
 
-**But** : Montrer en un coup d’œil l’activité du jour, le carnet à remplir, le prochain rendez-vous, les exercices à faire, le défi en cours et le dernier message du référent.
+**But** : Montrer en un coup d’œil l’activité du jour, le carnet à remplir, le prochain rendez-vous, le défi en cours et le dernier message du référent.
 
 **Composants** : `Header`, `DateTag`, `StatCard`, `SessionCard`, `ExerciseCard`, `ChallengeCard`, `SectionHeader`, `Button`, `IconButton`
 
@@ -361,10 +360,6 @@ Le {date_doctolib}, vous avez continué sur Doctolib pour prendre rendez-vous av
 Ajoutez ce rendez-vous pour le retrouver dans votre agenda.
 - Bouton « Ajouter à votre agenda »
 - Lien « Je n’ai pas pris de rendez-vous »
-
-### Vos exercices à la maison
-{nb_exercices} exercices · {duree} min · prescrits par {referent}
-Bouton « Commencer les exercices »
 
 ### Votre défi — {titre_defi} · {progression_defi} %
 Jauge de progression
@@ -434,8 +429,6 @@ Bouton « Répondre »
     "praticien_doctolib": "Romain Brelier-Murry",
     "affichage": "7 jours après le passage par Doctolib"
   },
-  "nb_exercices": 5,
-  "duree": 15,
   "referent": "Johan Pereira",
   "defi": {
     "titre_defi": "8 000 pas par jour",
@@ -453,7 +446,6 @@ Bouton « Répondre »
 - « Remplir votre carnet » et « Noter une douleur » ouvrent le carnet dans Suivi personnalisé ; la carte affiche ensuite « Carnet rempli à {heure_carnet}. »
 - « Ajouter à votre agenda » ouvre l’étape « Votre rendez-vous » de Prendre rendez-vous, praticien prérempli ; la carte kiné reste 7 jours après le passage par Doctolib, puis disparaît.
 - « Je n’ai pas pris de rendez-vous » retire la carte kiné.
-- « Commencer les exercices » ouvre la séance à la maison en mode guidé, depuis Exercices à la maison.
 - « Voir le défi » ouvre Communauté, onglet Défis ; la carte du défi n’apparaît que si vous avez rejoint un défi.
 - « Répondre » ouvre la conversation dans Messages et documents.
 - « Parler au Coach IA » fait défiler jusqu’à Coach IA.
@@ -466,7 +458,6 @@ Bouton « Répondre »
 - Carnet à remplir : Bouton « Remplir votre carnet » mis en avant.
 - Carnet rempli : « Carnet rempli à {heure_carnet}. »
 - Vide, aucun rendez-vous : « Aucun rendez-vous prévu. » avec Bouton « Prendre rendez-vous ».
-- Vide, aucun exercice prescrit : « Votre référent vous proposera des exercices après votre bilan. »
 - Sans défi : la carte du défi est masquée.
 - Erreur de synchronisation : « Synchronisation impossible. Dernière mise à jour à {heure_maj}. » avec Bouton « Réessayer ».
 - Hors ligne : valeurs en gris clair avec l’heure de la dernière mise à jour.
@@ -789,11 +780,9 @@ Du lundi au vendredi, de 8 h à 20 h. Le samedi, de 9 h à 13 h.
 
 Rail vertical, un point par étape :
 - {heure} · {titre} · {sous_titre}
-- Étape faite à la maison : point plein et coche, « Fait à {heure_faite} »
 - Étape faite au centre : point plein et coche, « Faite »
 - Étape active : carte agrandie et Bouton « Commencer » (icône lecture)
 - Étape à venir : point vide
-- Étape manquée à la maison : « Non réalisée » et Bouton « Reporter à demain »
 - Étape manquée au centre : « Non réalisée » et Bouton « Prendre un autre rendez-vous »
 
 {faites} étapes faites sur {total}
@@ -806,7 +795,7 @@ Le Coach IA peut proposer un ajustement. Votre référent le valide avant qu’i
 Bouton « Voir le programme complet »
 
 ### Messages
-- Rien de prévu aujourd’hui. Profitez-en pour récupérer. Bouton « Voir les exercices à la maison »
+- Rien de prévu aujourd’hui. Profitez-en pour récupérer.
 - Toutes vos étapes sont faites.
 
 ### Données d’exemple
@@ -936,7 +925,6 @@ Bouton icône « Retirer une répétition » · Bouton icône « Ajouter une ré
 Charge : {charge} kg · Bouton icône « Baisser la charge » · Bouton icône « Augmenter la charge »
 Tempo : {tempo}
 Bouton « Valider la série »
-Lien « Voir la fiche de l’exercice »
 Bouton icône « Mettre la séance en pause »
 
 ### Repos
@@ -999,7 +987,6 @@ Séance enregistrée. Votre référent la verra dans votre suivi.
 - « Signaler une douleur » met la séance en pause et ouvre une feuille ; la douleur s’enregistre dans le carnet.
 - À [seuil d’alerte] ou plus, l’exercice est retiré de la séance. Le référent n’est prévenu que si vous touchez « Prévenir votre référent » : aucun envoi automatique.
 - L’écran reste allumé pendant la séance.
-- Pour une séance à la maison, chaque exercice affiche d’abord ses photos et ses consignes.
 
 ### États
 
@@ -1013,267 +1000,8 @@ Séance enregistrée. Votre référent la verra dans votre suivi.
 - Erreur d’enregistrement : « La séance n’a pas pu être envoyée. Elle est gardée sur votre téléphone. » avec Bouton « Réessayer ».
 - Hors ligne : séance complète utilisable, envoi au retour du réseau.
 
-<a id="exercices-maison"></a>
-## 9. Exercices à la maison
-
-**Origine** : hygie · **Écran du kit** : Listes à sous-titres (« Run 02 km ») et cartes de séance du kit
-
-**But** : Donner le programme du jour prescrit par le référent et une bibliothèque d’exercices filtrable, pour prolonger le travail fait au centre.
-
-**Composants** : `SectionHeader`, `ExerciseCard`, `TextField`, `Chip`, `StatCard`, `Button`, `EmptyState`, `Skeleton`
-
-### Texte
-
-### Exercices à la maison
-Préparés par votre référent pour prolonger le travail fait au centre.
-
-### Votre programme du jour
-Prescrit par {referent} le {date_prescription}
-{nb_exercices} exercices · {duree} min · {faits} faits sur {nb_exercices}
-Bouton « Commencer le programme »
-Carte exercice : photo · {nom} · {dosage} · {materiel} · À faire ou Fait
-Bouton « Marquer comme fait »
-
-### Bibliothèque
-Champ « Rechercher un exercice »
-- Objectif : Mobilité · Renforcement · Étirements · Prévention · Équilibre · Respiration
-- Zone : Cou · Épaules · Dos · Hanches · Genoux · Chevilles · Tout le corps
-- Matériel : Sans matériel · Élastique · Tapis · Haltères · Chaise
-- Niveau : Débutant · Intermédiaire · Confirmé
-Pastille « Hors programme » sur les exercices non prescrits
-Bouton « Demander l’avis de votre référent »
-
-Faites uniquement les exercices validés par votre référent. Arrêtez en cas de douleur.
-
-### Messages
-- Votre référent vous proposera des exercices après votre bilan. Bouton « Réserver votre bilan d’entrée »
-- Aucun exercice ne correspond à ces filtres. Bouton « Effacer les filtres »
-- Programme du jour terminé. Votre référent est informé.
-
-### Données d’exemple
-
-```json
-{
-  "exemple": true,
-  "_note": "Valeurs d’exemple pour la maquette. À remplacer par les données réelles. Contenus des exercices à fournir et valider par le centre.",
-  "referent": "Johan Pereira",
-  "date_prescription": "12 septembre",
-  "nb_exercices": 5,
-  "duree": 15,
-  "faits": 2,
-  "programme": [
-    {
-      "nom": "Chat-vache",
-      "dosage": "2 × 10",
-      "materiel": "Tapis",
-      "statut": "fait"
-    },
-    {
-      "nom": "Pont fessier",
-      "dosage": "3 × 12",
-      "materiel": "Tapis",
-      "statut": "fait"
-    },
-    {
-      "nom": "Squat à la chaise",
-      "dosage": "3 × 10",
-      "materiel": "Chaise",
-      "statut": "a_faire"
-    },
-    {
-      "nom": "Équilibre sur une jambe",
-      "dosage": "3 × 30 s par côté",
-      "materiel": "Sans matériel",
-      "statut": "a_faire"
-    },
-    {
-      "nom": "Rotation thoracique",
-      "dosage": "2 × 8 par côté",
-      "materiel": "Tapis",
-      "statut": "a_faire"
-    }
-  ],
-  "bibliotheque_extrait": [
-    {
-      "nom": "Gainage planche",
-      "objectif": "Renforcement",
-      "zone": "Tout le corps",
-      "niveau": "Débutant"
-    },
-    {
-      "nom": "Étirement des ischio-jambiers",
-      "objectif": "Étirements",
-      "zone": "Hanches",
-      "niveau": "Débutant"
-    },
-    {
-      "nom": "Respiration abdominale",
-      "objectif": "Respiration",
-      "zone": "Tout le corps",
-      "niveau": "Débutant"
-    },
-    {
-      "nom": "Rotation externe à l’élastique",
-      "objectif": "Prévention",
-      "zone": "Épaules",
-      "niveau": "Intermédiaire"
-    }
-  ]
-}
-```
-
-### Interactions
-
-- « Commencer le programme » ouvre Séance en cours en mode maison : photos, consignes, minuteur.
-- Toucher une carte ouvre la fiche exercice.
-- « Marquer comme fait » coche la carte, remplit la jauge du programme, puis demande le ressenti et la douleur pendant l’exercice, de 0 à 10.
-- Filtres combinables ; le nombre de résultats s’affiche sous le champ de recherche.
-- « Demander l’avis de votre référent » envoie l’exercice dans Messages avec une question préremplie.
-
-### États
-
-- Chargement : cartes en squelette.
-- Vide, aucun programme : message et bouton de réservation du bilan d’entrée.
-- Vide, filtres : « Aucun exercice ne correspond à ces filtres. »
-- Succès : « Programme du jour terminé. Votre référent est informé. »
-- Erreur : « Impossible de charger les exercices. » avec Bouton « Réessayer ».
-- Hors ligne : programme du jour et photos disponibles s’ils ont été téléchargés ; bibliothèque limitée aux exercices déjà ouverts.
-
-<a id="fiche-exercice"></a>
-## 10. Fiche exercice
-
-**Origine** : hygie · **Écran du kit** : Planificateur d’entraînement (carte d’exercice en grand) et grandes cartes arrondies
-
-**But** : Expliquer un exercice pas à pas avec photos (départ, fin du mouvement, erreur à éviter), respiration, dosage prescrit, points de vigilance et variantes, pour le faire seul en sécurité.
-
-**Composants** : `IconButton`, `PhotoSteps`, `Chip`, `StatCard`, `ListRow`, `Timer`, `Button`, `ScaleInput`, `Sheet`
-
-### Texte
-
-Bouton icône « Revenir à la liste »
-### {nom_exercice}
-Puces : {objectif} · {zone} · {niveau} · {materiel}
-
-Photos en étapes (carrousel, points de pagination) :
-- Étape 1 · Position de départ
-- Étape 2 · Fin du mouvement
-- Étape 3 · Erreur à éviter (cadre rose)
-Légende : {legende_etape}
-
-### À quoi sert cet exercice
-{benefice}
-
-### Comment le faire
-1. {consigne_1}
-2. {consigne_2}
-3. {consigne_3}
-
-### Respiration
-{respiration}
-
-### Votre dosage
-Fixé par {referent}
-{series} séries · {reps} répétitions · repos {repos} s · {tempo}
-
-### Points de vigilance
-- {vigilance_1}
-- {vigilance_2}
-
-### Erreurs fréquentes
-- {erreur_1}
-- {erreur_2}
-
-### Pour adapter
-- Plus facile : {variante_facile}
-- Plus difficile : {variante_difficile}
-
-### Boutons
-- Bouton « Lancer le minuteur »
-- Bouton « Marquer comme fait »
-- Bouton « Poser une question à votre référent »
-
-### Après l’exercice
-Comment s’est passé cet exercice ? Facile · Adapté · Difficile · Douloureux
-Douleur pendant l’exercice, de 0 à 10
-Votre retour est envoyé à votre référent.
-Bouton « Envoyer votre retour »
-
-### Données d’exemple
-
-```json
-{
-  "exemple": true,
-  "_note": "Valeurs d’exemple pour la maquette. À remplacer par les données réelles. Texte et photos à fournir et valider par le centre.",
-  "nom_exercice": "Pont fessier",
-  "objectif": "Renforcement",
-  "zone": "Hanches",
-  "niveau": "Débutant",
-  "materiel": "Tapis",
-  "photos": [
-    {
-      "etape": 1,
-      "type": "etape",
-      "alt": "Personne allongée sur le dos, genoux pliés, pieds à plat au sol",
-      "legende": "Position de départ"
-    },
-    {
-      "etape": 2,
-      "type": "etape",
-      "alt": "Bassin levé, genoux, hanches et épaules alignés",
-      "legende": "Fin du mouvement"
-    },
-    {
-      "etape": 3,
-      "type": "erreur",
-      "alt": "Erreur à éviter : bassin monté trop haut, bas du dos creusé",
-      "legende": "Erreur à éviter"
-    }
-  ],
-  "benefice": "Renforcer les fessiers et stabiliser le bassin.",
-  "consignes": [
-    "Allongez-vous sur le dos, genoux pliés, pieds à plat, écartés de la largeur du bassin.",
-    "Serrez les fessiers et montez le bassin jusqu’à aligner genoux, hanches et épaules.",
-    "Tenez 2 secondes, puis redescendez lentement."
-  ],
-  "respiration": "Soufflez en montant.",
-  "referent": "Johan Pereira",
-  "series": 3,
-  "reps": 12,
-  "repos": 45,
-  "tempo": "montée 2 s, tenue 2 s, descente 3 s",
-  "vigilance": [
-    "Gardez le bas du dos neutre, sans le creuser.",
-    "Arrêtez en cas de douleur."
-  ],
-  "erreurs": [
-    "Pousser sur la pointe des pieds.",
-    "Laisser les genoux s’écarter en montant."
-  ],
-  "variante_facile": "Réduire l’amplitude de la montée.",
-  "variante_difficile": "Faire l’exercice sur une jambe."
-}
-```
-
-### Interactions
-
-- Glisser horizontalement change de photo ; toucher une photo l’ouvre en plein écran avec zoom.
-- La photo « Erreur à éviter » porte un cadre rose et une icône croix ; son texte alternatif commence par « Erreur à éviter : ».
-- « Lancer le minuteur » ouvre un minuteur de série puis de repos selon le dosage.
-- « Marquer comme fait » ouvre l’échelle de ressenti, puis l’échelle « Douleur pendant l’exercice, de 0 à 10 » ; « Envoyer votre retour » transmet les deux au référent.
-- « Poser une question à votre référent » ouvre Messages avec la fiche jointe.
-- Chaque photo a un texte alternatif lu par les lecteurs d’écran.
-
-### États
-
-- Chargement : photos en squelette.
-- Photo indisponible : cadre pastel avec « Photo à venir ».
-- Exercice hors programme : bandeau « Cet exercice ne fait pas partie de votre programme. Demandez l’avis de votre référent avant de le faire. »
-- Succès : « Exercice fait. Merci pour votre retour. »
-- Erreur : « Impossible d’enregistrer. » avec Bouton « Réessayer ».
-- Hors ligne : fiche lisible si déjà téléchargée ; retour envoyé au retour du réseau.
-
 <a id="rendez-vous"></a>
-## 11. Prendre rendez-vous
+## 9. Prendre rendez-vous
 
 **Origine** : hygie · **Écran du kit** : Agenda / calendrier (bande de dates) et liste de sessions colorées
 
@@ -1513,7 +1241,7 @@ Liste d’attente : Vous êtes sur la liste d’attente. Nous vous prévenons si
 - Hors ligne : réservation impossible, bouton d’appel du centre mis en avant.
 
 <a id="equipe"></a>
-## 12. L’équipe
+## 10. L’équipe
 
 **Origine** : hygie · **Écran du kit** : Listes à sous-titres et avatar rond du profil
 
@@ -1583,7 +1311,7 @@ Bouton « Appeler le 06 24 11 42 19 »
 - Hors ligne : liste lisible, boutons de rendez-vous et d’appel inactifs.
 
 <a id="bilans"></a>
-## 13. Mes bilans
+## 11. Mes bilans
 
 **Origine** : hygie · **Écran du kit** : Statistics (grandes cartes chiffrées, courbes) et carte Calories à barres
 
@@ -1619,7 +1347,6 @@ Vos axes de travail
 3. {axe_3}
 
 - Bouton « Télécharger le rapport »
-- Bouton « Voir les exercices associés »
 - Bouton « Réserver votre bilan intermédiaire »
 - Bouton « Poser une question au praticien »
 
@@ -1699,7 +1426,6 @@ Vos résultats sont interprétés par votre praticien. Le Coach IA peut vous les
 - Toucher une ligne de l’historique ouvre le détail.
 - Toucher une barre double affiche les valeurs exactes et l’unité.
 - L’écart est coloré en rose au-dessus du seuil fixé par le praticien, en menthe en dessous.
-- « Voir les exercices associés » ouvre Exercices à la maison filtré sur les axes de travail.
 - « Réserver votre bilan intermédiaire » ouvre Prendre rendez-vous à l’étape Prestation, catégorie Bilan.
 - « Télécharger le rapport » ouvre le PDF ; il est aussi rangé dans Documents, catégorie Rapports de bilan.
 
@@ -1714,7 +1440,7 @@ Vos résultats sont interprétés par votre praticien. Le Coach IA peut vous les
 - Hors ligne : derniers résultats consultés disponibles, téléchargement inactif.
 
 <a id="suivi"></a>
-## 14. Suivi personnalisé
+## 12. Suivi personnalisé
 
 **Origine** : hygie · **Écran du kit** : Profil (avatar rond dans un anneau rose) et cartes chiffrées de Statistics
 
@@ -1762,7 +1488,7 @@ Votre douleur est à [seuil d’alerte] ou plus depuis deux jours. Voulez-vous p
 - Bouton « Continuer sans prévenir »
 
 ### Votre parcours en chiffres
-{seances_faites} séances au centre · {taux_exercices} % des exercices à la maison faits · {nb_bilans} bilans
+{seances_faites} séances au centre · {nb_bilans} bilans
 
 ### Données d’exemple
 
@@ -1831,7 +1557,6 @@ Votre douleur est à [seuil d’alerte] ou plus depuis deux jours. Voulez-vous p
   },
   "seuil_alerte": "[seuil d’alerte]",
   "seances_faites": 18,
-  "taux_exercices": 76,
   "nb_bilans": 2
 }
 ```
@@ -1858,7 +1583,7 @@ Votre douleur est à [seuil d’alerte] ou plus depuis deux jours. Voulez-vous p
 - Hors ligne : saisies gardées sur l’appareil et envoyées au retour du réseau.
 
 <a id="messages-documents"></a>
-## 15. Messages et documents
+## 13. Messages et documents
 
 **Origine** : hygie · **Écran du kit** : Conversation avec le coach IA (bulles) et réglages en liste séparée par des filets
 
@@ -1999,7 +1724,7 @@ Supprimer ce document ?
 - Hors ligne : messages en file d’attente, envoi au retour du réseau ; documents déjà ouverts lisibles.
 
 <a id="recuperation"></a>
-## 16. Récupération & bien-être
+## 14. Récupération & bien-être
 
 **Origine** : hygie · **Écran du kit** : Panneau d’abonnement coloré posé dans une grande carte et listes à sous-titres
 
@@ -2076,7 +1801,7 @@ Bouton « Réserver une première séance »
 - Hors ligne : questionnaire gardé en brouillon sur l’appareil.
 
 <a id="nutrition"></a>
-## 17. Nutrition
+## 15. Nutrition
 
 **Origine** : kit+hygie · **Écran du kit** : Journal nutrition et scan de code-barres
 
@@ -2185,7 +1910,7 @@ Les repères caloriques sont indicatifs.
 - Hors ligne : saisie manuelle possible, scan et recherche inactifs.
 
 <a id="coach-ia"></a>
-## 18. Coach IA
+## 16. Coach IA
 
 **Origine** : kit+hygie · **Écran du kit** : Conversation avec un coach IA
 
@@ -2206,7 +1931,6 @@ Bonjour {prenom}. Que voulez-vous faire aujourd’hui ?
 - J’ai mal au genou, que faire ?
 - Réserver une séance de pressothérapie
 - Quels sont les horaires du centre ?
-- Me proposer des exercices pour le dos
 
 ### Carte d’action
 {titre_action}
@@ -2217,7 +1941,7 @@ Bonjour {prenom}. Que voulez-vous faire aujourd’hui ?
 - Bouton « Modifier la demande »
 Rien ne se fait sans votre accord.
 
-Actions possibles : préparer une réservation, un déplacement ou une annulation ; noter une douleur dans votre carnet ; noter un repas ou de l’eau ; ouvrir un bilan ou un exercice ; envoyer un message à votre référent ; proposer un ajustement de programme, validé ensuite par votre référent.
+Actions possibles : préparer une réservation, un déplacement ou une annulation ; noter une douleur dans votre carnet ; noter un repas ou de l’eau ; ouvrir un bilan ; envoyer un message à votre référent ; proposer un ajustement de programme, validé ensuite par votre référent.
 
 ### Champ
 Champ « Écrire au Coach IA »
@@ -2310,7 +2034,7 @@ Douleur dans la poitrine, malaise, essoufflement inhabituel : appelez le 15 ou l
 - Hors ligne : champ inactif et « Le Coach IA a besoin d’une connexion. »
 
 <a id="communaute"></a>
-## 19. Communauté
+## 17. Communauté
 
 **Origine** : kit · **Écran du kit** : Communauté
 
@@ -2337,7 +2061,7 @@ Bouton « Rejoindre le défi » ou Bouton « Quitter le défi »
 ### Classement
 Sélecteur : Semaine · Mois
 Ligne : rang · avatar · {pseudo} · {points} points ; votre ligne mise en avant
-Les points viennent des séances faites, des exercices à la maison et des défis. [règle de calcul des points]
+Les points viennent des séances faites et des défis. [règle de calcul des points]
 Interrupteur « Apparaître dans le classement »
 
 ### Messages
@@ -2435,7 +2159,7 @@ Interrupteur « Apparaître dans le classement »
 - Hors ligne : fil en cache, publication et encouragements inactifs.
 
 <a id="offres"></a>
-## 20. Forfaits et tarifs
+## 18. Forfaits et tarifs
 
 **Origine** : kit+hygie · **Écran du kit** : Panneau d’abonnement coloré posé dans une grande carte
 
@@ -2524,7 +2248,7 @@ Bouton « Contacter le centre »
 - Hors ligne : tarifs lisibles, boutons de choix inactifs.
 
 <a id="centre"></a>
-## 21. Le centre Hygie
+## 19. Le centre Hygie
 
 **Origine** : hygie · **Écran du kit** : aucun
 
@@ -2584,7 +2308,7 @@ Samedi : 9 h – 13 h
 - Hors ligne : contenu lisible, itinéraire inactif.
 
 <a id="profil"></a>
-## 22. Profil et réglages
+## 20. Profil et réglages
 
 **Origine** : kit+hygie · **Écran du kit** : Profil (avatar rond dans un anneau rose, panneau d’abonnement coloré) et Réglages (liste séparée par des filets)
 
