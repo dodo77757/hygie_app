@@ -1,0 +1,15 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-09-26T13:40:00Z" },
+  "title": "Hygie App mobile",
+  "launch": { "view": "focused", "file": "Main.dc.html" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 390, "h": 844, "title": "Application Hygie", "is_interactive": true, "radius": 38 }
+  },
+  "order": ["Main.dc.html"],
+  "notes": {},
+  "designSystems": [
+    { "title": "StriveWell × Hygie", "namespace": "strivewell", "artifact": "https://claude.ai/artifact/6S4eMFbzu7fpdJ1sB1JoKC", "version": "1790427870-d166", "copiedAt": "2026-09-26T13:40:00Z" }
+  ]
+}

@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Application Hygie</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="ds/strivewell/tokens.css">
+<link rel="stylesheet" href="ds/strivewell/components/bundle.css">
+<script src="ds/strivewell/components/bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+@font-face { font-family: "Montserrat Alternates"; src: url(/_blob/84fd86226332113e99f1b88408e8b83c) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat Alternates"; src: url(/_blob/58b0c75cf6fc90eecd827952f84b2e8d) format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat Alternates"; src: url(/_blob/c7f703ca2ab4248a3d54b4f1268a66bd) format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat Alternates"; src: url(/_blob/bf2f9f798ac054ecdb9c34a991b80052) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Urbanist"; src: url(/_blob/b5c7cc6b02972beb89a5a86f4fa73f7c) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Urbanist"; src: url(/_blob/8b0cca63977d350485dfd6dbe8bdd565) format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Urbanist"; src: url(/_blob/cfdb469d643eab89a23e04b17bbcba36) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url(/_blob/30ae8e169d87d25010a40b2112260fb3) format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url(/_blob/98eb9d318c9ac6585a8e36b42208fbe2) format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url(/_blob/d8516e792f22300ec2230ddc45bf47bb) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url(/_blob/9a876490179c0566fd8e72878ecb6d3a) format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Cabin"; src: url(/_blob/ccf81b340c8f3f7fb5fd43261ae801c9) format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+body { margin: 0; background: var(--canvas); font-family: var(--font-alternates); }
+a { color: var(--link); } a:hover { color: var(--white); }
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; border-radius: 38px; background: var(--primary); font-family: var(--font-alternates);">
+
+<!-- ============ Démarrage ============ -->
+<sc-if value="{{ is.bienvenue }}" hint-placeholder-val="{{ true }}">
+<x-import component-from-global-scope="StriveWell.Screen" auth="{{ yes }}" label="Bienvenue">
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p688 }}" on-click="{{ go.inscription }}">Créer un compte</x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="field" x="{{ n.p23 }}" y="{{ n.p614 }}" on-click="{{ go.connexion }}">Se connecter</x-import>
+<p class="splash-33" style="position: absolute; left: 51px; top: 485px; width: 289px; margin: 0; color: var(--white); text-align: center;">Prenez soin de votre <span style="background-image: var(--gradient-fitness); background-size: 289px 100%; background-position: -9px 0; -webkit-background-clip: text; background-clip: text; color: transparent;">santé</span></p>
+<x-import component-from-global-scope="StriveWell.HygieLogo" x="{{ n.p135_1 }}" y="{{ n.p389_5 }}" height="{{ n.p64 }}"></x-import>
+<div style="position: absolute; left: 23px; top: 764px; width: 344px; display: flex; justify-content: center;">
+<x-import component-from-global-scope="StriveWell.TextLink" variant="guest" on-click="{{ go.accueil }}">Continuer sans compte</x-import>
+</div>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.connexion }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" auth="{{ yes }}" label="Connexion">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p36 }}" label="Retour" on-click="{{ go.bienvenue }}"></x-import>
+<x-import component-from-global-scope="StriveWell.HygieLogo" x="{{ n.p22 }}" y="{{ n.p171 }}" height="{{ n.p46 }}"></x-import>
+<p class="title-30" style="position: absolute; left: 22px; top: 242px; width: 328px; margin: 0; color: var(--white);">Ravi de vous revoir</p>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p352 }}" placeholder="Adresse e-mail" type="email" auto-complete="email"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p423 }}" placeholder="Mot de passe" type="password" auto-complete="current-password" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
+<div style="position: absolute; left: 153px; top: 496px; width: 200px; display: flex; justify-content: flex-end;">
+<x-import component-from-global-scope="StriveWell.TextLink" on-click="{{ go.oubli }}">Mot de passe oublié ?</x-import>
+</div>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p543 }}" on-click="{{ go.accueil }}">Se connecter</x-import>
+<div style="position: absolute; left: 23px; top: 765px; width: 344px; display: flex; justify-content: center;">
+<x-import component-from-global-scope="StriveWell.LinkPrompt" weight="{{ n.p500 }}" text="Pas encore de compte ?" link="Créer un compte" on-click="{{ go.inscription }}"></x-import>
+</div>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.inscription }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" auth="{{ yes }}" label="Créer un compte">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p36 }}" label="Retour" on-click="{{ go.bienvenue }}"></x-import>
+<x-import component-from-global-scope="StriveWell.HygieLogo" x="{{ n.p22 }}" y="{{ n.p113 }}" height="{{ n.p46 }}"></x-import>
+<p class="title-30" style="position: absolute; left: 23px; top: 180px; width: 328px; margin: 0; color: var(--white);">Créez votre compte Hygie</p>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p281 }}" placeholder="Prénom et nom" auto-complete="name"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p352 }}" placeholder="Adresse e-mail" type="email" auto-complete="email"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p423 }}" placeholder="Mot de passe" type="password" auto-complete="new-password" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p494 }}" placeholder="Confirmer le mot de passe" type="password" auto-complete="new-password" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p580 }}" on-click="{{ go.code }}">Créer mon compte</x-import>
+<div style="position: absolute; left: 23px; top: 765px; width: 344px; display: flex; justify-content: center;">
+<x-import component-from-global-scope="StriveWell.LinkPrompt" text="Déjà un compte ?" link="Se connecter" on-click="{{ go.connexion }}"></x-import>
+</div>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.code }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" auth="{{ yes }}" label="Code de vérification">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p36 }}" label="Retour" on-click="{{ go.inscription }}"></x-import>
+<p class="title-30" style="position: absolute; left: 23px; top: 134px; width: 328px; margin: 0; color: var(--white);">Code de vérification</p>
+<p class="desc-13" style="position: absolute; left: 24px; top: 224px; width: 331px; margin: 0; color: var(--text-soft);">Saisissez le code que nous venons d’envoyer à votre adresse e-mail.</p>
+<x-import component-from-global-scope="StriveWell.OtpInput" x="{{ n.p30 }}" y="{{ n.p290 }}" label="Chiffre" group-label="Code de vérification"></x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p403 }}" on-click="{{ go.poids }}">Vérifier</x-import>
+<div style="position: absolute; left: 23px; top: 765px; width: 344px; display: flex; justify-content: center;">
+<x-import component-from-global-scope="StriveWell.LinkPrompt" text="Code non reçu ?" link="Renvoyer"></x-import>
+</div>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.oubli }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" auth="{{ yes }}" label="Mot de passe oublié">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p36 }}" label="Retour" on-click="{{ go.connexion }}"></x-import>
+<p class="title-30" style="position: absolute; left: 23px; top: 134px; width: 328px; margin: 0; color: var(--white);">Mot de passe oublié ?</p>
+<p class="desc-13" style="position: absolute; left: 24px; top: 224px; width: 331px; margin: 0; color: var(--text-soft); font-weight: 500;">Indiquez l’adresse e-mail de votre compte. Nous vous envoyons un code.</p>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p283 }}" placeholder="Adresse e-mail" type="email" auto-complete="email"></x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p399 }}" on-click="{{ go.nouveau }}">Envoyer le code</x-import>
+<div style="position: absolute; left: 23px; top: 765px; width: 344px; display: flex; justify-content: center;">
+<x-import component-from-global-scope="StriveWell.LinkPrompt" text="Vous vous en souvenez ?" link="Se connecter" on-click="{{ go.connexion }}"></x-import>
+</div>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.nouveau }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" auth="{{ yes }}" label="Nouveau mot de passe">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p36 }}" label="Retour" on-click="{{ go.oubli }}"></x-import>
+<p class="title-30" style="position: absolute; left: 23px; top: 134px; width: 330px; margin: 0; color: var(--white);">Nouveau mot de passe</p>
+<p class="desc-13" style="position: absolute; left: 23px; top: 224px; width: 331px; margin: 0; color: var(--text-soft);">Choisissez un mot de passe différent des précédents.</p>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p291 }}" placeholder="Nouveau mot de passe" type="password" auto-complete="new-password" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p366 }}" placeholder="Confirmer le mot de passe" type="password" auto-complete="new-password" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p476 }}" on-click="{{ go.modifie }}">Enregistrer</x-import>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.modifie }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" auth="{{ yes }}" label="Mot de passe modifié">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p36 }}" label="Retour" on-click="{{ go.connexion }}"></x-import>
+<x-import component-from-global-scope="StriveWell.SuccessMark" x="{{ n.p138 }}" y="{{ n.p265 }}"></x-import>
+<p class="success-title-26" style="position: absolute; left: 40px; top: 400px; width: 310px; margin: 0; color: var(--white); text-align: center;">Mot de passe modifié</p>
+<p class="success-body-15" style="position: absolute; left: 55px; top: 439px; width: 280px; margin: 0; color: var(--text-soft); text-align: center;">Votre mot de passe a bien été changé.</p>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p520 }}" on-click="{{ go.connexion }}">Retour à la connexion</x-import>
+</x-import>
+</sc-if>
+
+<!-- ============ Profil de départ ============ -->
+<sc-if value="{{ is.poids }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" variant="light" status-bar="black" label="Votre poids">
+<x-import component-from-global-scope="StriveWell.StepProgress" x="{{ n.p108 }}" y="{{ n.p83 }}" current="{{ n.p1 }}"></x-import>
+<p class="question-24" style="position: absolute; left: 51px; top: 126px; width: 289px; margin: 0; color: var(--primary); text-align: center; white-space: pre-line;">Quel est votre
+poids ?</p>
+<x-import component-from-global-scope="StriveWell.UnitToggle" x="{{ n.p90_5 }}" y="{{ n.p224 }}" options="{{ d.unitesPoids }}" default-value="{{ n.p1 }}" label="Unité de poids"></x-import>
+<x-import component-from-global-scope="StriveWell.RulerPicker" x="{{ n.p20 }}" y="{{ n.p318 }}" tone="yellow" default-value="{{ n.p70 }}" min="{{ n.p30 }}" max="{{ n.p200 }}" unit="kg" label="Poids"></x-import>
+<x-import component-from-global-scope="StriveWell.BackButton" variant="outline-lg" x="{{ n.p19 }}" y="{{ n.p716 }}" label="Retour" on-click="{{ go.code }}"></x-import>
+<x-import component-from-global-scope="StriveWell.NextButton" x="{{ n.p123 }}" y="{{ n.p716 }}" chevrons="{{ yes }}" on-click="{{ go.taille }}">Suivant</x-import>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.taille }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" variant="light" status-bar="black" label="Votre taille">
+<x-import component-from-global-scope="StriveWell.StepProgress" x="{{ n.p108 }}" y="{{ n.p83 }}" current="{{ n.p2 }}"></x-import>
+<p class="question-24" style="position: absolute; left: 51px; top: 126px; width: 289px; margin: 0; color: var(--primary); text-align: center; white-space: pre-line;">Quelle est votre
+taille ?</p>
+<x-import component-from-global-scope="StriveWell.UnitToggle" x="{{ n.p90_5 }}" y="{{ n.p224 }}" options="{{ d.unitesTaille }}" default-value="{{ n.p1 }}" label="Unité de taille"></x-import>
+<x-import component-from-global-scope="StriveWell.RulerPicker" x="{{ n.p20 }}" y="{{ n.p318 }}" tone="mint" default-value="{{ n.p170 }}" min="{{ n.p100 }}" max="{{ n.p230 }}" unit="cm" label="Taille"></x-import>
+<x-import component-from-global-scope="StriveWell.BackButton" variant="outline-lg" x="{{ n.p19 }}" y="{{ n.p716 }}" label="Retour" on-click="{{ go.poids }}"></x-import>
+<x-import component-from-global-scope="StriveWell.NextButton" x="{{ n.p123 }}" y="{{ n.p716 }}" chevrons="{{ yes }}" on-click="{{ go.objectif }}">Suivant</x-import>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.objectif }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" variant="light" status-bar="black" label="Votre objectif">
+<x-import component-from-global-scope="StriveWell.StepProgress" x="{{ n.p108 }}" y="{{ n.p83 }}" current="{{ n.p3 }}"></x-import>
+<p class="question-24" style="position: absolute; left: 51px; top: 126px; width: 289px; margin: 0; color: var(--primary); text-align: center; white-space: pre-line;">Quel est votre
+objectif ?</p>
+<p class="button-15" style="position: absolute; left: 51px; top: 199px; width: 289px; margin: 0; color: var(--text-gray); text-align: center; line-height: 18.18px;">Votre choix oriente votre programme et votre bilan d’entrée.</p>
+<x-import component-from-global-scope="StriveWell.OptionList" x="{{ n.p39 }}" y="{{ n.p273 }}" options="{{ d.objectifs }}" label="Objectif"></x-import>
+<x-import component-from-global-scope="StriveWell.BackButton" variant="outline-lg" x="{{ n.p19 }}" y="{{ n.p716 }}" label="Retour" on-click="{{ go.taille }}"></x-import>
+<x-import component-from-global-scope="StriveWell.NextButton" x="{{ n.p123 }}" y="{{ n.p716 }}" on-click="{{ finirProfil }}">Commencer</x-import>
+</x-import>
+</sc-if>
+
+<!-- ============ Accueil ============ -->
+<sc-if value="{{ is.accueil }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="main" label="Accueil">
+<x-import component-from-global-scope="StriveWell.HygieLogo" x="{{ n.p33 }}" y="{{ n.p52 }}" height="{{ n.p26 }}"></x-import>
+<x-import component-from-global-scope="StriveWell.GreetingHeader" x="{{ n.p33 }}" y="{{ n.p97 }}" greeting="Bonjour," name="Youssef" avatar-src="/_blob/66564b2f68f3ddd77784a5756044eb21" avatar-alt="Youssef" search-label="Parler à l’assistant Hygie" on-search="{{ go.assistant }}"></x-import>
+<x-import component-from-global-scope="StriveWell.ActivityChart" x="{{ n.p31 }}" y="{{ n.p210 }}" days="{{ d.jours }}" value-label="505 kcal" label="Calories brûlées cette semaine"></x-import>
+<p class="section-28" style="position: absolute; left: 33px; top: 483px; width: 220px; margin: 0; color: var(--white); white-space: pre-line;">Votre
+journée</p>
+<p class="label-14" style="position: absolute; left: 33px; top: 566px; width: 240px; margin: 0; color: var(--white); line-height: 15.12px;">Vendredi 25 septembre</p>
+<x-import component-from-global-scope="StriveWell.IconTile" x="{{ n.p305 }}" y="{{ n.p491 }}" tone="mint" icon="calendar" label="Prendre rendez-vous" on-click="{{ go.rdvSoin }}"></x-import>
+<x-import component-from-global-scope="StriveWell.ActivityTimeline" x="{{ n.p33 }}" y="{{ n.p605 }}" items="{{ d.journee }}" start-label="Commencer" on-start="{{ go.course }}" label="Votre journée"></x-import>
+<div aria-hidden="true" style="position: absolute; left: 0px; top: 497px; width: 390px; height: 347px; background: var(--gradient-fade); pointer-events: none;"></div>
+<x-import component-from-global-scope="StriveWell.Halo" x="{{ n.p27 }}" y="{{ n.p640 }}"></x-import>
+<x-import component-from-global-scope="StriveWell.TabBar" x="{{ n.p17 }}" y="{{ n.p733 }}" items="{{ d.onglets }}" active="{{ n.p0 }}" on-change="{{ onglet }}" label="Navigation principale"></x-import>
+<sc-if value="{{ notif }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.NotificationBanner" x="{{ n.p9 }}" y="{{ n.p12 }}" tone="light" title="Prochain rendez-vous" subtitle="Kinésithérapie" detail="Jeudi 8 octobre · 14 h 00" time="9 h 41" icon="health-1"></x-import>
+</sc-if>
+</x-import>
+</sc-if>
+
+<!-- ============ Agenda ============ -->
+<sc-if value="{{ is.agenda }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="none" label="Agenda">
+<x-import component-from-global-scope="StriveWell.DateHeader" x="{{ n.p33 }}" y="{{ n.p69 }}" eyebrow="Aujourd’hui" title="25 septembre 2026" prev-label="Semaine précédente" next-label="Semaine suivante"></x-import>
+<x-import component-from-global-scope="StriveWell.MonthCalendar" x="{{ n.p28 }}" y="{{ n.p178 }}" rows="{{ d.semaines }}" day-labels="{{ d.joursCourts }}" default-selected="{{ n.p25 }}" label="Septembre et octobre 2026"></x-import>
+<x-import component-from-global-scope="StriveWell.BottomSheet" x="{{ n.p0 }}" y="{{ n.p363 }}" height="{{ n.p531 }}" title="Vos rendez-vous"></x-import>
+<x-import component-from-global-scope="StriveWell.ScheduleTimeline" x="{{ n.p27 }}" y="{{ n.p442 }}" items="{{ agendaItems }}" label="Rendez-vous à venir" done-label="Fait" todo-label="À venir"></x-import>
+<x-import component-from-global-scope="StriveWell.TabBar" x="{{ n.p17 }}" y="{{ n.p733 }}" items="{{ d.onglets }}" active="{{ n.p1 }}" on-change="{{ onglet }}" label="Navigation principale"></x-import>
+</x-import>
+</sc-if>
+
+<!-- ============ Suivi ============ -->
+<sc-if value="{{ is.suivi }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" variant="stats" status-bar="black" halo="main" label="Votre suivi">
+<x-import component-from-global-scope="StriveWell.StatsHeader" x="{{ n.p33 }}" y="{{ n.p72 }}" date="25 septembre 2026" title="Votre suivi" average-label="{{ suivi.moyenneLabel }}" average="{{ suivi.moyenne }}" open-label="Noter votre ressenti" on-open="{{ go.ressenti }}"></x-import>
+<x-import component-from-global-scope="StriveWell.SegmentedControl" x="{{ n.p26 }}" y="{{ n.p202 }}" options="{{ d.segments }}" value="{{ seg }}" on-change="{{ choisirSegment }}" label="Affichage du suivi"></x-import>
+<x-import component-from-global-scope="StriveWell.BottomSheet" x="{{ n.p0 }}" y="{{ n.p306 }}" height="{{ n.p549 }}" tone="dark"></x-import>
+<x-import component-from-global-scope="StriveWell.Halo" x="{{ n.p33 }}" y="{{ n.p581 }}"></x-import>
+<sc-if value="{{ suivi.activite }}" hint-placeholder-val="{{ true }}">
+<x-import component-from-global-scope="StriveWell.CaloriesCard" x="{{ n.p18 }}" y="{{ n.p333 }}" title="Calories" value="50 kcal" labels="{{ d.jours }}" marker-src="/_blob/ebd6f3e45ff014d9390e923d1d453797" chart-label="Calories brûlées par jour"></x-import>
+<x-import component-from-global-scope="StriveWell.MetricCard" x="{{ n.p23 }}" y="{{ n.p629 }}" variant="walk" label="Marche" value="3 km" percent="50 %"></x-import>
+<x-import component-from-global-scope="StriveWell.MetricCard" x="{{ n.p207 }}" y="{{ n.p629 }}" variant="drink" label="Eau" value="150 ml"></x-import>
+</sc-if>
+<sc-if value="{{ suivi.progres }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.ProgressCard" x="{{ n.p23 }}" y="{{ n.p333 }}" pole="bilan" label="Force ischio-jambiers" value="+18 %" history="{{ d.histForce }}" caption="8 semaines" chart-label="Force mesurée chaque semaine, de 40 à 68"></x-import>
+<x-import component-from-global-scope="StriveWell.ProgressCard" x="{{ n.p207 }}" y="{{ n.p333 }}" pole="sante" icon="hiking" label="Mobilité de hanche" value="42°" history="{{ d.histHanche }}" planned="{{ n.p8 }}" caption="Objectif 45°" chart-label="Rotation de hanche mesurée, de 30 à 42 degrés"></x-import>
+<x-import component-from-global-scope="StriveWell.PractitionerNote" x="{{ n.p23 }}" y="{{ n.p557 }}" photo="/_blob/580ddb6d8d935df98d7ea17f5787fc7a" name="Préparateur physique" role="Pôle Sport" date="22 sept.">Belle progression sur les ischio-jambiers. On garde deux séances de renforcement par semaine jusqu’au prochain bilan.</x-import>
+</sc-if>
+<sc-if value="{{ suivi.bilans }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.AppointmentCard" x="{{ n.p23 }}" y="{{ n.p333 }}" pole="bilan" date="Lundi 19 octobre · 10 h 00" title="Bilan isocinétique" practitioner="Préparateur physique" photo="/_blob/580ddb6d8d935df98d7ea17f5787fc7a" place="Prochain bilan · Hygie, Avon" icon="line-chart" actions="{{ d.actionsBilan }}"></x-import>
+<x-import component-from-global-scope="StriveWell.PractitionerNote" x="{{ n.p23 }}" y="{{ n.p530 }}" photo="/_blob/12ed76cc916bbd5fefcd35a58e821b6f" name="Bilan des forces musculaires" role="Rapport disponible" date="12 sept.">Écart de 11 % entre les ischio-jambiers droit et gauche. Axes de travail : renforcement du côté gauche et contrôle du genou.</x-import>
+</sc-if>
+<x-import component-from-global-scope="StriveWell.TabBar" x="{{ n.p17 }}" y="{{ n.p729 }}" items="{{ d.onglets }}" active="{{ n.p2 }}" on-change="{{ onglet }}" label="Navigation principale"></x-import>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.ressenti }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" label="Votre ressenti">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Retour au suivi" on-click="{{ go.suivi }}"></x-import>
+<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">Séance du 25 septembre</p>
+<p class="hero-36" style="position: absolute; left: 33px; top: 138px; width: 324px; margin: 0; color: var(--white); white-space: pre-line;">Votre
+ressenti</p>
+<x-import component-from-global-scope="StriveWell.PainScale" x="{{ n.p29_5 }}" y="{{ n.p250 }}" title="Douleur pendant la séance" default-value="{{ n.p3 }}"></x-import>
+<x-import component-from-global-scope="StriveWell.PainScale" x="{{ n.p29_5 }}" y="{{ n.p370 }}" title="Fatigue après la séance" default-value="{{ n.p5 }}" labels="{{ d.bornesFatigue }}"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p29_5 }}" y="{{ n.p490 }}" placeholder="Un mot pour votre praticien (facultatif)" label="Un mot pour votre praticien"></x-import>
+<p class="desc-13" style="position: absolute; left: 33px; top: 566px; width: 324px; margin: 0; color: var(--text-soft);">Votre praticien voit ces réponses avant la prochaine séance. L’application ne pose pas de diagnostic : en cas de douleur forte ou inhabituelle, appelez le centre au 01 84 74 34 20.</p>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ envoyerRessenti }}">Envoyer</x-import>
+</x-import>
+</sc-if>
+
+<!-- ============ Profil ============ -->
+<sc-if value="{{ is.profil }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="both" label="Profil">
+<x-import component-from-global-scope="StriveWell.ProfileHeader" x="{{ n.p0 }}" y="{{ n.p82 }}" avatar-src="/_blob/66564b2f68f3ddd77784a5756044eb21" avatar-alt="Youssef Labidi" name="Youssef Labidi" height="172 CM" weight="62 KG" edit-label="Modifier le profil"></x-import>
+<x-import component-from-global-scope="StriveWell.SettingsGroup" x="{{ n.p33 }}" y="{{ n.p410 }}" title="Réglages" rows="{{ d.reglages }}"></x-import>
+<x-import component-from-global-scope="StriveWell.SettingsGroup" x="{{ n.p33 }}" y="{{ n.p624 }}" title="Hygie" rows="{{ lignesHygie }}"></x-import>
+<div aria-hidden="true" style="position: absolute; left: 0px; top: 422px; width: 395px; height: 422px; background: var(--gradient-fade-soft); pointer-events: none;"></div>
+<x-import component-from-global-scope="StriveWell.TabBar" x="{{ n.p27 }}" y="{{ n.p729 }}" items="{{ d.onglets }}" active="{{ n.p3 }}" on-change="{{ onglet }}" label="Navigation principale"></x-import>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.forfaits }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" label="Forfaits">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Retour au profil" on-click="{{ go.profil }}"></x-import>
+<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">Coaching individuel</p>
+<p class="hero-36" style="position: absolute; left: 33px; top: 138px; width: 324px; margin: 0; color: var(--white); white-space: pre-line;">Nos
+forfaits</p>
+<div style="position: absolute; left: 23px; top: 244px; width: 344px; display: flex; flex-direction: column; gap: 14px;">
+<sc-for list="{{ forfaits }}" as="f" hint-placeholder-count="3">
+<x-import component-from-global-scope="StriveWell.ServiceCard" pole="sport" meta="{{ f.meta }}" title="{{ f.title }}" description="{{ f.desc }}" icon="run" selected="{{ f.sel }}" on-click="{{ f.pick }}"></x-import>
+</sc-for>
+</div>
+<p class="desc-13" style="position: absolute; left: 33px; top: 628px; width: 324px; margin: 0; color: var(--text-soft);">Bilan d’entrée offert pour un engagement de 3 mois, sinon 145 €. Cross training en groupe de 6 : 60 € par mois.</p>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ go.rdvSoin }}">Choisir ce forfait</x-import>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.centre }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="both" label="Le centre">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Retour au profil" on-click="{{ go.profil }}"></x-import>
+<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">Hygie Sport Santé Performance</p>
+<p class="hero-36" style="position: absolute; left: 33px; top: 138px; width: 324px; margin: 0; color: var(--white); white-space: pre-line;">Le
+centre</p>
+<x-import component-from-global-scope="StriveWell.SettingsGroup" x="{{ n.p33 }}" y="{{ n.p244 }}" title="Nous trouver" rows="{{ d.contact }}"></x-import>
+<x-import component-from-global-scope="StriveWell.SettingsGroup" x="{{ n.p33 }}" y="{{ n.p458 }}" title="Horaires" rows="{{ d.horaires }}"></x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ go.rdvSoin }}">Prendre rendez-vous</x-import>
+</x-import>
+</sc-if>
+
+<!-- ============ Prendre rendez-vous ============ -->
+<sc-if value="{{ is.rdvSoin }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" label="Choisir un soin">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Retour à l’accueil" on-click="{{ go.accueil }}"></x-import>
+<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">{{ rdv.etape1 }}</p>
+<p class="hero-36" style="position: absolute; left: 33px; top: 138px; width: 324px; margin: 0; color: var(--white); white-space: pre-line;">Prendre
+rendez-vous</p>
+<div style="position: absolute; left: 23px; top: 244px; width: 344px; display: flex; flex-direction: column; gap: 14px;">
+<sc-for list="{{ rdv.poles }}" as="p" hint-placeholder-count="4">
+<x-import component-from-global-scope="StriveWell.ServiceCard" pole="{{ p.key }}" meta="{{ p.meta }}" title="{{ p.title }}" description="{{ p.desc }}" icon="{{ p.icon }}" selected="{{ p.sel }}" on-click="{{ p.pick }}"></x-import>
+</sc-for>
+</div>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ go.rdvPrestation }}">Continuer</x-import>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.rdvPrestation }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" label="Choisir une prestation">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Étape précédente" on-click="{{ go.rdvSoin }}"></x-import>
+<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">{{ rdv.etape2 }}</p>
+<p class="hero-36" style="position: absolute; left: 33px; top: 138px; width: 324px; margin: 0; color: var(--white); white-space: pre-line;">Quelle
+prestation ?</p>
+<div style="position: absolute; left: 23px; top: 244px; width: 344px; display: flex; flex-direction: column; gap: 14px;">
+<sc-for list="{{ rdv.prestations }}" as="p" hint-placeholder-count="4">
+<x-import component-from-global-scope="StriveWell.ServiceCard" pole="{{ rdv.pole }}" meta="{{ p.meta }}" title="{{ p.title }}" description="{{ p.desc }}" icon="{{ rdv.icon }}" selected="{{ p.sel }}" on-click="{{ p.pick }}"></x-import>
+</sc-for>
+</div>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ apresPrestation }}">Continuer</x-import>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.rdvPraticien }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" label="Choisir le praticien">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Étape précédente" on-click="{{ go.rdvPrestation }}"></x-import>
+<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">{{ rdv.etape3 }}</p>
+<p class="hero-36" style="position: absolute; left: 33px; top: 138px; width: 324px; margin: 0; color: var(--white); white-space: pre-line;">Avec
+qui ?</p>
+<div style="position: absolute; left: 23px; top: 244px; width: 344px; display: flex; flex-direction: column; gap: 14px;">
+<sc-for list="{{ rdv.praticiens }}" as="p" hint-placeholder-count="4">
+<x-import component-from-global-scope="StriveWell.PractitionerCard" photo="{{ p.photo }}" name="{{ p.name }}" role="{{ p.role }}" availability="{{ p.dispo }}" selected="{{ p.sel }}" on-click="{{ p.pick }}"></x-import>
+</sc-for>
+</div>
+<div style="position: absolute; left: 23px; top: 650px; width: 344px; display: flex; justify-content: center;">
+<x-import component-from-global-scope="StriveWell.TextLink" variant="guest" on-click="{{ premierDispo }}">Le premier disponible</x-import>
+</div>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ go.rdvCreneau }}">Continuer</x-import>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.rdvCreneau }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" label="Choisir un créneau">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Étape précédente" on-click="{{ retourCreneau }}"></x-import>
+<x-import component-from-global-scope="StriveWell.DateHeader" x="{{ n.p33 }}" y="{{ n.p116 }}" eyebrow="{{ rdv.etape4 }}" title="Octobre 2026" prev-label="Mois précédent" next-label="Mois suivant"></x-import>
+<x-import component-from-global-scope="StriveWell.MonthCalendar" x="{{ n.p28 }}" y="{{ n.p232 }}" year="{{ n.p2026 }}" month="{{ n.p9 }}" selected="{{ rdv.jour }}" on-select="{{ choisirJour }}" disabled="{{ d.dimanches }}" day-labels="{{ d.joursCourts }}" label="Octobre 2026"></x-import>
+<x-import component-from-global-scope="StriveWell.SlotPicker" x="{{ n.p29_5 }}" y="{{ n.p538 }}" slots="{{ d.creneaux }}" value="{{ rdv.creneau }}" on-change="{{ choisirCreneau }}" label="{{ rdv.creneauxLabel }}"></x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ confirmer }}">Confirmer</x-import>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.rdvConfirme }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="both" label="Rendez-vous confirmé">
+<x-import component-from-global-scope="StriveWell.SuccessMark" x="{{ n.p145 }}" y="{{ n.p116 }}"></x-import>
+<p class="success-title-26" style="position: absolute; left: 40px; top: 244px; width: 310px; margin: 0; color: var(--white); text-align: center;">Rendez-vous confirmé</p>
+<p class="success-body-15" style="position: absolute; left: 55px; top: 284px; width: 280px; margin: 0; color: var(--text-soft); text-align: center;">Un rappel vous sera envoyé la veille.</p>
+<x-import component-from-global-scope="StriveWell.AppointmentCard" x="{{ n.p23 }}" y="{{ n.p344 }}" pole="{{ rdv.pole }}" date="{{ rdv.dateTexte }}" title="{{ rdv.prestation }}" practitioner="{{ rdv.praticien }}" photo="{{ rdv.photo }}" place="Hygie, 9 rue de la Petite Vitesse, Avon" icon="{{ rdv.icon }}" actions="{{ actionsRdv }}"></x-import>
+<sc-if value="{{ rdv.questionnaire }}" hint-placeholder-val="{{ false }}">
+<p class="desc-13" style="position: absolute; left: 33px; top: 560px; width: 324px; margin: 0; color: var(--text-soft);">Avant votre première séance de pressothérapie, remplissez le questionnaire de contre-indications. Le centre le relit avant la séance.</p>
+</sc-if>
+<x-import component-from-global-scope="StriveWell.Button" variant="mint" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ go.agenda }}">Terminé</x-import>
+</x-import>
+</sc-if>
+
+<!-- ============ Séance ============ -->
+<sc-if value="{{ is.course }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" halo="none" label="Échauffement">
+<x-import component-from-global-scope="StriveWell.MapView" x="{{ n.p0 }}" y="{{ n.p0 }}" map-src="/_blob/719c13df9f32bef6ebd5c570d16513c8" address="{{ d.depart }}" label="Parcours de l’échauffement"></x-import>
+<x-import component-from-global-scope="StriveWell.GlassHeader" x="{{ n.p19 }}" y="{{ n.p35 }}" title="Échauffement" subtitle="Course 2 km" icon="run" back-label="Retour à l’accueil" on-back="{{ go.accueil }}"></x-import>
+<sc-if value="{{ coursePause }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p372 }}" on-click="{{ go.seance }}">Passer à la séance</x-import>
+</sc-if>
+<x-import component-from-global-scope="StriveWell.RunSummary" x="{{ n.p0 }}" y="{{ n.p447 }}" distance="1,23" unit="km" stats="{{ d.statsCourse }}" paused="{{ coursePause }}" on-pause="{{ pauseCourse }}" label="Résumé de la course"></x-import>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.seance }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="none" label="Séance de sport">
+<x-import component-from-global-scope="StriveWell.GlassHeader" x="{{ n.p19 }}" y="{{ n.p35 }}" title="Séance de sport" subtitle="Préparation physique · 3 séries" image="/_blob/40e119df28f465c5ef6de9d35f3c3fc7" back-label="Retour à l’accueil" on-back="{{ go.accueil }}"></x-import>
+<p class="hero-36" style="position: absolute; left: 40px; top: 149px; width: 310px; margin: 0; color: var(--white); text-align: center;">{{ seanceTitre }}</p>
+<x-import component-from-global-scope="StriveWell.TimerRing" x="{{ n.p70 }}" y="{{ n.p220 }}" time="00:38" progress="{{ n.f05 }}" label="Temps restant : 38 secondes"></x-import>
+<sc-if value="{{ seancePause }}" hint-placeholder-val="{{ false }}">
+<div style="position: absolute; left: 23px; top: 478px; width: 344px; display: flex; justify-content: center;">
+<x-import component-from-global-scope="StriveWell.TextLink" variant="guest" on-click="{{ go.reussite }}">Terminer la séance</x-import>
+</div>
+</sc-if>
+<x-import component-from-global-scope="StriveWell.TrapezoidSheet" x="{{ n.p0 }}" y="{{ n.p557 }}" shape="workout" label="Intervalles">
+<x-import component-from-global-scope="StriveWell.IntervalList" x="{{ n.p45 }}" y="{{ n.p63_75 }}" active="{{ n.p1 }}" items="{{ d.intervalles }}" label="Intervalles de la séance"></x-import>
+</x-import>
+<x-import component-from-global-scope="StriveWell.PauseButton" x="{{ n.p141 }}" y="{{ n.p503 }}" paused="{{ seancePause }}" on-click="{{ pauseSeance }}"></x-import>
+</x-import>
+</sc-if>
+
+<sc-if value="{{ is.reussite }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="none" label="Séance terminée">
+<x-import component-from-global-scope="StriveWell.Confetti" x="{{ n.p0 }}" y="{{ n.p0 }}"></x-import>
+<x-import component-from-global-scope="StriveWell.Halo" x="{{ n.p27 }}" y="{{ n.p640 }}"></x-import>
+<x-import component-from-global-scope="StriveWell.Halo" x="{{ n.m100 }}" y="{{ n.m101 }}"></x-import>
+<div aria-hidden="true" style="position: absolute; left: 0px; top: 422px; width: 395px; height: 422px; background: var(--gradient-fade-soft); pointer-events: none;"></div>
+<x-import component-from-global-scope="StriveWell.Button" variant="mint" x="{{ n.p23 }}" y="{{ n.p659 }}" on-click="{{ go.ressenti }}">Continuer</x-import>
+<x-import component-from-global-scope="StriveWell.SuccessCard" x="{{ n.p76 }}" y="{{ n.p220 }}" image-src="/_blob/ebd6f3e45ff014d9390e923d1d453797" message="{{ d.messageReussite }}"></x-import>
+</x-import>
+</sc-if>
+
+<!-- ============ Assistant ============ -->
+<sc-if value="{{ is.assistant }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" label="Assistant Hygie">
+<x-import component-from-global-scope="StriveWell.GlassHeader" x="{{ n.p19 }}" y="{{ n.p35 }}" title="Assistant Hygie" subtitle="Ne remplace pas votre praticien" icon="chat" back-label="Fermer l’assistant" on-back="{{ go.accueil }}"></x-import>
+<div role="log" aria-label="Conversation avec l’assistant" style="position: absolute; left: 23px; top: 136px; width: 344px; display: flex; flex-direction: column; gap: 10px;">
+<sc-for list="{{ messages }}" as="m" hint-placeholder-count="5">
+<x-import component-from-global-scope="StriveWell.ChatBubble" from="{{ m.from }}" time="{{ m.time }}">{{ m.text }}</x-import>
+</sc-for>
+</div>
+<x-import component-from-global-scope="StriveWell.ChatComposer" x="{{ n.p23 }}" y="{{ n.p708 }}" suggestions="{{ d.suggestions }}" on-suggestion="{{ envoyer }}" on-send="{{ envoyer }}" placeholder="Écrire à l’assistant" label="Message à l’assistant" send-label="Envoyer le message" id="composer-assistant"></x-import>
+</x-import>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"ecran":{"editor":"enum","options":["bienvenue","connexion","inscription","code","oubli","nouveau","modifie","poids","taille","objectif","accueil","agenda","suivi","ressenti","profil","forfaits","centre","rdvSoin","rdvPrestation","rdvPraticien","rdvCreneau","rdvConfirme","course","seance","reussite","assistant"],"default":"bienvenue","section":"Écran affiché"},"notification":{"editor":"boolean","default":false,"section":"Écran affiché"},"$preview":{"width":390,"height":844}}'>
+const VUES = ['bienvenue', 'connexion', 'inscription', 'code', 'oubli', 'nouveau', 'modifie', 'poids', 'taille', 'objectif', 'accueil', 'agenda', 'suivi', 'ressenti', 'profil', 'forfaits', 'centre', 'rdvSoin', 'rdvPrestation', 'rdvPraticien', 'rdvCreneau', 'rdvConfirme', 'course', 'seance', 'reussite', 'assistant'];
+
+const NUM = (function () {
+  const n = {};
+  for (let i = 0; i <= 2026; i++) n['p' + i] = i;
+  n.m100 = -100; n.m101 = -101;
+  n.p135_1 = 135.1; n.p389_5 = 389.5; n.p90_5 = 90.5; n.p29_5 = 29.5; n.p63_75 = 63.75;
+  n.f05 = 0.5;
+  return n;
+})();
+
+const PHOTO = {
+  johan: '/_blob/12ed76cc916bbd5fefcd35a58e821b6f',
+  prep1: '/_blob/580ddb6d8d935df98d7ea17f5787fc7a',
+  eq1: '/_blob/376f2a2db0fb4d288c1c42beba1a28ed',
+  eq2: '/_blob/41cd9656a8abce7745d43c711ee3721c',
+  eq3: '/_blob/b4e7298a886fd4da5f20fa3cce88a33e'
+};
+
+const POLES = [
+  { key: 'sport', meta: 'Pôle Sport', title: 'Séance de sport', desc: 'Coaching, sport-santé, groupes.', icon: 'run', tone: 'yellow', nom: 'Sport' },
+  { key: 'sante', meta: 'Pôle Santé', title: 'Kinésithérapie et soins', desc: 'Kinésithérapie, étiopathie, orthoptie.', icon: 'health-1', tone: 'mint', nom: 'Santé' },
+  { key: 'bilan', meta: 'Bilans', title: 'Bilan fonctionnel', desc: 'Isocinétique, force, mobilité.', icon: 'line-chart', tone: 'gray', nom: 'Bilans' },
+  { key: 'recuperation', meta: 'Récupération & bien-être', title: 'Récupération', desc: 'Pressothérapie, massages, nutrition.', icon: 'heart', tone: 'pink', nom: 'Récupération' }
+];
+
+const PRESTATIONS = {
+  sport: [
+    { meta: 'Inclus dans votre forfait', title: 'Coaching individuel', desc: 'Avec votre préparateur physique.' },
+    { meta: 'Groupe de 4 · [prix]', title: 'Sport-santé en petit groupe', desc: 'Renforcement et prévention.' },
+    { meta: 'Groupe de 6 · 60 € par mois', title: 'Cross training', desc: 'Endurance, force et mobilité.' },
+    { meta: '[prix]', title: 'Suivi à distance', desc: 'Un programme et un point par semaine.' }
+  ],
+  sante: [
+    { meta: 'Dix kinésithérapeutes', title: 'Kinésithérapie', desc: 'Rééducation, sport, périnée.' },
+    { meta: 'Avec Johan Pereira', title: 'Étiopathie', desc: 'La cause mécanique d’une douleur.' },
+    { meta: 'Vision et équilibre', title: 'Orthoptie', desc: 'Fatigue visuelle, vertiges.' }
+  ],
+  bilan: [
+    { meta: '80 €', title: 'Bilan isocinétique', desc: 'Force et équilibre des muscles.' },
+    { meta: '120 € · 80 € pour un membre', title: 'Forces musculaires', desc: 'Écarts entre droite et gauche.' },
+    { meta: '60 €', title: 'Bilan fonctionnel', desc: 'Mobilité, contrôle, équilibre.' },
+    { meta: '80 € chacun', title: 'Sauts et force-vitesse', desc: 'Explosivité et puissance.' }
+  ],
+  recuperation: [
+    { meta: '20 € la séance', title: 'Pressothérapie', desc: 'Froid, compression et chaleur.' },
+    { meta: 'Sur rendez-vous par téléphone', title: 'Massage bien-être', desc: 'Deep tissue, drainage lymphatique.' },
+    { meta: '[prix]', title: 'Conseil en nutrition', desc: 'Préventif, sans diagnostic.' }
+  ]
+};
+
+const PRATICIENS = {
+  sante: [
+    { photo: PHOTO.eq1, name: 'Praticienne Santé', role: 'Kinésithérapeute', dispo: 'Demain 9 h 30' },
+    { photo: PHOTO.eq2, name: 'Praticien Santé', role: 'Kinésithérapeute', dispo: 'Jeu. 14 h' },
+    { photo: PHOTO.eq3, name: 'Praticienne Santé', role: 'Kinésithérapeute', dispo: 'Ven. 11 h' },
+    { photo: PHOTO.johan, name: 'Johan Pereira', role: 'Étiopathe, fondateur', dispo: 'Lun. 8 h' }
+  ],
+  sport: [
+    { photo: PHOTO.johan, name: 'Johan Pereira', role: 'Préparateur physique, fondateur', dispo: 'Lun. 8 h' },
+    { photo: PHOTO.prep1, name: 'Préparateur physique', role: 'Pôle Sport', dispo: 'Demain 18 h' }
+  ],
+  bilan: [
+    { photo: PHOTO.prep1, name: 'Préparateur physique', role: 'Bilans physiologiques', dispo: 'Lun. 10 h' },
+    { photo: PHOTO.johan, name: 'Johan Pereira', role: 'Préparateur physique, fondateur', dispo: 'Mar. 9 h' }
+  ]
+};
+
+const JOURS_LONGS = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+
+const DATA = {
+  unitesPoids: ['lb', 'kg'],
+  unitesTaille: ['pouces', 'cm'],
+  objectifs: ['Reprendre une activité physique', 'Soulager une douleur', 'Revenir au sport après une blessure', 'Préparer une compétition'],
+  jours: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+  joursCourts: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
+  journee: [
+    { title: 'Échauffement', subtitle: 'Course 2 km · 17 h 30' },
+    { title: 'Séance de sport', subtitle: 'Préparation physique · 18 h 00' },
+    { title: 'Pressothérapie', subtitle: 'Récupération · 19 h 15' }
+  ],
+  onglets: [{ icon: 'grid', label: 'Accueil' }, { icon: 'calendar', label: 'Agenda' }, { icon: 'stats', label: 'Suivi' }, { icon: 'user', label: 'Profil' }],
+  semaines: [[21, 22, 23, 24, 25, 26, 27], [28, 29, 30, 1, 2, 3, 4]],
+  segments: ['Activité', 'Progrès', 'Bilans'],
+  histForce: [40, 44, 43, 50, 55, 54, 61, 68],
+  histHanche: [30, 33, 35, 36, 39, 42],
+  bornesFatigue: ['Aucune', 'Épuisé'],
+  reglages: [{ label: 'Informations du compte' }, { label: 'Notifications' }, { label: 'Taille du texte', value: 'Moyenne' }],
+  contact: [{ label: '9, rue de la Petite Vitesse, Avon' }, { label: '01 84 74 34 20' }, { label: 'contact@hygiesportsante.fr' }],
+  horaires: [{ label: 'Lundi au vendredi', value: '8 h – 20 h' }, { label: 'Samedi', value: '9 h – 13 h' }],
+  dimanches: [4, 11, 18, 25],
+  creneaux: ['8 h 30', '9 h 15', { time: '10 h 00', disabled: true }, '11 h 30', '14 h 00', '15 h 15', { time: '16 h 45', disabled: true }, '18 h 00'],
+  depart: { line1: 'Départ', line2: 'Hygie, Avon' },
+  statsCourse: [['17:30', 'Départ'], ['12:05', 'Temps'], ['112', 'Calories']],
+  intervalles: [{ label: 'Préparation', value: '10' }, { label: 'Effort', value: '40' }, { label: 'Repos', value: '10' }, { label: 'Effort', value: '40' }, { label: 'Repos', value: '10' }],
+  messageReussite: 'Séance terminée\navec succès',
+  suggestions: ['Horaires du centre', 'Prochain bilan'],
+  actionsBilan: [{ label: 'Ajouter à l’agenda' }, { label: 'Déplacer' }]
+};
+
+const MESSAGES_INITIAUX = [
+  { from: 'assistant', time: '9 h 41', text: 'Bonjour Youssef. Je peux déplacer un rendez-vous, vous donner les horaires du centre ou noter une douleur dans votre suivi.' },
+  { from: 'user', time: '', text: 'Je peux décaler ma kiné du 8 octobre ?' },
+  { from: 'assistant', time: '', text: 'Oui. Deux créneaux sont libres : vendredi 9 octobre à 11 h ou samedi 10 octobre à 9 h 30.' },
+  { from: 'user', time: '', text: 'Vendredi 11 h.' },
+  { from: 'assistant', time: '9 h 42', text: 'C’est fait : kinésithérapie vendredi 9 octobre à 11 h. Un rappel vous sera envoyé la veille.' }
+];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { v: null, notif: false, seg: 0, pole: 1, prest: 0, prat: 1, jour: 8, creneau: '14 h 00', reserve: false, forfait: 0, coursePause: false, seancePause: false, messages: MESSAGES_INITIAUX };
+  }
+
+  componentDidUpdate(prev) {
+    if (prev.ecran !== this.props.ecran) this.setState({ v: this.props.ecran || 'bienvenue' });
+  }
+
+  componentWillUnmount() {
+    if (this.timer) clearTimeout(this.timer);
+  }
+
+  aller(v) {
+    this.setState({ v: v, coursePause: false, seancePause: false });
+  }
+
+  reponse(texte) {
+    const t = texte.toLowerCase();
+    if (t.indexOf('horaire') >= 0) return 'Le centre est ouvert du lundi au vendredi de 8 h à 20 h, et le samedi de 9 h à 13 h.';
+    if (t.indexOf('bilan') >= 0) return 'Votre prochain bilan : bilan isocinétique, lundi 19 octobre à 10 h 00.';
+    return 'Je transmets votre question à l’équipe du centre. Pour une douleur, parlez-en à votre praticien : je ne pose pas de diagnostic.';
+  }
+
+  renderVals() {
+    const v = this.state.v || this.props.ecran || 'bienvenue';
+    const is = {};
+    VUES.forEach((k) => { is[k] = k === v; });
+    const go = {};
+    VUES.forEach((k) => { go[k] = () => this.aller(k); });
+
+    const s = this.state;
+    const pole = POLES[s.pole];
+    const prestations = PRESTATIONS[pole.key];
+    const prest = prestations[Math.min(s.prest, prestations.length - 1)];
+    const praticiens = PRATICIENS[pole.key] || [];
+    const prat = praticiens[Math.min(s.prat, Math.max(0, praticiens.length - 1))];
+    const recup = pole.key === 'recuperation';
+    const total = recup ? 3 : 4;
+    const jourSemaine = JOURS_LONGS[(3 + s.jour - 1) % 7];
+    const dateTexte = jourSemaine.charAt(0).toUpperCase() + jourSemaine.slice(1) + ' ' + s.jour + ' octobre · ' + (s.creneau || '[heure]');
+
+    const rdv = {
+      pole: pole.key,
+      icon: pole.icon,
+      etape1: 'Étape 1 sur ' + total,
+      etape2: 'Étape 2 sur ' + total + ' · ' + pole.nom,
+      etape3: 'Étape 3 sur ' + total + ' · ' + prest.title,
+      etape4: 'Étape ' + total + ' sur ' + total,
+      poles: POLES.map((p, i) => Object.assign({}, p, { sel: i === s.pole, pick: () => this.setState({ pole: i, prest: 0, prat: 0 }) })),
+      prestations: prestations.map((p, i) => Object.assign({}, p, { sel: i === s.prest, pick: () => this.setState({ prest: i }) })),
+      praticiens: praticiens.map((p, i) => Object.assign({}, p, { sel: i === s.prat, pick: () => this.setState({ prat: i }) })),
+      jour: s.jour,
+      creneau: s.creneau,
+      creneauxLabel: 'Créneaux du ' + jourSemaine + ' ' + s.jour + ' octobre',
+      dateTexte: dateTexte,
+      prestation: prest.title,
+      praticien: recup ? 'Équipe Récupération' : (prat ? prat.name : ''),
+      photo: recup ? undefined : (prat ? prat.photo : undefined),
+      questionnaire: recup && prest.title === 'Pressothérapie'
+    };
+
+    const agendaItems = [
+      { tone: 'yellow', date: 'Vendredi 25 septembre, 18 h', title: 'Séance de sport', subtitle: 'Préparation physique', icon: 'run', done: true },
+      s.reserve
+        ? { tone: pole.tone, date: dateTexte.replace(' · ', ', '), title: prest.title, subtitle: rdv.praticien, icon: pole.icon }
+        : { tone: 'mint', date: 'Jeudi 8 octobre, 14 h', title: 'Kinésithérapie', subtitle: 'Praticien Santé', icon: 'health-1' },
+      { tone: 'gray', date: 'Lundi 19 octobre, 10 h', title: 'Bilan isocinétique', subtitle: 'Genou droit', icon: 'line-chart' }
+    ];
+
+    const suivi = {
+      activite: s.seg === 0,
+      progres: s.seg === 1,
+      bilans: s.seg === 2,
+      moyenneLabel: ['Moyenne de la semaine', 'Séances ce mois', 'Bilans réalisés'][s.seg],
+      moyenne: ['102 kcal', '6', '2'][s.seg]
+    };
+
+    return {
+      yes: true,
+      n: NUM,
+      d: DATA,
+      is: is,
+      go: go,
+      notif: s.notif || !!this.props.notification,
+      seg: s.seg,
+      suivi: suivi,
+      rdv: rdv,
+      agendaItems: agendaItems,
+      coursePause: s.coursePause,
+      seancePause: s.seancePause,
+      seanceTitre: s.seancePause ? 'En pause' : 'C’est parti',
+      messages: s.messages,
+      forfaits: [
+        { meta: '140 € par mois', title: 'Essentiel', desc: '1 séance par semaine, bilan d’entrée.' },
+        { meta: '250 € par mois', title: 'Avancé', desc: '2 séances par semaine, bilans réguliers.' },
+        { meta: '300 € par mois', title: 'Performance', desc: '3 séances, accès aux praticiens santé.' }
+      ].map((f, i) => Object.assign({}, f, { sel: i === s.forfait, pick: () => this.setState({ forfait: i }) })),
+      lignesHygie: [
+        { label: 'Forfaits et tarifs', onClick: () => this.aller('forfaits') },
+        { label: 'Le centre', onClick: () => this.aller('centre') }
+      ],
+      actionsRdv: [
+        { label: 'Ajouter à l’agenda', onClick: () => this.aller('agenda') },
+        { label: 'Déplacer', onClick: () => this.aller('rdvCreneau') }
+      ],
+      onglet: (i) => this.aller(['accueil', 'agenda', 'suivi', 'profil'][i]),
+      choisirSegment: (i) => this.setState({ seg: i }),
+      finirProfil: () => {
+        this.setState({ v: 'accueil', notif: true });
+        if (this.timer) clearTimeout(this.timer);
+        this.timer = setTimeout(() => this.setState({ notif: false }), 5000);
+      },
+      envoyerRessenti: () => this.setState({ v: 'suivi', seg: 1 }),
+      apresPrestation: () => this.aller(recup ? 'rdvCreneau' : 'rdvPraticien'),
+      retourCreneau: () => this.aller(recup ? 'rdvPrestation' : 'rdvPraticien'),
+      premierDispo: () => this.setState({ prat: 0, v: 'rdvCreneau' }),
+      confirmer: () => this.setState({ v: 'rdvConfirme', reserve: true }),
+      choisirJour: (j) => this.setState({ jour: j }),
+      choisirCreneau: (c) => this.setState({ creneau: c }),
+      pauseCourse: () => this.setState({ coursePause: !s.coursePause }),
+      pauseSeance: () => this.setState({ seancePause: !s.seancePause }),
+      envoyer: (texte) => {
+        if (!texte) return;
+        const suite = s.messages.concat([{ from: 'user', time: '', text: texte }, { from: 'assistant', time: '', text: this.reponse(texte) }]);
+        this.setState({ messages: suite.slice(-5) });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>
