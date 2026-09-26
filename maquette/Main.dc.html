@@ -30,7 +30,7 @@ a { color: var(--link); } a:hover { color: var(--white); }
 </helmet>
 <div style="position: relative; width: 390px; height: 844px; overflow: hidden; border-radius: 38px; background: var(--primary); font-family: var(--font-alternates);">
 
-<!-- ============ Démarrage ============ -->
+<!-- ================= Démarrage ================= -->
 <sc-if value="{{ is.bienvenue }}" hint-placeholder-val="{{ true }}">
 <x-import component-from-global-scope="StriveWell.Screen" auth="{{ yes }}" label="Bienvenue">
 <x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p688 }}" on-click="{{ go.inscription }}">Créer un compte</x-import>
@@ -38,7 +38,7 @@ a { color: var(--link); } a:hover { color: var(--white); }
 <p class="splash-33" style="position: absolute; left: 51px; top: 485px; width: 289px; margin: 0; color: var(--white); text-align: center;">Prenez soin de votre <span style="background-image: var(--gradient-fitness); background-size: 289px 100%; background-position: -9px 0; -webkit-background-clip: text; background-clip: text; color: transparent;">santé</span></p>
 <x-import component-from-global-scope="StriveWell.HygieLogo" x="{{ n.p135_1 }}" y="{{ n.p389_5 }}" height="{{ n.p64 }}"></x-import>
 <div style="position: absolute; left: 23px; top: 764px; width: 344px; display: flex; justify-content: center;">
-<x-import component-from-global-scope="StriveWell.TextLink" variant="guest" on-click="{{ go.accueil }}">Continuer sans compte</x-import>
+<x-import component-from-global-scope="StriveWell.TextLink" variant="guest" on-click="{{ invite }}">Continuer sans compte</x-import>
 </div>
 </x-import>
 </sc-if>
@@ -48,12 +48,15 @@ a { color: var(--link); } a:hover { color: var(--white); }
 <x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p36 }}" label="Retour" on-click="{{ go.bienvenue }}"></x-import>
 <x-import component-from-global-scope="StriveWell.HygieLogo" x="{{ n.p22 }}" y="{{ n.p171 }}" height="{{ n.p46 }}"></x-import>
 <p class="title-30" style="position: absolute; left: 22px; top: 242px; width: 328px; margin: 0; color: var(--white);">Ravi de vous revoir</p>
-<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p352 }}" placeholder="Adresse e-mail" type="email" auto-complete="email"></x-import>
-<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p423 }}" placeholder="Mot de passe" type="password" auto-complete="current-password" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p352 }}" id="connexion-email" placeholder="Adresse e-mail" type="email" auto-complete="email" value="{{ f.loginEmail }}" on-change="{{ champ.loginEmail }}"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p423 }}" id="connexion-mdp" placeholder="Mot de passe" type="password" auto-complete="current-password" value="{{ f.loginMdp }}" on-change="{{ champ.loginMdp }}" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
 <div style="position: absolute; left: 153px; top: 496px; width: 200px; display: flex; justify-content: flex-end;">
-<x-import component-from-global-scope="StriveWell.TextLink" on-click="{{ go.oubli }}">Mot de passe oublié ?</x-import>
+<x-import component-from-global-scope="StriveWell.TextLink" on-click="{{ versOubli }}">Mot de passe oublié ?</x-import>
 </div>
-<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p543 }}" on-click="{{ go.accueil }}">Se connecter</x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p543 }}" on-click="{{ seConnecter }}">Se connecter</x-import>
+<sc-if value="{{ f.loginErreur }}" hint-placeholder-val="{{ false }}">
+<p role="alert" class="desc-13" style="position: absolute; left: 33px; top: 614px; width: 324px; margin: 0; color: var(--pink); text-align: center;">{{ f.loginErreur }}</p>
+</sc-if>
 <div style="position: absolute; left: 23px; top: 765px; width: 344px; display: flex; justify-content: center;">
 <x-import component-from-global-scope="StriveWell.LinkPrompt" weight="{{ n.p500 }}" text="Pas encore de compte ?" link="Créer un compte" on-click="{{ go.inscription }}"></x-import>
 </div>
@@ -65,11 +68,14 @@ a { color: var(--link); } a:hover { color: var(--white); }
 <x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p36 }}" label="Retour" on-click="{{ go.bienvenue }}"></x-import>
 <x-import component-from-global-scope="StriveWell.HygieLogo" x="{{ n.p22 }}" y="{{ n.p113 }}" height="{{ n.p46 }}"></x-import>
 <p class="title-30" style="position: absolute; left: 23px; top: 180px; width: 328px; margin: 0; color: var(--white);">Créez votre compte Hygie</p>
-<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p281 }}" placeholder="Prénom et nom" auto-complete="name"></x-import>
-<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p352 }}" placeholder="Adresse e-mail" type="email" auto-complete="email"></x-import>
-<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p423 }}" placeholder="Mot de passe" type="password" auto-complete="new-password" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
-<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p494 }}" placeholder="Confirmer le mot de passe" type="password" auto-complete="new-password" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
-<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p580 }}" on-click="{{ go.code }}">Créer mon compte</x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p281 }}" id="inscription-nom" placeholder="Prénom et nom" auto-complete="name" value="{{ f.insNom }}" on-change="{{ champ.insNom }}"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p352 }}" id="inscription-email" placeholder="Adresse e-mail" type="email" auto-complete="email" value="{{ f.insEmail }}" on-change="{{ champ.insEmail }}"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p423 }}" id="inscription-mdp" placeholder="Mot de passe (8 caractères, dont un chiffre)" type="password" auto-complete="new-password" value="{{ f.insMdp }}" on-change="{{ champ.insMdp }}" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p494 }}" id="inscription-mdp2" placeholder="Confirmer le mot de passe" type="password" auto-complete="new-password" value="{{ f.insMdp2 }}" on-change="{{ champ.insMdp2 }}" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p580 }}" on-click="{{ sInscrire }}">Créer mon compte</x-import>
+<sc-if value="{{ f.insErreur }}" hint-placeholder-val="{{ false }}">
+<p role="alert" class="desc-13" style="position: absolute; left: 33px; top: 650px; width: 324px; margin: 0; color: var(--pink); text-align: center;">{{ f.insErreur }}</p>
+</sc-if>
 <div style="position: absolute; left: 23px; top: 765px; width: 344px; display: flex; justify-content: center;">
 <x-import component-from-global-scope="StriveWell.LinkPrompt" text="Déjà un compte ?" link="Se connecter" on-click="{{ go.connexion }}"></x-import>
 </div>
@@ -78,13 +84,16 @@ a { color: var(--link); } a:hover { color: var(--white); }
 
 <sc-if value="{{ is.code }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" auth="{{ yes }}" label="Code de vérification">
-<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p36 }}" label="Retour" on-click="{{ go.inscription }}"></x-import>
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p36 }}" label="Retour" on-click="{{ retourCode }}"></x-import>
 <p class="title-30" style="position: absolute; left: 23px; top: 134px; width: 328px; margin: 0; color: var(--white);">Code de vérification</p>
-<p class="desc-13" style="position: absolute; left: 24px; top: 224px; width: 331px; margin: 0; color: var(--text-soft);">Saisissez le code que nous venons d’envoyer à votre adresse e-mail.</p>
-<x-import component-from-global-scope="StriveWell.OtpInput" x="{{ n.p30 }}" y="{{ n.p290 }}" label="Chiffre" group-label="Code de vérification"></x-import>
-<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p403 }}" on-click="{{ go.poids }}">Vérifier</x-import>
+<p class="desc-13" style="position: absolute; left: 24px; top: 224px; width: 331px; margin: 0; color: var(--text-soft);">{{ f.codeTexte }}</p>
+<x-import component-from-global-scope="StriveWell.OtpInput" x="{{ n.p30 }}" y="{{ n.p290 }}" value="{{ f.code }}" on-change="{{ saisirCode }}" label="Chiffre" group-label="Code de vérification"></x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p403 }}" disabled="{{ f.codeIncomplet }}" on-click="{{ verifierCode }}">Vérifier</x-import>
+<sc-if value="{{ f.codeErreur }}" hint-placeholder-val="{{ false }}">
+<p role="alert" class="desc-13" style="position: absolute; left: 33px; top: 474px; width: 324px; margin: 0; color: var(--pink); text-align: center;">{{ f.codeErreur }}</p>
+</sc-if>
 <div style="position: absolute; left: 23px; top: 765px; width: 344px; display: flex; justify-content: center;">
-<x-import component-from-global-scope="StriveWell.LinkPrompt" text="Code non reçu ?" link="Renvoyer"></x-import>
+<x-import component-from-global-scope="StriveWell.LinkPrompt" text="Code non reçu ?" link="{{ f.renvoiTexte }}" on-click="{{ renvoyerCode }}"></x-import>
 </div>
 </x-import>
 </sc-if>
@@ -94,8 +103,11 @@ a { color: var(--link); } a:hover { color: var(--white); }
 <x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p36 }}" label="Retour" on-click="{{ go.connexion }}"></x-import>
 <p class="title-30" style="position: absolute; left: 23px; top: 134px; width: 328px; margin: 0; color: var(--white);">Mot de passe oublié ?</p>
 <p class="desc-13" style="position: absolute; left: 24px; top: 224px; width: 331px; margin: 0; color: var(--text-soft); font-weight: 500;">Indiquez l’adresse e-mail de votre compte. Nous vous envoyons un code.</p>
-<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p283 }}" placeholder="Adresse e-mail" type="email" auto-complete="email"></x-import>
-<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p399 }}" on-click="{{ go.nouveau }}">Envoyer le code</x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p283 }}" id="oubli-email" placeholder="Adresse e-mail" type="email" auto-complete="email" value="{{ f.oubliEmail }}" on-change="{{ champ.oubliEmail }}"></x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p399 }}" on-click="{{ envoyerOubli }}">Envoyer le code</x-import>
+<sc-if value="{{ f.oubliErreur }}" hint-placeholder-val="{{ false }}">
+<p role="alert" class="desc-13" style="position: absolute; left: 33px; top: 470px; width: 324px; margin: 0; color: var(--pink); text-align: center;">{{ f.oubliErreur }}</p>
+</sc-if>
 <div style="position: absolute; left: 23px; top: 765px; width: 344px; display: flex; justify-content: center;">
 <x-import component-from-global-scope="StriveWell.LinkPrompt" text="Vous vous en souvenez ?" link="Se connecter" on-click="{{ go.connexion }}"></x-import>
 </div>
@@ -104,12 +116,15 @@ a { color: var(--link); } a:hover { color: var(--white); }
 
 <sc-if value="{{ is.nouveau }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" auth="{{ yes }}" label="Nouveau mot de passe">
-<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p36 }}" label="Retour" on-click="{{ go.oubli }}"></x-import>
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p36 }}" label="Retour" on-click="{{ go.connexion }}"></x-import>
 <p class="title-30" style="position: absolute; left: 23px; top: 134px; width: 330px; margin: 0; color: var(--white);">Nouveau mot de passe</p>
-<p class="desc-13" style="position: absolute; left: 23px; top: 224px; width: 331px; margin: 0; color: var(--text-soft);">Choisissez un mot de passe différent des précédents.</p>
-<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p291 }}" placeholder="Nouveau mot de passe" type="password" auto-complete="new-password" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
-<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p366 }}" placeholder="Confirmer le mot de passe" type="password" auto-complete="new-password" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
-<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p476 }}" on-click="{{ go.modifie }}">Enregistrer</x-import>
+<p class="desc-13" style="position: absolute; left: 23px; top: 224px; width: 331px; margin: 0; color: var(--text-soft);">Au moins 8 caractères, dont un chiffre, différent de l’ancien.</p>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p291 }}" id="nouveau-mdp" placeholder="Nouveau mot de passe" type="password" auto-complete="new-password" value="{{ f.nvMdp }}" on-change="{{ champ.nvMdp }}" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p22 }}" y="{{ n.p366 }}" id="nouveau-mdp2" placeholder="Confirmer le mot de passe" type="password" auto-complete="new-password" value="{{ f.nvMdp2 }}" on-change="{{ champ.nvMdp2 }}" show-label="Afficher le mot de passe" hide-label="Masquer le mot de passe"></x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p476 }}" on-click="{{ enregistrerMdp }}">Enregistrer</x-import>
+<sc-if value="{{ f.nvErreur }}" hint-placeholder-val="{{ false }}">
+<p role="alert" class="desc-13" style="position: absolute; left: 33px; top: 547px; width: 324px; margin: 0; color: var(--pink); text-align: center;">{{ f.nvErreur }}</p>
+</sc-if>
 </x-import>
 </sc-if>
 
@@ -123,15 +138,15 @@ a { color: var(--link); } a:hover { color: var(--white); }
 </x-import>
 </sc-if>
 
-<!-- ============ Profil de départ ============ -->
+<!-- ================= Profil de départ ================= -->
 <sc-if value="{{ is.poids }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" variant="light" status-bar="black" label="Votre poids">
 <x-import component-from-global-scope="StriveWell.StepProgress" x="{{ n.p108 }}" y="{{ n.p83 }}" current="{{ n.p1 }}"></x-import>
 <p class="question-24" style="position: absolute; left: 51px; top: 126px; width: 289px; margin: 0; color: var(--primary); text-align: center; white-space: pre-line;">Quel est votre
 poids ?</p>
-<x-import component-from-global-scope="StriveWell.UnitToggle" x="{{ n.p90_5 }}" y="{{ n.p224 }}" options="{{ d.unitesPoids }}" default-value="{{ n.p1 }}" label="Unité de poids"></x-import>
-<x-import component-from-global-scope="StriveWell.RulerPicker" x="{{ n.p20 }}" y="{{ n.p318 }}" tone="yellow" default-value="{{ n.p70 }}" min="{{ n.p30 }}" max="{{ n.p200 }}" unit="kg" label="Poids"></x-import>
-<x-import component-from-global-scope="StriveWell.BackButton" variant="outline-lg" x="{{ n.p19 }}" y="{{ n.p716 }}" label="Retour" on-click="{{ go.code }}"></x-import>
+<x-import component-from-global-scope="StriveWell.UnitToggle" x="{{ n.p90_5 }}" y="{{ n.p224 }}" options="{{ d.unitesPoids }}" value="{{ profil.unitePoids }}" on-change="{{ choisirUnitePoids }}" label="Unité de poids"></x-import>
+<x-import component-from-global-scope="StriveWell.RulerPicker" x="{{ n.p20 }}" y="{{ n.p318 }}" tone="yellow" value="{{ profil.poidsAffiche }}" min="{{ profil.poidsMin }}" max="{{ profil.poidsMax }}" unit="{{ profil.poidsUnite }}" on-change="{{ choisirPoids }}" label="Poids"></x-import>
+<x-import component-from-global-scope="StriveWell.BackButton" variant="outline-lg" x="{{ n.p19 }}" y="{{ n.p716 }}" label="Retour" on-click="{{ retourPoids }}"></x-import>
 <x-import component-from-global-scope="StriveWell.NextButton" x="{{ n.p123 }}" y="{{ n.p716 }}" chevrons="{{ yes }}" on-click="{{ go.taille }}">Suivant</x-import>
 </x-import>
 </sc-if>
@@ -141,8 +156,8 @@ poids ?</p>
 <x-import component-from-global-scope="StriveWell.StepProgress" x="{{ n.p108 }}" y="{{ n.p83 }}" current="{{ n.p2 }}"></x-import>
 <p class="question-24" style="position: absolute; left: 51px; top: 126px; width: 289px; margin: 0; color: var(--primary); text-align: center; white-space: pre-line;">Quelle est votre
 taille ?</p>
-<x-import component-from-global-scope="StriveWell.UnitToggle" x="{{ n.p90_5 }}" y="{{ n.p224 }}" options="{{ d.unitesTaille }}" default-value="{{ n.p1 }}" label="Unité de taille"></x-import>
-<x-import component-from-global-scope="StriveWell.RulerPicker" x="{{ n.p20 }}" y="{{ n.p318 }}" tone="mint" default-value="{{ n.p170 }}" min="{{ n.p100 }}" max="{{ n.p230 }}" unit="cm" label="Taille"></x-import>
+<x-import component-from-global-scope="StriveWell.UnitToggle" x="{{ n.p90_5 }}" y="{{ n.p224 }}" options="{{ d.unitesTaille }}" value="{{ profil.uniteTaille }}" on-change="{{ choisirUniteTaille }}" label="Unité de taille"></x-import>
+<x-import component-from-global-scope="StriveWell.RulerPicker" x="{{ n.p20 }}" y="{{ n.p318 }}" tone="mint" value="{{ profil.tailleAffichee }}" min="{{ profil.tailleMin }}" max="{{ profil.tailleMax }}" unit="{{ profil.tailleUnite }}" on-change="{{ choisirTaille }}" label="Taille"></x-import>
 <x-import component-from-global-scope="StriveWell.BackButton" variant="outline-lg" x="{{ n.p19 }}" y="{{ n.p716 }}" label="Retour" on-click="{{ go.poids }}"></x-import>
 <x-import component-from-global-scope="StriveWell.NextButton" x="{{ n.p123 }}" y="{{ n.p716 }}" chevrons="{{ yes }}" on-click="{{ go.objectif }}">Suivant</x-import>
 </x-import>
@@ -154,62 +169,91 @@ taille ?</p>
 <p class="question-24" style="position: absolute; left: 51px; top: 126px; width: 289px; margin: 0; color: var(--primary); text-align: center; white-space: pre-line;">Quel est votre
 objectif ?</p>
 <p class="button-15" style="position: absolute; left: 51px; top: 199px; width: 289px; margin: 0; color: var(--text-gray); text-align: center; line-height: 18.18px;">Votre choix oriente votre programme et votre bilan d’entrée.</p>
-<x-import component-from-global-scope="StriveWell.OptionList" x="{{ n.p39 }}" y="{{ n.p273 }}" options="{{ d.objectifs }}" label="Objectif"></x-import>
+<x-import component-from-global-scope="StriveWell.OptionList" x="{{ n.p39 }}" y="{{ n.p273 }}" options="{{ d.objectifs }}" value="{{ profil.objectif }}" on-change="{{ choisirObjectif }}" label="Objectif"></x-import>
 <x-import component-from-global-scope="StriveWell.BackButton" variant="outline-lg" x="{{ n.p19 }}" y="{{ n.p716 }}" label="Retour" on-click="{{ go.taille }}"></x-import>
-<x-import component-from-global-scope="StriveWell.NextButton" x="{{ n.p123 }}" y="{{ n.p716 }}" on-click="{{ finirProfil }}">Commencer</x-import>
+<x-import component-from-global-scope="StriveWell.NextButton" x="{{ n.p123 }}" y="{{ n.p716 }}" on-click="{{ finirProfil }}">{{ profil.boutonFin }}</x-import>
 </x-import>
 </sc-if>
 
-<!-- ============ Accueil ============ -->
+<!-- ================= Accueil ================= -->
 <sc-if value="{{ is.accueil }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="main" label="Accueil">
 <x-import component-from-global-scope="StriveWell.HygieLogo" x="{{ n.p33 }}" y="{{ n.p52 }}" height="{{ n.p26 }}"></x-import>
-<x-import component-from-global-scope="StriveWell.GreetingHeader" x="{{ n.p33 }}" y="{{ n.p97 }}" greeting="Bonjour," name="Youssef" avatar-src="/_blob/66564b2f68f3ddd77784a5756044eb21" avatar-alt="Youssef" search-label="Parler à l’assistant Hygie" on-search="{{ go.assistant }}"></x-import>
-<x-import component-from-global-scope="StriveWell.ActivityChart" x="{{ n.p31 }}" y="{{ n.p210 }}" days="{{ d.jours }}" value-label="505 kcal" label="Calories brûlées cette semaine"></x-import>
+<x-import component-from-global-scope="StriveWell.GreetingHeader" x="{{ n.p33 }}" y="{{ n.p97 }}" greeting="Bonjour," name="{{ user.prenom }}" avatar-src="/_blob/66564b2f68f3ddd77784a5756044eb21" avatar-alt="{{ user.prenom }}" search-label="Parler à l’assistant Hygie" on-search="{{ go.assistant }}"></x-import>
+<x-import component-from-global-scope="StriveWell.ActivityChart" x="{{ n.p31 }}" y="{{ n.p210 }}" values="{{ activite.semaine }}" active="{{ n.p6 }}" days="{{ d.joursGlissants }}" value-label="{{ activite.aujourdhuiTexte }}" label="{{ activite.chartLabel }}"></x-import>
 <p class="section-28" style="position: absolute; left: 33px; top: 483px; width: 220px; margin: 0; color: var(--white); white-space: pre-line;">Votre
 journée</p>
-<p class="label-14" style="position: absolute; left: 33px; top: 566px; width: 240px; margin: 0; color: var(--white); line-height: 15.12px;">Vendredi 25 septembre</p>
-<x-import component-from-global-scope="StriveWell.IconTile" x="{{ n.p305 }}" y="{{ n.p491 }}" tone="mint" icon="calendar" label="Prendre rendez-vous" on-click="{{ go.rdvSoin }}"></x-import>
-<x-import component-from-global-scope="StriveWell.ActivityTimeline" x="{{ n.p33 }}" y="{{ n.p605 }}" items="{{ d.journee }}" start-label="Commencer" on-start="{{ go.course }}" label="Votre journée"></x-import>
+<p class="label-14" style="position: absolute; left: 33px; top: 566px; width: 240px; margin: 0; color: var(--white); line-height: 15.12px;">{{ journee.sousTitre }}</p>
+<x-import component-from-global-scope="StriveWell.IconTile" x="{{ n.p305 }}" y="{{ n.p491 }}" tone="mint" icon="calendar" label="Prendre rendez-vous" on-click="{{ nouveauRdv }}"></x-import>
+<sc-if value="{{ journee.aDesEtapes }}" hint-placeholder-val="{{ true }}">
+<x-import component-from-global-scope="StriveWell.ActivityTimeline" x="{{ n.p33 }}" y="{{ n.p605 }}" items="{{ journee.etapes }}" start-label="{{ journee.bouton }}" on-start="{{ journee.lancer }}" label="Votre journée"></x-import>
+</sc-if>
+<sc-if value="{{ journee.terminee }}" hint-placeholder-val="{{ false }}">
+<p class="body-14" style="position: absolute; left: 33px; top: 610px; width: 324px; margin: 0; color: var(--text-soft);">Tout est fait pour aujourd’hui. Pensez à noter votre ressenti dans votre suivi.</p>
+</sc-if>
 <div aria-hidden="true" style="position: absolute; left: 0px; top: 497px; width: 390px; height: 347px; background: var(--gradient-fade); pointer-events: none;"></div>
 <x-import component-from-global-scope="StriveWell.Halo" x="{{ n.p27 }}" y="{{ n.p640 }}"></x-import>
 <x-import component-from-global-scope="StriveWell.TabBar" x="{{ n.p17 }}" y="{{ n.p733 }}" items="{{ d.onglets }}" active="{{ n.p0 }}" on-change="{{ onglet }}" label="Navigation principale"></x-import>
-<sc-if value="{{ notif }}" hint-placeholder-val="{{ false }}">
-<x-import component-from-global-scope="StriveWell.NotificationBanner" x="{{ n.p9 }}" y="{{ n.p12 }}" tone="light" title="Prochain rendez-vous" subtitle="Kinésithérapie" detail="Jeudi 8 octobre · 14 h 00" time="9 h 41" icon="health-1"></x-import>
-</sc-if>
 </x-import>
 </sc-if>
 
-<!-- ============ Agenda ============ -->
+<!-- ================= Agenda ================= -->
 <sc-if value="{{ is.agenda }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="none" label="Agenda">
-<x-import component-from-global-scope="StriveWell.DateHeader" x="{{ n.p33 }}" y="{{ n.p69 }}" eyebrow="Aujourd’hui" title="25 septembre 2026" prev-label="Semaine précédente" next-label="Semaine suivante"></x-import>
-<x-import component-from-global-scope="StriveWell.MonthCalendar" x="{{ n.p28 }}" y="{{ n.p178 }}" rows="{{ d.semaines }}" day-labels="{{ d.joursCourts }}" default-selected="{{ n.p25 }}" label="Septembre et octobre 2026"></x-import>
+<x-import component-from-global-scope="StriveWell.DateHeader" x="{{ n.p33 }}" y="{{ n.p69 }}" eyebrow="{{ agenda.surtitre }}" title="{{ agenda.titre }}" prev-label="Semaine précédente" next-label="Semaine suivante" on-prev="{{ agenda.precedente }}" on-next="{{ agenda.suivante }}"></x-import>
+<x-import component-from-global-scope="StriveWell.MonthCalendar" x="{{ n.p28 }}" y="{{ n.p178 }}" rows="{{ agenda.lignes }}" day-labels="{{ d.joursCourts }}" selected="{{ agenda.jour }}" on-select="{{ agenda.choisir }}" label="{{ agenda.calendrierLabel }}"></x-import>
 <x-import component-from-global-scope="StriveWell.BottomSheet" x="{{ n.p0 }}" y="{{ n.p363 }}" height="{{ n.p531 }}" title="Vos rendez-vous"></x-import>
-<x-import component-from-global-scope="StriveWell.ScheduleTimeline" x="{{ n.p27 }}" y="{{ n.p442 }}" items="{{ agendaItems }}" label="Rendez-vous à venir" done-label="Fait" todo-label="À venir"></x-import>
+<sc-if value="{{ agenda.aDesRdv }}" hint-placeholder-val="{{ true }}">
+<x-import component-from-global-scope="StriveWell.ScheduleTimeline" x="{{ n.p27 }}" y="{{ n.p442 }}" items="{{ agenda.items }}" label="Rendez-vous à partir de cette date" done-label="Passé" todo-label="À venir"></x-import>
+</sc-if>
+<sc-if value="{{ agenda.vide }}" hint-placeholder-val="{{ false }}">
+<p class="desc-13" style="position: absolute; left: 33px; top: 446px; width: 324px; margin: 0; color: var(--text-gray);">Aucun rendez-vous à partir de cette date.</p>
+<x-import component-from-global-scope="StriveWell.Button" variant="dark" x="{{ n.p23 }}" y="{{ n.p486 }}" on-click="{{ nouveauRdv }}">Prendre rendez-vous</x-import>
+</sc-if>
 <x-import component-from-global-scope="StriveWell.TabBar" x="{{ n.p17 }}" y="{{ n.p733 }}" items="{{ d.onglets }}" active="{{ n.p1 }}" on-change="{{ onglet }}" label="Navigation principale"></x-import>
 </x-import>
 </sc-if>
 
-<!-- ============ Suivi ============ -->
+<sc-if value="{{ is.rdvDetail }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="both" label="Votre rendez-vous">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Retour à l’agenda" on-click="{{ go.agenda }}"></x-import>
+<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">{{ detail.statut }}</p>
+<p class="hero-36" style="position: absolute; left: 33px; top: 138px; width: 324px; margin: 0; color: var(--white);">Votre rendez-vous</p>
+<x-import component-from-global-scope="StriveWell.AppointmentCard" x="{{ n.p23 }}" y="{{ n.p244 }}" pole="{{ detail.pole }}" date="{{ detail.date }}" title="{{ detail.titre }}" practitioner="{{ detail.praticien }}" photo="{{ detail.photo }}" place="Hygie, 9 rue de la Petite Vitesse, Avon" icon="{{ detail.icon }}" actions="{{ detail.actions }}"></x-import>
+<p class="desc-13" style="position: absolute; left: 33px; top: 470px; width: 324px; margin: 0; color: var(--text-soft);">{{ detail.note }}</p>
+<sc-if value="{{ detail.confirmerAnnulation }}" hint-placeholder-val="{{ false }}">
+<p class="body-14" style="position: absolute; left: 33px; top: 590px; width: 324px; margin: 0; color: var(--white);">Annuler ce rendez-vous ? Le créneau sera libéré pour un autre adhérent.</p>
+<x-import component-from-global-scope="StriveWell.Button" variant="field" x="{{ n.p23 }}" y="{{ n.p676 }}" on-click="{{ detail.garder }}">Garder le rendez-vous</x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ detail.annuler }}">Confirmer l’annulation</x-import>
+</sc-if>
+</x-import>
+</sc-if>
+
+<!-- ================= Suivi ================= -->
 <sc-if value="{{ is.suivi }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" variant="stats" status-bar="black" halo="main" label="Votre suivi">
 <x-import component-from-global-scope="StriveWell.StatsHeader" x="{{ n.p33 }}" y="{{ n.p72 }}" date="25 septembre 2026" title="Votre suivi" average-label="{{ suivi.moyenneLabel }}" average="{{ suivi.moyenne }}" open-label="Noter votre ressenti" on-open="{{ go.ressenti }}"></x-import>
-<x-import component-from-global-scope="StriveWell.SegmentedControl" x="{{ n.p26 }}" y="{{ n.p202 }}" options="{{ d.segments }}" value="{{ seg }}" on-change="{{ choisirSegment }}" label="Affichage du suivi"></x-import>
+<x-import component-from-global-scope="StriveWell.SegmentedControl" x="{{ n.p26 }}" y="{{ n.p202 }}" options="{{ d.segments }}" value="{{ suivi.seg }}" on-change="{{ choisirSegment }}" label="Affichage du suivi"></x-import>
 <x-import component-from-global-scope="StriveWell.BottomSheet" x="{{ n.p0 }}" y="{{ n.p306 }}" height="{{ n.p549 }}" tone="dark"></x-import>
 <x-import component-from-global-scope="StriveWell.Halo" x="{{ n.p33 }}" y="{{ n.p581 }}"></x-import>
 <sc-if value="{{ suivi.activite }}" hint-placeholder-val="{{ true }}">
-<x-import component-from-global-scope="StriveWell.CaloriesCard" x="{{ n.p18 }}" y="{{ n.p333 }}" title="Calories" value="50 kcal" labels="{{ d.jours }}" marker-src="/_blob/ebd6f3e45ff014d9390e923d1d453797" chart-label="Calories brûlées par jour"></x-import>
-<x-import component-from-global-scope="StriveWell.MetricCard" x="{{ n.p23 }}" y="{{ n.p629 }}" variant="walk" label="Marche" value="3 km" percent="50 %"></x-import>
-<x-import component-from-global-scope="StriveWell.MetricCard" x="{{ n.p207 }}" y="{{ n.p629 }}" variant="drink" label="Eau" value="150 ml"></x-import>
+<x-import component-from-global-scope="StriveWell.CaloriesCard" x="{{ n.p18 }}" y="{{ n.p333 }}" title="Calories" value="{{ activite.aujourdhuiTexte }}" bars="{{ activite.semaine }}" highlight="{{ n.p6 }}" labels="{{ d.joursGlissants }}" marker-src="/_blob/ebd6f3e45ff014d9390e923d1d453797" chart-label="{{ activite.chartLabel }}"></x-import>
+<x-import component-from-global-scope="StriveWell.MetricCard" x="{{ n.p23 }}" y="{{ n.p629 }}" variant="walk" label="Marche" value="{{ activite.marcheTexte }}" percent="{{ activite.marchePourcent }}" done="{{ activite.marcheBarres }}"></x-import>
+<x-import component-from-global-scope="StriveWell.MetricCard" x="{{ n.p207 }}" y="{{ n.p629 }}" variant="drink" label="Eau" value="{{ activite.eauTexte }}"></x-import>
 </sc-if>
 <sc-if value="{{ suivi.progres }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.ProgressCard" x="{{ n.p23 }}" y="{{ n.p333 }}" pole="bilan" label="Force ischio-jambiers" value="+18 %" history="{{ d.histForce }}" caption="8 semaines" chart-label="Force mesurée chaque semaine, de 40 à 68"></x-import>
-<x-import component-from-global-scope="StriveWell.ProgressCard" x="{{ n.p207 }}" y="{{ n.p333 }}" pole="sante" icon="hiking" label="Mobilité de hanche" value="42°" history="{{ d.histHanche }}" planned="{{ n.p8 }}" caption="Objectif 45°" chart-label="Rotation de hanche mesurée, de 30 à 42 degrés"></x-import>
-<x-import component-from-global-scope="StriveWell.PractitionerNote" x="{{ n.p23 }}" y="{{ n.p557 }}" photo="/_blob/580ddb6d8d935df98d7ea17f5787fc7a" name="Préparateur physique" role="Pôle Sport" date="22 sept.">Belle progression sur les ischio-jambiers. On garde deux séances de renforcement par semaine jusqu’au prochain bilan.</x-import>
+<x-import component-from-global-scope="StriveWell.ProgressCard" x="{{ n.p207 }}" y="{{ n.p333 }}" pole="recuperation" icon="heart" label="{{ suivi.douleurLabel }}" value="{{ suivi.douleurValeur }}" history="{{ suivi.douleurHistorique }}" planned="{{ n.p8 }}" caption="{{ suivi.douleurLegende }}" chart-label="{{ suivi.douleurGraphe }}"></x-import>
+<x-import component-from-global-scope="StriveWell.PractitionerNote" x="{{ n.p23 }}" y="{{ n.p557 }}" photo="{{ suivi.notePhoto }}" name="{{ suivi.noteNom }}" role="{{ suivi.noteRole }}" date="{{ suivi.noteDate }}">{{ suivi.noteTexte }}</x-import>
 </sc-if>
 <sc-if value="{{ suivi.bilans }}" hint-placeholder-val="{{ false }}">
-<x-import component-from-global-scope="StriveWell.AppointmentCard" x="{{ n.p23 }}" y="{{ n.p333 }}" pole="bilan" date="Lundi 19 octobre · 10 h 00" title="Bilan isocinétique" practitioner="Préparateur physique" photo="/_blob/580ddb6d8d935df98d7ea17f5787fc7a" place="Prochain bilan · Hygie, Avon" icon="line-chart" actions="{{ d.actionsBilan }}"></x-import>
+<sc-if value="{{ suivi.prochainBilan }}" hint-placeholder-val="{{ true }}">
+<x-import component-from-global-scope="StriveWell.AppointmentCard" x="{{ n.p23 }}" y="{{ n.p333 }}" pole="bilan" date="{{ suivi.bilanDate }}" title="{{ suivi.bilanTitre }}" practitioner="{{ suivi.bilanPraticien }}" photo="{{ suivi.bilanPhoto }}" place="Prochain bilan · Hygie, Avon" icon="line-chart" actions="{{ suivi.bilanActions }}"></x-import>
+</sc-if>
+<sc-if value="{{ suivi.sansBilan }}" hint-placeholder-val="{{ false }}">
+<p class="body-14" style="position: absolute; left: 33px; top: 340px; width: 324px; margin: 0; color: var(--white);">Aucun bilan prévu. Un bilan intermédiaire tous les deux à trois mois permet d’ajuster votre programme.</p>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p420 }}" on-click="{{ reserverBilan }}">Réserver un bilan</x-import>
+</sc-if>
 <x-import component-from-global-scope="StriveWell.PractitionerNote" x="{{ n.p23 }}" y="{{ n.p530 }}" photo="/_blob/12ed76cc916bbd5fefcd35a58e821b6f" name="Bilan des forces musculaires" role="Rapport disponible" date="12 sept.">Écart de 11 % entre les ischio-jambiers droit et gauche. Axes de travail : renforcement du côté gauche et contrôle du genou.</x-import>
 </sc-if>
 <x-import component-from-global-scope="StriveWell.TabBar" x="{{ n.p17 }}" y="{{ n.p729 }}" items="{{ d.onglets }}" active="{{ n.p2 }}" on-change="{{ onglet }}" label="Navigation principale"></x-import>
@@ -219,60 +263,77 @@ journée</p>
 <sc-if value="{{ is.ressenti }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" status-bar="white" label="Votre ressenti">
 <x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Retour au suivi" on-click="{{ go.suivi }}"></x-import>
-<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">Séance du 25 septembre</p>
+<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">{{ ressenti.surtitre }}</p>
 <p class="hero-36" style="position: absolute; left: 33px; top: 138px; width: 324px; margin: 0; color: var(--white); white-space: pre-line;">Votre
 ressenti</p>
-<x-import component-from-global-scope="StriveWell.PainScale" x="{{ n.p29_5 }}" y="{{ n.p250 }}" title="Douleur pendant la séance" default-value="{{ n.p3 }}"></x-import>
-<x-import component-from-global-scope="StriveWell.PainScale" x="{{ n.p29_5 }}" y="{{ n.p370 }}" title="Fatigue après la séance" default-value="{{ n.p5 }}" labels="{{ d.bornesFatigue }}"></x-import>
-<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p29_5 }}" y="{{ n.p490 }}" placeholder="Un mot pour votre praticien (facultatif)" label="Un mot pour votre praticien"></x-import>
-<p class="desc-13" style="position: absolute; left: 33px; top: 566px; width: 324px; margin: 0; color: var(--text-soft);">Votre praticien voit ces réponses avant la prochaine séance. L’application ne pose pas de diagnostic : en cas de douleur forte ou inhabituelle, appelez le centre au 01 84 74 34 20.</p>
-<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ envoyerRessenti }}">Envoyer</x-import>
+<x-import component-from-global-scope="StriveWell.PainScale" x="{{ n.p29_5 }}" y="{{ n.p250 }}" title="Douleur pendant la séance" value="{{ ressenti.douleur }}" on-change="{{ ressenti.choisirDouleur }}"></x-import>
+<x-import component-from-global-scope="StriveWell.PainScale" x="{{ n.p29_5 }}" y="{{ n.p370 }}" title="Fatigue après la séance" value="{{ ressenti.fatigue }}" on-change="{{ ressenti.choisirFatigue }}" labels="{{ d.bornesFatigue }}"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p29_5 }}" y="{{ n.p490 }}" id="ressenti-note" placeholder="Un mot pour votre praticien (facultatif)" label="Un mot pour votre praticien" value="{{ ressenti.note }}" on-change="{{ champ.note }}"></x-import>
+<p class="desc-13" style="position: absolute; left: 33px; top: 566px; width: 324px; margin: 0; color: var(--text-soft);">{{ ressenti.aide }}</p>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" disabled="{{ ressenti.incomplet }}" on-click="{{ ressenti.envoyer }}">Envoyer</x-import>
 </x-import>
 </sc-if>
 
-<!-- ============ Profil ============ -->
+<!-- ================= Profil ================= -->
 <sc-if value="{{ is.profil }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="both" label="Profil">
-<x-import component-from-global-scope="StriveWell.ProfileHeader" x="{{ n.p0 }}" y="{{ n.p82 }}" avatar-src="/_blob/66564b2f68f3ddd77784a5756044eb21" avatar-alt="Youssef Labidi" name="Youssef Labidi" height="172 CM" weight="62 KG" edit-label="Modifier le profil"></x-import>
-<x-import component-from-global-scope="StriveWell.SettingsGroup" x="{{ n.p33 }}" y="{{ n.p410 }}" title="Réglages" rows="{{ d.reglages }}"></x-import>
+<x-import component-from-global-scope="StriveWell.ProfileHeader" x="{{ n.p0 }}" y="{{ n.p82 }}" avatar-src="/_blob/66564b2f68f3ddd77784a5756044eb21" avatar-alt="{{ user.nomComplet }}" name="{{ user.nomComplet }}" height="{{ profil.tailleEntete }}" weight="{{ profil.poidsEntete }}" edit-label="Modifier votre poids, votre taille et votre objectif" on-edit="{{ modifierProfil }}"></x-import>
+<x-import component-from-global-scope="StriveWell.SettingsGroup" x="{{ n.p33 }}" y="{{ n.p410 }}" title="Réglages" rows="{{ reglages }}"></x-import>
 <x-import component-from-global-scope="StriveWell.SettingsGroup" x="{{ n.p33 }}" y="{{ n.p624 }}" title="Hygie" rows="{{ lignesHygie }}"></x-import>
 <div aria-hidden="true" style="position: absolute; left: 0px; top: 422px; width: 395px; height: 422px; background: var(--gradient-fade-soft); pointer-events: none;"></div>
 <x-import component-from-global-scope="StriveWell.TabBar" x="{{ n.p27 }}" y="{{ n.p729 }}" items="{{ d.onglets }}" active="{{ n.p3 }}" on-change="{{ onglet }}" label="Navigation principale"></x-import>
 </x-import>
 </sc-if>
 
+<sc-if value="{{ is.compte }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Screen" status-bar="white" label="Votre compte">
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Retour au profil" on-click="{{ go.profil }}"></x-import>
+<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">{{ compte.surtitre }}</p>
+<p class="hero-36" style="position: absolute; left: 33px; top: 138px; width: 324px; margin: 0; color: var(--white); white-space: pre-line;">Votre
+compte</p>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p29_5 }}" y="{{ n.p244 }}" id="compte-nom" placeholder="Prénom et nom" label="Prénom et nom" auto-complete="name" value="{{ f.cptNom }}" on-change="{{ champ.cptNom }}"></x-import>
+<x-import component-from-global-scope="StriveWell.TextField" x="{{ n.p29_5 }}" y="{{ n.p315 }}" id="compte-email" placeholder="Adresse e-mail" label="Adresse e-mail" type="email" auto-complete="email" value="{{ f.cptEmail }}" on-change="{{ champ.cptEmail }}"></x-import>
+<p class="desc-13" style="position: absolute; left: 33px; top: 392px; width: 324px; margin: 0; color: var(--text-soft);">{{ compte.resume }}</p>
+<sc-if value="{{ f.cptErreur }}" hint-placeholder-val="{{ false }}">
+<p role="alert" class="desc-13" style="position: absolute; left: 33px; top: 470px; width: 324px; margin: 0; color: var(--pink);">{{ f.cptErreur }}</p>
+</sc-if>
+<x-import component-from-global-scope="StriveWell.Button" variant="field" x="{{ n.p23 }}" y="{{ n.p676 }}" on-click="{{ seDeconnecter }}">Se déconnecter</x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ enregistrerCompte }}">Enregistrer</x-import>
+</x-import>
+</sc-if>
+
 <sc-if value="{{ is.forfaits }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" status-bar="white" label="Forfaits">
 <x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Retour au profil" on-click="{{ go.profil }}"></x-import>
-<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">Coaching individuel</p>
+<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">{{ forfaitActuel }}</p>
 <p class="hero-36" style="position: absolute; left: 33px; top: 138px; width: 324px; margin: 0; color: var(--white); white-space: pre-line;">Nos
 forfaits</p>
 <div style="position: absolute; left: 23px; top: 244px; width: 344px; display: flex; flex-direction: column; gap: 14px;">
-<sc-for list="{{ forfaits }}" as="f" hint-placeholder-count="3">
-<x-import component-from-global-scope="StriveWell.ServiceCard" pole="sport" meta="{{ f.meta }}" title="{{ f.title }}" description="{{ f.desc }}" icon="run" selected="{{ f.sel }}" on-click="{{ f.pick }}"></x-import>
+<sc-for list="{{ forfaits }}" as="fo" hint-placeholder-count="3">
+<x-import component-from-global-scope="StriveWell.ServiceCard" pole="sport" meta="{{ fo.meta }}" title="{{ fo.title }}" description="{{ fo.desc }}" icon="run" selected="{{ fo.sel }}" on-click="{{ fo.pick }}"></x-import>
 </sc-for>
 </div>
 <p class="desc-13" style="position: absolute; left: 33px; top: 628px; width: 324px; margin: 0; color: var(--text-soft);">Bilan d’entrée offert pour un engagement de 3 mois, sinon 145 €. Cross training en groupe de 6 : 60 € par mois.</p>
-<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ go.rdvSoin }}">Choisir ce forfait</x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" disabled="{{ forfaitInchange }}" on-click="{{ choisirForfait }}">{{ forfaitBouton }}</x-import>
 </x-import>
 </sc-if>
 
 <sc-if value="{{ is.centre }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="both" label="Le centre">
 <x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Retour au profil" on-click="{{ go.profil }}"></x-import>
-<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">Hygie Sport Santé Performance</p>
+<p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">{{ centre.etat }}</p>
 <p class="hero-36" style="position: absolute; left: 33px; top: 138px; width: 324px; margin: 0; color: var(--white); white-space: pre-line;">Le
 centre</p>
-<x-import component-from-global-scope="StriveWell.SettingsGroup" x="{{ n.p33 }}" y="{{ n.p244 }}" title="Nous trouver" rows="{{ d.contact }}"></x-import>
+<x-import component-from-global-scope="StriveWell.SettingsGroup" x="{{ n.p33 }}" y="{{ n.p244 }}" title="Nous trouver" rows="{{ centre.contact }}"></x-import>
 <x-import component-from-global-scope="StriveWell.SettingsGroup" x="{{ n.p33 }}" y="{{ n.p458 }}" title="Horaires" rows="{{ d.horaires }}"></x-import>
-<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ go.rdvSoin }}">Prendre rendez-vous</x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ nouveauRdv }}">Prendre rendez-vous</x-import>
 </x-import>
 </sc-if>
 
-<!-- ============ Prendre rendez-vous ============ -->
+<!-- ================= Prendre rendez-vous ================= -->
 <sc-if value="{{ is.rdvSoin }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" status-bar="white" label="Choisir un soin">
-<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Retour à l’accueil" on-click="{{ go.accueil }}"></x-import>
+<x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Annuler la réservation" on-click="{{ quitterRdv }}"></x-import>
 <p class="label-14" style="position: absolute; left: 33px; top: 116px; width: 320px; margin: 0; color: var(--white); text-transform: uppercase; line-height: 15.12px;">{{ rdv.etape1 }}</p>
 <p class="hero-36" style="position: absolute; left: 33px; top: 138px; width: 324px; margin: 0; color: var(--white); white-space: pre-line;">Prendre
 rendez-vous</p>
@@ -281,7 +342,7 @@ rendez-vous</p>
 <x-import component-from-global-scope="StriveWell.ServiceCard" pole="{{ p.key }}" meta="{{ p.meta }}" title="{{ p.title }}" description="{{ p.desc }}" icon="{{ p.icon }}" selected="{{ p.sel }}" on-click="{{ p.pick }}"></x-import>
 </sc-for>
 </div>
-<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ go.rdvPrestation }}">Continuer</x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" disabled="{{ rdv.sansPole }}" on-click="{{ go.rdvPrestation }}">Continuer</x-import>
 </x-import>
 </sc-if>
 
@@ -296,7 +357,7 @@ prestation ?</p>
 <x-import component-from-global-scope="StriveWell.ServiceCard" pole="{{ rdv.pole }}" meta="{{ p.meta }}" title="{{ p.title }}" description="{{ p.desc }}" icon="{{ rdv.icon }}" selected="{{ p.sel }}" on-click="{{ p.pick }}"></x-import>
 </sc-for>
 </div>
-<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ apresPrestation }}">Continuer</x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" disabled="{{ rdv.sansPrestation }}" on-click="{{ apresPrestation }}">Continuer</x-import>
 </x-import>
 </sc-if>
 
@@ -314,59 +375,62 @@ qui ?</p>
 <div style="position: absolute; left: 23px; top: 650px; width: 344px; display: flex; justify-content: center;">
 <x-import component-from-global-scope="StriveWell.TextLink" variant="guest" on-click="{{ premierDispo }}">Le premier disponible</x-import>
 </div>
-<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ go.rdvCreneau }}">Continuer</x-import>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" disabled="{{ rdv.sansPraticien }}" on-click="{{ versCreneau }}">Continuer</x-import>
 </x-import>
 </sc-if>
 
 <sc-if value="{{ is.rdvCreneau }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" status-bar="white" label="Choisir un créneau">
 <x-import component-from-global-scope="StriveWell.BackButton" x="{{ n.p23 }}" y="{{ n.p56 }}" label="Étape précédente" on-click="{{ retourCreneau }}"></x-import>
-<x-import component-from-global-scope="StriveWell.DateHeader" x="{{ n.p33 }}" y="{{ n.p116 }}" eyebrow="{{ rdv.etape4 }}" title="Octobre 2026" prev-label="Mois précédent" next-label="Mois suivant"></x-import>
-<x-import component-from-global-scope="StriveWell.MonthCalendar" x="{{ n.p28 }}" y="{{ n.p232 }}" year="{{ n.p2026 }}" month="{{ n.p9 }}" selected="{{ rdv.jour }}" on-select="{{ choisirJour }}" disabled="{{ d.dimanches }}" day-labels="{{ d.joursCourts }}" label="Octobre 2026"></x-import>
-<x-import component-from-global-scope="StriveWell.SlotPicker" x="{{ n.p29_5 }}" y="{{ n.p538 }}" slots="{{ d.creneaux }}" value="{{ rdv.creneau }}" on-change="{{ choisirCreneau }}" label="{{ rdv.creneauxLabel }}"></x-import>
-<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ confirmer }}">Confirmer</x-import>
+<x-import component-from-global-scope="StriveWell.DateHeader" x="{{ n.p33 }}" y="{{ n.p116 }}" eyebrow="{{ rdv.etape4 }}" title="{{ rdv.moisTitre }}" prev-label="Mois précédent" next-label="Mois suivant" on-prev="{{ rdv.moisPrecedent }}" on-next="{{ rdv.moisSuivant }}"></x-import>
+<x-import component-from-global-scope="StriveWell.MonthCalendar" x="{{ n.p28 }}" y="{{ n.p232 }}" year="{{ n.p2026 }}" month="{{ rdv.mois }}" selected="{{ rdv.jour }}" on-select="{{ choisirJour }}" disabled="{{ rdv.joursFermes }}" day-labels="{{ d.joursCourts }}" label="{{ rdv.moisTitre }}"></x-import>
+<sc-if value="{{ rdv.aDesCreneaux }}" hint-placeholder-val="{{ true }}">
+<x-import component-from-global-scope="StriveWell.SlotPicker" x="{{ n.p29_5 }}" y="{{ rdv.creneauxY }}" slots="{{ rdv.creneaux }}" value="{{ rdv.creneau }}" on-change="{{ choisirCreneau }}" label="{{ rdv.creneauxLabel }}"></x-import>
+</sc-if>
+<sc-if value="{{ rdv.sansCreneau }}" hint-placeholder-val="{{ false }}">
+<p class="desc-13" style="position: absolute; left: 33px; top: 600px; width: 324px; margin: 0; color: var(--text-soft);">{{ rdv.messageJour }}</p>
+</sc-if>
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p752 }}" disabled="{{ rdv.nonConfirmable }}" on-click="{{ confirmer }}">{{ rdv.boutonConfirmer }}</x-import>
 </x-import>
 </sc-if>
 
 <sc-if value="{{ is.rdvConfirme }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="both" label="Rendez-vous confirmé">
 <x-import component-from-global-scope="StriveWell.SuccessMark" x="{{ n.p145 }}" y="{{ n.p116 }}"></x-import>
-<p class="success-title-26" style="position: absolute; left: 40px; top: 244px; width: 310px; margin: 0; color: var(--white); text-align: center;">Rendez-vous confirmé</p>
+<p class="success-title-26" style="position: absolute; left: 40px; top: 244px; width: 310px; margin: 0; color: var(--white); text-align: center;">{{ confirme.titre }}</p>
 <p class="success-body-15" style="position: absolute; left: 55px; top: 284px; width: 280px; margin: 0; color: var(--text-soft); text-align: center;">Un rappel vous sera envoyé la veille.</p>
-<x-import component-from-global-scope="StriveWell.AppointmentCard" x="{{ n.p23 }}" y="{{ n.p344 }}" pole="{{ rdv.pole }}" date="{{ rdv.dateTexte }}" title="{{ rdv.prestation }}" practitioner="{{ rdv.praticien }}" photo="{{ rdv.photo }}" place="Hygie, 9 rue de la Petite Vitesse, Avon" icon="{{ rdv.icon }}" actions="{{ actionsRdv }}"></x-import>
-<sc-if value="{{ rdv.questionnaire }}" hint-placeholder-val="{{ false }}">
-<p class="desc-13" style="position: absolute; left: 33px; top: 560px; width: 324px; margin: 0; color: var(--text-soft);">Avant votre première séance de pressothérapie, remplissez le questionnaire de contre-indications. Le centre le relit avant la séance.</p>
-</sc-if>
-<x-import component-from-global-scope="StriveWell.Button" variant="mint" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ go.agenda }}">Terminé</x-import>
+<x-import component-from-global-scope="StriveWell.AppointmentCard" x="{{ n.p23 }}" y="{{ n.p344 }}" pole="{{ confirme.pole }}" date="{{ confirme.date }}" title="{{ confirme.prestation }}" practitioner="{{ confirme.praticien }}" photo="{{ confirme.photo }}" place="Hygie, 9 rue de la Petite Vitesse, Avon" icon="{{ confirme.icon }}" actions="{{ confirme.actions }}"></x-import>
+<p class="desc-13" style="position: absolute; left: 33px; top: 570px; width: 324px; margin: 0; color: var(--text-soft);">{{ confirme.note }}</p>
+<x-import component-from-global-scope="StriveWell.Button" variant="mint" x="{{ n.p23 }}" y="{{ n.p752 }}" on-click="{{ go.agenda }}">Voir mon agenda</x-import>
 </x-import>
 </sc-if>
 
-<!-- ============ Séance ============ -->
+<!-- ================= Séance ================= -->
 <sc-if value="{{ is.course }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" halo="none" label="Échauffement">
 <x-import component-from-global-scope="StriveWell.MapView" x="{{ n.p0 }}" y="{{ n.p0 }}" map-src="/_blob/719c13df9f32bef6ebd5c570d16513c8" address="{{ d.depart }}" label="Parcours de l’échauffement"></x-import>
-<x-import component-from-global-scope="StriveWell.GlassHeader" x="{{ n.p19 }}" y="{{ n.p35 }}" title="Échauffement" subtitle="Course 2 km" icon="run" back-label="Retour à l’accueil" on-back="{{ go.accueil }}"></x-import>
-<sc-if value="{{ coursePause }}" hint-placeholder-val="{{ false }}">
-<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p372 }}" on-click="{{ go.seance }}">Passer à la séance</x-import>
+<x-import component-from-global-scope="StriveWell.GlassHeader" x="{{ n.p19 }}" y="{{ n.p35 }}" title="Échauffement" subtitle="{{ course.sousTitre }}" icon="run" back-label="Retour à l’accueil" on-back="{{ go.accueil }}"></x-import>
+<x-import component-from-global-scope="StriveWell.RunSummary" x="{{ n.p0 }}" y="{{ n.p447 }}" distance="{{ course.distance }}" unit="km" stats="{{ course.stats }}" paused="{{ course.enPause }}" on-pause="{{ pauseCourse }}" label="Résumé de la course"></x-import>
+<sc-if value="{{ course.peutPasser }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.Button" variant="light" x="{{ n.p23 }}" y="{{ n.p300 }}" on-click="{{ versSeance }}">Passer à la séance</x-import>
 </sc-if>
-<x-import component-from-global-scope="StriveWell.RunSummary" x="{{ n.p0 }}" y="{{ n.p447 }}" distance="1,23" unit="km" stats="{{ d.statsCourse }}" paused="{{ coursePause }}" on-pause="{{ pauseCourse }}" label="Résumé de la course"></x-import>
 </x-import>
 </sc-if>
 
 <sc-if value="{{ is.seance }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" status-bar="white" halo="none" label="Séance de sport">
-<x-import component-from-global-scope="StriveWell.GlassHeader" x="{{ n.p19 }}" y="{{ n.p35 }}" title="Séance de sport" subtitle="Préparation physique · 3 séries" image="/_blob/40e119df28f465c5ef6de9d35f3c3fc7" back-label="Retour à l’accueil" on-back="{{ go.accueil }}"></x-import>
-<p class="hero-36" style="position: absolute; left: 40px; top: 149px; width: 310px; margin: 0; color: var(--white); text-align: center;">{{ seanceTitre }}</p>
-<x-import component-from-global-scope="StriveWell.TimerRing" x="{{ n.p70 }}" y="{{ n.p220 }}" time="00:38" progress="{{ n.f05 }}" label="Temps restant : 38 secondes"></x-import>
-<sc-if value="{{ seancePause }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.GlassHeader" x="{{ n.p19 }}" y="{{ n.p35 }}" title="Séance de sport" subtitle="{{ seance.sousTitre }}" image="/_blob/40e119df28f465c5ef6de9d35f3c3fc7" back-label="Retour à l’accueil" on-back="{{ quitterSeance }}"></x-import>
+<p class="hero-36" style="position: absolute; left: 40px; top: 149px; width: 310px; margin: 0; color: var(--white); text-align: center;">{{ seance.titre }}</p>
+<x-import component-from-global-scope="StriveWell.TimerRing" x="{{ n.p70 }}" y="{{ n.p220 }}" time="{{ seance.temps }}" progress="{{ seance.progression }}" label="{{ seance.tempsLabel }}"></x-import>
+<sc-if value="{{ seance.enPause }}" hint-placeholder-val="{{ false }}">
 <div style="position: absolute; left: 23px; top: 478px; width: 344px; display: flex; justify-content: center;">
-<x-import component-from-global-scope="StriveWell.TextLink" variant="guest" on-click="{{ go.reussite }}">Terminer la séance</x-import>
+<x-import component-from-global-scope="StriveWell.TextLink" variant="guest" on-click="{{ terminerSeance }}">Terminer la séance</x-import>
 </div>
 </sc-if>
 <x-import component-from-global-scope="StriveWell.TrapezoidSheet" x="{{ n.p0 }}" y="{{ n.p557 }}" shape="workout" label="Intervalles">
-<x-import component-from-global-scope="StriveWell.IntervalList" x="{{ n.p45 }}" y="{{ n.p63_75 }}" active="{{ n.p1 }}" items="{{ d.intervalles }}" label="Intervalles de la séance"></x-import>
+<x-import component-from-global-scope="StriveWell.IntervalList" x="{{ n.p45 }}" y="{{ n.p63_75 }}" active="{{ seance.phase }}" items="{{ seance.intervalles }}" label="Intervalles de la séance"></x-import>
 </x-import>
-<x-import component-from-global-scope="StriveWell.PauseButton" x="{{ n.p141 }}" y="{{ n.p503 }}" paused="{{ seancePause }}" on-click="{{ pauseSeance }}"></x-import>
+<x-import component-from-global-scope="StriveWell.PauseButton" x="{{ n.p141 }}" y="{{ n.p503 }}" paused="{{ seance.enPause }}" label="{{ seance.pauseLabel }}" on-click="{{ pauseSeance }}"></x-import>
 </x-import>
 </sc-if>
 
@@ -376,35 +440,41 @@ qui ?</p>
 <x-import component-from-global-scope="StriveWell.Halo" x="{{ n.p27 }}" y="{{ n.p640 }}"></x-import>
 <x-import component-from-global-scope="StriveWell.Halo" x="{{ n.m100 }}" y="{{ n.m101 }}"></x-import>
 <div aria-hidden="true" style="position: absolute; left: 0px; top: 422px; width: 395px; height: 422px; background: var(--gradient-fade-soft); pointer-events: none;"></div>
-<x-import component-from-global-scope="StriveWell.Button" variant="mint" x="{{ n.p23 }}" y="{{ n.p659 }}" on-click="{{ go.ressenti }}">Continuer</x-import>
+<p class="success-body-15" style="position: absolute; left: 40px; top: 600px; width: 310px; margin: 0; color: var(--text-soft); text-align: center;">{{ reussite.bilan }}</p>
+<x-import component-from-global-scope="StriveWell.Button" variant="mint" x="{{ n.p23 }}" y="{{ n.p659 }}" on-click="{{ go.ressenti }}">Noter mon ressenti</x-import>
 <x-import component-from-global-scope="StriveWell.SuccessCard" x="{{ n.p76 }}" y="{{ n.p220 }}" image-src="/_blob/ebd6f3e45ff014d9390e923d1d453797" message="{{ d.messageReussite }}"></x-import>
 </x-import>
 </sc-if>
 
-<!-- ============ Assistant ============ -->
+<!-- ================= Assistant ================= -->
 <sc-if value="{{ is.assistant }}" hint-placeholder-val="{{ false }}">
 <x-import component-from-global-scope="StriveWell.Screen" status-bar="white" label="Assistant Hygie">
 <x-import component-from-global-scope="StriveWell.GlassHeader" x="{{ n.p19 }}" y="{{ n.p35 }}" title="Assistant Hygie" subtitle="Ne remplace pas votre praticien" icon="chat" back-label="Fermer l’assistant" on-back="{{ go.accueil }}"></x-import>
-<div role="log" aria-label="Conversation avec l’assistant" style="position: absolute; left: 23px; top: 136px; width: 344px; display: flex; flex-direction: column; gap: 10px;">
-<sc-for list="{{ messages }}" as="m" hint-placeholder-count="5">
-<x-import component-from-global-scope="StriveWell.ChatBubble" from="{{ m.from }}" time="{{ m.time }}">{{ m.text }}</x-import>
+<div role="log" aria-live="polite" aria-label="Conversation avec l’assistant" style="position: absolute; left: 23px; top: 136px; width: 344px; height: 560px; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; overflow: hidden;">
+<sc-for list="{{ assistant.messages }}" as="m" hint-placeholder-count="4">
+<div class="{{ m.classe }}"><p class="sw-bubble__text">{{ m.text }}</p><sc-if value="{{ m.time }}" hint-placeholder-val="{{ false }}"><span class="sw-bubble__time">{{ m.time }}</span></sc-if></div>
 </sc-for>
 </div>
-<x-import component-from-global-scope="StriveWell.ChatComposer" x="{{ n.p23 }}" y="{{ n.p708 }}" suggestions="{{ d.suggestions }}" on-suggestion="{{ envoyer }}" on-send="{{ envoyer }}" placeholder="Écrire à l’assistant" label="Message à l’assistant" send-label="Envoyer le message" id="composer-assistant"></x-import>
+<x-import component-from-global-scope="StriveWell.ChatComposer" x="{{ n.p23 }}" y="{{ n.p708 }}" suggestions="{{ assistant.suggestions }}" on-suggestion="{{ envoyer }}" on-send="{{ envoyer }}" placeholder="Écrire à l’assistant" label="Message à l’assistant" send-label="Envoyer le message" id="composer-assistant"></x-import>
 </x-import>
+</sc-if>
+
+<!-- ================= Notification (toutes les vues) ================= -->
+<sc-if value="{{ banniere.visible }}" hint-placeholder-val="{{ false }}">
+<x-import component-from-global-scope="StriveWell.NotificationBanner" x="{{ n.p9 }}" y="{{ n.p12 }}" tone="light" title="{{ banniere.titre }}" subtitle="{{ banniere.sousTitre }}" detail="{{ banniere.detail }}" time="{{ banniere.heure }}" icon="{{ banniere.icon }}"></x-import>
 </sc-if>
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"ecran":{"editor":"enum","options":["bienvenue","connexion","inscription","code","oubli","nouveau","modifie","poids","taille","objectif","accueil","agenda","suivi","ressenti","profil","forfaits","centre","rdvSoin","rdvPrestation","rdvPraticien","rdvCreneau","rdvConfirme","course","seance","reussite","assistant"],"default":"bienvenue","section":"Écran affiché"},"notification":{"editor":"boolean","default":false,"section":"Écran affiché"},"$preview":{"width":390,"height":844}}'>
-const VUES = ['bienvenue', 'connexion', 'inscription', 'code', 'oubli', 'nouveau', 'modifie', 'poids', 'taille', 'objectif', 'accueil', 'agenda', 'suivi', 'ressenti', 'profil', 'forfaits', 'centre', 'rdvSoin', 'rdvPrestation', 'rdvPraticien', 'rdvCreneau', 'rdvConfirme', 'course', 'seance', 'reussite', 'assistant'];
+<script type="text/x-dc" data-dc-script data-props='{"ecran":{"editor":"enum","options":["bienvenue","connexion","inscription","code","oubli","nouveau","modifie","poids","taille","objectif","accueil","agenda","rdvDetail","suivi","ressenti","profil","compte","forfaits","centre","rdvSoin","rdvPrestation","rdvPraticien","rdvCreneau","rdvConfirme","course","seance","reussite","assistant"],"default":"bienvenue","section":"Écran affiché"},"$preview":{"width":390,"height":844}}'>
+const VUES = ['bienvenue', 'connexion', 'inscription', 'code', 'oubli', 'nouveau', 'modifie', 'poids', 'taille', 'objectif', 'accueil', 'agenda', 'rdvDetail', 'suivi', 'ressenti', 'profil', 'compte', 'forfaits', 'centre', 'rdvSoin', 'rdvPrestation', 'rdvPraticien', 'rdvCreneau', 'rdvConfirme', 'course', 'seance', 'reussite', 'assistant'];
 
+// Nombres pour les attributs numériques des composants (x, y, tailles).
 const NUM = (function () {
   const n = {};
   for (let i = 0; i <= 2026; i++) n['p' + i] = i;
   n.m100 = -100; n.m101 = -101;
   n.p135_1 = 135.1; n.p389_5 = 389.5; n.p90_5 = 90.5; n.p29_5 = 29.5; n.p63_75 = 63.75;
-  n.f05 = 0.5;
   return n;
 })();
 
@@ -413,8 +483,28 @@ const PHOTO = {
   prep1: '/_blob/580ddb6d8d935df98d7ea17f5787fc7a',
   eq1: '/_blob/376f2a2db0fb4d288c1c42beba1a28ed',
   eq2: '/_blob/41cd9656a8abce7745d43c711ee3721c',
-  eq3: '/_blob/b4e7298a886fd4da5f20fa3cce88a33e'
+  eq3: '/_blob/b4e7298a886fd4da5f20fa3cce88a33e',
+  avatar: '/_blob/66564b2f68f3ddd77784a5756044eb21'
 };
+
+// Journée de démonstration : vendredi 25 septembre 2026, 17 h 00.
+const AUJ = { y: 2026, m: 8, d: 25 };
+const MAINTENANT = '2026-09-25 17:00';
+const MOIS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+const JOURS = ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'];
+
+function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+function pad(n) { return (n < 10 ? '0' : '') + n; }
+function cle(y, m, d) { return y + '-' + pad(m + 1) + '-' + pad(d); }
+function heure24(h) { const p = h.replace(' h ', ':').replace(' h', ':00').split(':'); return pad(+p[0]) + ':' + pad(+(p[1] || 0)); }
+function dateObj(k) { const p = k.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+function dateLongue(k) { const t = dateObj(k); return cap(JOURS[t.getDay()]) + ' ' + t.getDate() + ' ' + MOIS[t.getMonth()]; }
+function ajouterJours(k, n) { const t = dateObj(k); t.setDate(t.getDate() + n); return cle(t.getFullYear(), t.getMonth(), t.getDate()); }
+function lundi(k) { const t = dateObj(k); const dec = (t.getDay() + 6) % 7; return ajouterJours(k, -dec); }
+function mmss(s) { s = Math.max(0, Math.round(s)); return pad(Math.floor(s / 60)) + ':' + pad(s % 60); }
+function km(v) { return v.toFixed(2).replace('.', ','); }
+function emailValide(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((e || '').trim()); }
+function mdpValide(p) { return (p || '').length >= 8 && /\d/.test(p); }
 
 const POLES = [
   { key: 'sport', meta: 'Pôle Sport', title: 'Séance de sport', desc: 'Coaching, sport-santé, groupes.', icon: 'run', tone: 'yellow', nom: 'Sport' },
@@ -422,6 +512,7 @@ const POLES = [
   { key: 'bilan', meta: 'Bilans', title: 'Bilan fonctionnel', desc: 'Isocinétique, force, mobilité.', icon: 'line-chart', tone: 'gray', nom: 'Bilans' },
   { key: 'recuperation', meta: 'Récupération & bien-être', title: 'Récupération', desc: 'Pressothérapie, massages, nutrition.', icon: 'heart', tone: 'pink', nom: 'Récupération' }
 ];
+const POLE = {}; POLES.forEach((p) => { POLE[p.key] = p; });
 
 const PRESTATIONS = {
   sport: [
@@ -450,188 +541,674 @@ const PRESTATIONS = {
 
 const PRATICIENS = {
   sante: [
-    { photo: PHOTO.eq1, name: 'Praticienne Santé', role: 'Kinésithérapeute', dispo: 'Demain 9 h 30' },
-    { photo: PHOTO.eq2, name: 'Praticien Santé', role: 'Kinésithérapeute', dispo: 'Jeu. 14 h' },
-    { photo: PHOTO.eq3, name: 'Praticienne Santé', role: 'Kinésithérapeute', dispo: 'Ven. 11 h' },
-    { photo: PHOTO.johan, name: 'Johan Pereira', role: 'Étiopathe, fondateur', dispo: 'Lun. 8 h' }
+    { id: 'k1', photo: PHOTO.eq1, name: 'Praticienne Santé', role: 'Kinésithérapeute' },
+    { id: 'k2', photo: PHOTO.eq2, name: 'Praticien Santé', role: 'Kinésithérapeute' },
+    { id: 'k3', photo: PHOTO.eq3, name: 'Praticienne Santé', role: 'Kinésithérapeute' }
+  ],
+  etiopathie: [
+    { id: 'jp', photo: PHOTO.johan, name: 'Johan Pereira', role: 'Étiopathe, fondateur' }
+  ],
+  orthoptie: [
+    { id: 'or', photo: undefined, name: 'Orthoptiste', role: 'Pôle Santé' }
   ],
   sport: [
-    { photo: PHOTO.johan, name: 'Johan Pereira', role: 'Préparateur physique, fondateur', dispo: 'Lun. 8 h' },
-    { photo: PHOTO.prep1, name: 'Préparateur physique', role: 'Pôle Sport', dispo: 'Demain 18 h' }
+    { id: 'jp', photo: PHOTO.johan, name: 'Johan Pereira', role: 'Préparateur physique, fondateur' },
+    { id: 'pp', photo: PHOTO.prep1, name: 'Préparateur physique', role: 'Pôle Sport' }
   ],
   bilan: [
-    { photo: PHOTO.prep1, name: 'Préparateur physique', role: 'Bilans physiologiques', dispo: 'Lun. 10 h' },
-    { photo: PHOTO.johan, name: 'Johan Pereira', role: 'Préparateur physique, fondateur', dispo: 'Mar. 9 h' }
+    { id: 'pp', photo: PHOTO.prep1, name: 'Préparateur physique', role: 'Bilans physiologiques' },
+    { id: 'jp', photo: PHOTO.johan, name: 'Johan Pereira', role: 'Préparateur physique, fondateur' }
+  ],
+  recuperation: [
+    { id: 'rc', photo: undefined, name: 'Équipe Récupération', role: 'Pôle Récupération' }
   ]
 };
 
-const JOURS_LONGS = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
+const CRENEAUX_SEMAINE = ['8 h 30', '9 h 15', '10 h 00', '11 h 30', '14 h 00', '15 h 15', '16 h 45', '18 h 00'];
+const CRENEAUX_SAMEDI = ['9 h 00', '9 h 45', '10 h 30', '11 h 15', '12 h 00'];
+
+const SEANCE = [
+  { label: 'Préparation', secs: 10 },
+  { label: 'Effort', secs: 40 },
+  { label: 'Repos', secs: 10 },
+  { label: 'Effort', secs: 40 },
+  { label: 'Repos', secs: 10 }
+];
 
 const DATA = {
   unitesPoids: ['lb', 'kg'],
   unitesTaille: ['pouces', 'cm'],
   objectifs: ['Reprendre une activité physique', 'Soulager une douleur', 'Revenir au sport après une blessure', 'Préparer une compétition'],
-  jours: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+  joursGlissants: ['Sam', 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven'],
   joursCourts: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
-  journee: [
-    { title: 'Échauffement', subtitle: 'Course 2 km · 17 h 30' },
-    { title: 'Séance de sport', subtitle: 'Préparation physique · 18 h 00' },
-    { title: 'Pressothérapie', subtitle: 'Récupération · 19 h 15' }
-  ],
   onglets: [{ icon: 'grid', label: 'Accueil' }, { icon: 'calendar', label: 'Agenda' }, { icon: 'stats', label: 'Suivi' }, { icon: 'user', label: 'Profil' }],
-  semaines: [[21, 22, 23, 24, 25, 26, 27], [28, 29, 30, 1, 2, 3, 4]],
   segments: ['Activité', 'Progrès', 'Bilans'],
   histForce: [40, 44, 43, 50, 55, 54, 61, 68],
-  histHanche: [30, 33, 35, 36, 39, 42],
   bornesFatigue: ['Aucune', 'Épuisé'],
-  reglages: [{ label: 'Informations du compte' }, { label: 'Notifications' }, { label: 'Taille du texte', value: 'Moyenne' }],
-  contact: [{ label: '9, rue de la Petite Vitesse, Avon' }, { label: '01 84 74 34 20' }, { label: 'contact@hygiesportsante.fr' }],
-  horaires: [{ label: 'Lundi au vendredi', value: '8 h – 20 h' }, { label: 'Samedi', value: '9 h – 13 h' }],
-  dimanches: [4, 11, 18, 25],
-  creneaux: ['8 h 30', '9 h 15', { time: '10 h 00', disabled: true }, '11 h 30', '14 h 00', '15 h 15', { time: '16 h 45', disabled: true }, '18 h 00'],
+  horaires: [{ label: 'Lundi au vendredi', value: '8 h – 20 h' }, { label: 'Samedi', value: '9 h – 13 h' }, { label: 'Dimanche', value: 'Fermé' }],
   depart: { line1: 'Départ', line2: 'Hygie, Avon' },
-  statsCourse: [['17:30', 'Départ'], ['12:05', 'Temps'], ['112', 'Calories']],
-  intervalles: [{ label: 'Préparation', value: '10' }, { label: 'Effort', value: '40' }, { label: 'Repos', value: '10' }, { label: 'Effort', value: '40' }, { label: 'Repos', value: '10' }],
-  messageReussite: 'Séance terminée\navec succès',
-  suggestions: ['Horaires du centre', 'Prochain bilan'],
-  actionsBilan: [{ label: 'Ajouter à l’agenda' }, { label: 'Déplacer' }]
+  messageReussite: 'Séance terminée\navec succès'
 };
 
-const MESSAGES_INITIAUX = [
-  { from: 'assistant', time: '9 h 41', text: 'Bonjour Youssef. Je peux déplacer un rendez-vous, vous donner les horaires du centre ou noter une douleur dans votre suivi.' },
-  { from: 'user', time: '', text: 'Je peux décaler ma kiné du 8 octobre ?' },
-  { from: 'assistant', time: '', text: 'Oui. Deux créneaux sont libres : vendredi 9 octobre à 11 h ou samedi 10 octobre à 9 h 30.' },
-  { from: 'user', time: '', text: 'Vendredi 11 h.' },
-  { from: 'assistant', time: '9 h 42', text: 'C’est fait : kinésithérapie vendredi 9 octobre à 11 h. Un rappel vous sera envoyé la veille.' }
+const FORFAITS = [
+  { key: 'essentiel', meta: '140 € par mois', title: 'Essentiel', desc: '1 séance par semaine, bilan d’entrée.' },
+  { key: 'avance', meta: '250 € par mois', title: 'Avancé', desc: '2 séances par semaine, bilans réguliers.' },
+  { key: 'performance', meta: '300 € par mois', title: 'Performance', desc: '3 séances, accès aux praticiens santé.' }
 ];
+
+const RDV_INITIAUX = [
+  { id: 'r1', pole: 'sport', prestation: 'Coaching individuel', praticien: 'Johan Pereira', photo: PHOTO.johan, date: '2026-09-22', heure: '18 h 00' },
+  { id: 'r2', pole: 'sport', prestation: 'Coaching individuel', praticien: 'Johan Pereira', photo: PHOTO.johan, date: '2026-09-25', heure: '18 h 00' },
+  { id: 'r3', pole: 'recuperation', prestation: 'Pressothérapie', praticien: 'Équipe Récupération', photo: undefined, date: '2026-09-25', heure: '19 h 15' },
+  { id: 'r4', pole: 'sante', prestation: 'Kinésithérapie', praticien: 'Praticien Santé', photo: PHOTO.eq2, date: '2026-10-08', heure: '14 h 00' },
+  { id: 'r5', pole: 'bilan', prestation: 'Bilan isocinétique', praticien: 'Préparateur physique', photo: PHOTO.prep1, date: '2026-10-19', heure: '10 h 00' }
+];
+
+const MESSAGES_INITIAUX = [
+  { from: 'assistant', time: '9 h 41', text: 'Bonjour. Je peux vous donner votre prochain rendez-vous, le déplacer, rappeler les horaires du centre ou noter de l’eau bue.' }
+];
+
+function praticiensDe(poleCle, prestIdx) {
+  if (poleCle === 'sante' && prestIdx === 1) return PRATICIENS.etiopathie;
+  if (poleCle === 'sante' && prestIdx === 2) return PRATICIENS.orthoptie;
+  return PRATICIENS[poleCle] || [];
+}
+function momentRdv(r) { return r.date + ' ' + heure24(r.heure); }
+function estPasse(r, faite) { return momentRdv(r) < MAINTENANT || (r.id === 'r2' && faite.seance); }
+function trier(liste) { return liste.slice().sort((a, b) => (momentRdv(a) < momentRdv(b) ? -1 : 1)); }
+function occupe(k, i, sel) { let h = 0; const t = k + (sel || ''); for (let c = 0; c < t.length; c++) h = (h * 31 + t.charCodeAt(c)) % 997; return (h + i * 7) % 3 === 0 || (sel && (h % 4) === i % 4); }
 
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { v: null, notif: false, seg: 0, pole: 1, prest: 0, prat: 1, jour: 8, creneau: '14 h 00', reserve: false, forfait: 0, coursePause: false, seancePause: false, messages: MESSAGES_INITIAUX };
+    this.state = {
+      v: null,
+      user: { prenom: 'Youssef', nom: 'Labidi', email: 'youssef@exemple.fr', mdp: 'hygie2026', poidsKg: 62, tailleCm: 172, objectif: 0, forfait: 'essentiel', connecte: false },
+      unitePoids: 1, uniteTaille: 1,
+      f: { loginEmail: '', loginMdp: '', loginErreur: '', insNom: '', insEmail: '', insMdp: '', insMdp2: '', insErreur: '', code: '', codeErreur: '', oubliEmail: '', oubliErreur: '', nvMdp: '', nvMdp2: '', nvErreur: '', cptNom: '', cptEmail: '', cptErreur: '' },
+      codeAttendu: '', codeMode: 'inscription', codeEmail: '', renvoi: 0, codesEnvoyes: 0,
+      editionProfil: false,
+      rdvs: RDV_INITIAUX, prochainId: 6,
+      agendaJour: '2026-09-25', agendaSemaine: '2026-09-21',
+      detailId: null, confirmerAnnulation: false,
+      draft: null, dernierRdv: null,
+      seg: 0,
+      ressentis: [], ressenti: { douleur: null, fatigue: null, note: '' },
+      course: { etat: 'pret', simSecs: 0 },
+      seance: { etat: 'pret', phase: 0, reste: SEANCE[0].secs },
+      activite: { semaine: [420, 380, 510, 460, 530, 470, 212], marcheKm: 1.2, eauMl: 900 },
+      journeeFaite: { echauffement: false, seance: false },
+      notifications: true, texte: 1,
+      forfaitChoix: null,
+      messages: MESSAGES_INITIAUX,
+      banniere: null
+    };
+  }
+
+  componentDidMount() {
+    this.tic = setInterval(() => this.chaqueSeconde(), 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.tic);
+    if (this.tBanniere) clearTimeout(this.tBanniere);
+    if (this.tAssistant) clearTimeout(this.tAssistant);
   }
 
   componentDidUpdate(prev) {
     if (prev.ecran !== this.props.ecran) this.setState({ v: this.props.ecran || 'bienvenue' });
   }
 
-  componentWillUnmount() {
-    if (this.timer) clearTimeout(this.timer);
+  vue() { return this.state.v || this.props.ecran || 'bienvenue'; }
+
+  aller(v, extra) { this.setState(Object.assign({ v: v, confirmerAnnulation: false }, extra || {})); }
+
+  notifier(b, force) {
+    if (!force && !this.state.notifications) return;
+    if (this.tBanniere) clearTimeout(this.tBanniere);
+    this.setState({ banniere: b });
+    this.tBanniere = setTimeout(() => this.setState({ banniere: null }), 5000);
   }
 
-  aller(v) {
-    this.setState({ v: v, coursePause: false, seancePause: false });
+  majF(patch) { this.setState({ f: Object.assign({}, this.state.f, patch) }); }
+
+  // ---------- Minuteur commun : séance, course, renvoi du code
+  chaqueSeconde() {
+    const s = this.state, v = this.vue(), patch = {};
+    if (s.renvoi > 0) patch.renvoi = s.renvoi - 1;
+    if (v === 'course' && s.course.etat === 'encours') {
+      const sim = s.course.simSecs + 10;
+      const dist = sim / 360;
+      if (dist >= 2) {
+        patch.course = { etat: 'fini', simSecs: 720 };
+        patch.activite = Object.assign({}, s.activite, { marcheKm: s.activite.marcheKm });
+      } else {
+        patch.course = { etat: 'encours', simSecs: sim };
+      }
+    }
+    if (v === 'seance' && s.seance.etat === 'encours') {
+      let phase = s.seance.phase, reste = s.seance.reste - 1;
+      if (reste <= 0) {
+        phase += 1;
+        if (phase >= SEANCE.length) { this.finSeance(); return; }
+        reste = SEANCE[phase].secs;
+      }
+      patch.seance = { etat: 'encours', phase: phase, reste: reste };
+    }
+    if (Object.keys(patch).length) this.setState(patch);
   }
 
-  reponse(texte) {
-    const t = texte.toLowerCase();
-    if (t.indexOf('horaire') >= 0) return 'Le centre est ouvert du lundi au vendredi de 8 h à 20 h, et le samedi de 9 h à 13 h.';
-    if (t.indexOf('bilan') >= 0) return 'Votre prochain bilan : bilan isocinétique, lundi 19 octobre à 10 h 00.';
-    return 'Je transmets votre question à l’équipe du centre. Pour une douleur, parlez-en à votre praticien : je ne pose pas de diagnostic.';
+  finSeance() {
+    const s = this.state;
+    const sem = s.activite.semaine.slice();
+    const kcalCourse = s.course.simSecs > 0 ? Math.round((s.course.simSecs / 360) * 62) : 0;
+    sem[6] = sem[6] + 250 + kcalCourse;
+    const km = s.activite.marcheKm + (s.course.simSecs / 360);
+    this.setState({
+      v: 'reussite',
+      seance: { etat: 'fini', phase: SEANCE.length - 1, reste: 0 },
+      journeeFaite: { echauffement: true, seance: true },
+      activite: Object.assign({}, s.activite, { semaine: sem, marcheKm: km }),
+      course: { etat: 'pret', simSecs: 0 },
+      derniereSeance: { kcal: 250 + kcalCourse, km: s.course.simSecs / 360 }
+    });
+  }
+
+  nouveauCode() {
+    const codes = ['4821', '7390', '2614', '9057'];
+    const c = codes[this.state.codesEnvoyes % codes.length];
+    this.setState({ codeAttendu: c, codesEnvoyes: this.state.codesEnvoyes + 1, renvoi: 30 });
+    this.notifier({ titre: 'Nouvel e-mail', sousTitre: 'Hygie · code de vérification', detail: 'Votre code : ' + c, heure: 'maintenant', icon: 'mail' }, true);
+    return c;
+  }
+
+  // ---------- Assistant
+  repondre(texte) {
+    const s = this.state, t = texte.toLowerCase();
+    const avenir = trier(s.rdvs).filter((r) => !estPasse(r, s.journeeFaite));
+    const prochain = avenir[0];
+    if (/horaire|ouvert|heure d/.test(t)) return { texte: 'Le centre est ouvert du lundi au vendredi de 8 h à 20 h, et le samedi de 9 h à 13 h. Il est fermé le dimanche.' };
+    if (/adresse|où|venir|trouver/.test(t)) return { texte: 'Hygie se trouve au 9, rue de la Petite Vitesse, à Avon. Téléphone : 01 84 74 34 20.' };
+    if (/déplac|décal|changer/.test(t)) {
+      const cible = avenir.find((r) => r.pole !== 'recuperation') || prochain;
+      if (!cible) return { texte: 'Vous n’avez pas de rendez-vous à venir. Voulez-vous en prendre un ?' };
+      return { texte: 'Je vous ouvre les créneaux pour déplacer : ' + cible.prestation.toLowerCase() + ', ' + dateLongue(cible.date).toLowerCase() + ' à ' + cible.heure + '.', action: () => this.deplacer(cible.id) };
+    }
+    if (/bilan/.test(t)) {
+      const b = avenir.find((r) => r.pole === 'bilan');
+      return { texte: b ? 'Votre prochain bilan : ' + b.prestation.toLowerCase() + ', ' + dateLongue(b.date).toLowerCase() + ' à ' + b.heure + '.' : 'Aucun bilan n’est prévu. Je peux vous ouvrir la réservation d’un bilan.' };
+    }
+    if (/rendez|rdv|prochain|agenda/.test(t)) {
+      return { texte: prochain ? 'Votre prochain rendez-vous : ' + prochain.prestation.toLowerCase() + ', ' + dateLongue(prochain.date).toLowerCase() + ' à ' + prochain.heure + '.' : 'Aucun rendez-vous à venir.' };
+    }
+    if (/eau|bu |boire|verre/.test(t)) {
+      const ml = s.activite.eauMl + 250;
+      this.setState({ activite: Object.assign({}, s.activite, { eauMl: ml }) });
+      return { texte: 'C’est noté : 250 ml. Vous êtes à ' + ml + ' ml aujourd’hui.' };
+    }
+    if (/forfait|prix|tarif|combien/.test(t)) return { texte: 'Coaching individuel : Essentiel 140 € par mois, Avancé 250 €, Performance 300 €. Bilans : de 60 € à 120 €.' };
+    if (/mal|douleur|bless/.test(t)) return { texte: 'Je ne pose pas de diagnostic. Notez votre douleur dans votre ressenti : votre praticien la verra. En cas de douleur forte ou inhabituelle, appelez le centre au 01 84 74 34 20.', action: null };
+    if (/annul/.test(t)) return { texte: 'Ouvrez le rendez-vous dans votre agenda : le bouton Annuler s’y trouve.' };
+    return { texte: 'Je transmets votre question à l’équipe du centre. Vous pouvez aussi me demander votre prochain rendez-vous ou les horaires.' };
+  }
+
+  // ---------- Réservation
+  nouveauDraft(extra) {
+    return Object.assign({ pole: null, prest: null, prat: null, mois: 9, jour: null, creneau: null, editId: null }, extra || {});
+  }
+
+  deplacer(id) {
+    const r = this.state.rdvs.find((x) => x.id === id);
+    if (!r) return;
+    const t = dateObj(r.date);
+    const prestIdx = PRESTATIONS[r.pole].findIndex((p) => p.title === r.prestation);
+    const pratIdx = praticiensDe(r.pole, prestIdx).findIndex((p) => p.name === r.praticien);
+    this.aller('rdvCreneau', { draft: this.nouveauDraft({ pole: POLES.findIndex((p) => p.key === r.pole), prest: Math.max(0, prestIdx), prat: Math.max(0, pratIdx), mois: t.getMonth(), jour: null, creneau: null, editId: id }) });
+  }
+
+  creneauxDu(draft, jourCle) {
+    if (!jourCle) return [];
+    const t = dateObj(jourCle), wd = t.getDay();
+    if (wd === 0) return [];
+    const base = wd === 6 ? CRENEAUX_SAMEDI : CRENEAUX_SEMAINE;
+    const poleCle = draft.pole != null ? POLES[draft.pole].key : '';
+    const pr = praticiensDe(poleCle, draft.prest)[draft.prat || 0];
+    const pris = this.state.rdvs.filter((r) => r.date === jourCle && r.id !== draft.editId).map((r) => r.heure);
+    return base.map((h, i) => ({ time: h, disabled: occupe(jourCle, i, pr ? pr.id : '') || pris.indexOf(h) >= 0 || (jourCle + ' ' + heure24(h)) <= MAINTENANT }));
   }
 
   renderVals() {
-    const v = this.state.v || this.props.ecran || 'bienvenue';
-    const is = {};
-    VUES.forEach((k) => { is[k] = k === v; });
-    const go = {};
-    VUES.forEach((k) => { go[k] = () => this.aller(k); });
+    const s = this.state, v = this.vue(), u = s.user;
+    const is = {}; VUES.forEach((k) => { is[k] = k === v; });
+    const go = {}; VUES.forEach((k) => { go[k] = () => this.aller(k); });
+    const champ = {};
+    Object.keys(s.f).forEach((k) => { champ[k] = (e) => this.majF({ [k]: e && e.target ? e.target.value : e }); });
+    champ.note = (e) => this.setState({ ressenti: Object.assign({}, s.ressenti, { note: e.target.value }) });
 
-    const s = this.state;
-    const pole = POLES[s.pole];
-    const prestations = PRESTATIONS[pole.key];
-    const prest = prestations[Math.min(s.prest, prestations.length - 1)];
-    const praticiens = PRATICIENS[pole.key] || [];
-    const prat = praticiens[Math.min(s.prat, Math.max(0, praticiens.length - 1))];
-    const recup = pole.key === 'recuperation';
+    // ---------- Profil de départ
+    const lb = s.unitePoids === 0, pouces = s.uniteTaille === 0;
+    const profil = {
+      unitePoids: s.unitePoids, uniteTaille: s.uniteTaille,
+      poidsAffiche: lb ? Math.round(u.poidsKg * 2.20462) : Math.round(u.poidsKg),
+      poidsMin: lb ? 66 : 30, poidsMax: lb ? 440 : 200, poidsUnite: lb ? 'lb' : 'kg',
+      tailleAffichee: pouces ? Math.round(u.tailleCm / 2.54) : Math.round(u.tailleCm),
+      tailleMin: pouces ? 39 : 100, tailleMax: pouces ? 91 : 230, tailleUnite: pouces ? 'pouces' : 'cm',
+      objectif: u.objectif,
+      boutonFin: s.editionProfil ? 'Enregistrer' : 'Commencer',
+      poidsEntete: Math.round(u.poidsKg) + ' KG',
+      tailleEntete: Math.round(u.tailleCm) + ' CM'
+    };
+
+    // ---------- Activité
+    const sem = s.activite.semaine;
+    const kcalAuj = sem[6];
+    const moyenne = Math.round(sem.reduce((a, b) => a + b, 0) / 7);
+    const marche = s.activite.marcheKm + (s.course.etat !== 'pret' && !s.journeeFaite.seance ? s.course.simSecs / 360 : 0);
+    const activite = {
+      semaine: sem,
+      aujourdhuiTexte: kcalAuj + ' kcal',
+      chartLabel: 'Calories brûlées sur les 7 derniers jours : ' + kcalAuj + ' kcal aujourd’hui',
+      marcheTexte: km(marche) + ' km',
+      marchePourcent: Math.min(100, Math.round(marche / 6 * 100)) + ' %',
+      marcheBarres: Math.min(14, Math.round(marche / 6 * 14)),
+      eauTexte: s.activite.eauMl + ' ml'
+    };
+
+    // ---------- Journée
+    const presso = s.rdvs.find((r) => r.date === '2026-09-25' && r.pole === 'recuperation');
+    const etapes = [];
+    if (!s.journeeFaite.echauffement) etapes.push({ key: 'echauffement', title: 'Échauffement', subtitle: 'Course 2 km · 17 h 30' });
+    if (!s.journeeFaite.seance) etapes.push({ key: 'seance', title: 'Séance de sport', subtitle: 'Préparation physique · 18 h 00' });
+    if (presso) etapes.push({ key: 'presso', title: 'Pressothérapie', subtitle: 'Récupération · ' + presso.heure, id: presso.id });
+    const premiere = etapes[0];
+    const journee = {
+      etapes: etapes.slice(0, 3),
+      aDesEtapes: etapes.length > 0,
+      terminee: etapes.length === 0,
+      sousTitre: 'Vendredi 25 septembre · ' + (etapes.length ? etapes.length + (etapes.length > 1 ? ' étapes' : ' étape') : 'tout est fait'),
+      bouton: premiere && premiere.key === 'presso' ? 'Voir' : 'Lancer',
+      lancer: () => {
+        if (!premiere) return;
+        if (premiere.key === 'echauffement') this.aller('course', { course: { etat: 'encours', simSecs: 0 } });
+        else if (premiere.key === 'seance') this.aller('seance', { seance: { etat: 'encours', phase: 0, reste: SEANCE[0].secs } });
+        else this.aller('rdvDetail', { detailId: premiere.id });
+      }
+    };
+
+    // ---------- Agenda
+    const lun = s.agendaSemaine;
+    const jours14 = []; for (let i = 0; i < 14; i++) jours14.push(ajouterJours(lun, i));
+    const lignes = [jours14.slice(0, 7).map((k) => +k.slice(8)), jours14.slice(7).map((k) => +k.slice(8))];
+    const jourSel = jours14.indexOf(s.agendaJour) >= 0 ? s.agendaJour : null;
+    const aVenir = trier(s.rdvs).filter((r) => r.date >= (jourSel || jours14[0]));
+    const itemsAgenda = aVenir.slice(0, 3).map((r) => ({
+      tone: POLE[r.pole].tone,
+      date: dateLongue(r.date) + ', ' + r.heure,
+      title: r.prestation,
+      subtitle: r.praticien,
+      icon: POLE[r.pole].icon,
+      done: estPasse(r, s.journeeFaite),
+      onClick: () => this.aller('rdvDetail', { detailId: r.id })
+    }));
+    const tSel = jourSel ? dateObj(jourSel) : dateObj(jours14[0]);
+    const agenda = {
+      surtitre: jourSel === '2026-09-25' ? 'Aujourd’hui' : cap(JOURS[tSel.getDay()]),
+      titre: tSel.getDate() + ' ' + MOIS[tSel.getMonth()] + ' ' + tSel.getFullYear(),
+      lignes: lignes,
+      jour: jourSel ? +jourSel.slice(8) : null,
+      calendrierLabel: 'Semaines du ' + dateLongue(jours14[0]).toLowerCase() + ' au ' + dateLongue(jours14[13]).toLowerCase(),
+      items: itemsAgenda,
+      aDesRdv: itemsAgenda.length > 0,
+      vide: itemsAgenda.length === 0,
+      choisir: (d) => { const k = jours14.find((x) => +x.slice(8) === d); if (k) this.setState({ agendaJour: k }); },
+      precedente: () => { const l = ajouterJours(lun, -7); this.setState({ agendaSemaine: l, agendaJour: l }); },
+      suivante: () => { const l = ajouterJours(lun, 7); this.setState({ agendaSemaine: l, agendaJour: l }); }
+    };
+
+    // ---------- Détail d'un rendez-vous
+    const rd = s.rdvs.find((r) => r.id === s.detailId);
+    const rdPasse = rd ? estPasse(rd, s.journeeFaite) : false;
+    const detail = rd ? {
+      pole: rd.pole, icon: POLE[rd.pole].icon, titre: rd.prestation, praticien: rd.praticien, photo: rd.photo,
+      date: dateLongue(rd.date) + ' · ' + rd.heure,
+      statut: rdPasse ? 'Rendez-vous passé' : (rd.date === '2026-09-25' ? 'Aujourd’hui' : 'À venir'),
+      note: rdPasse ? 'Ce rendez-vous est passé. Notez votre ressenti pour votre praticien.' : (rd.prestation === 'Pressothérapie' ? 'Avant votre première séance de pressothérapie, remplissez le questionnaire de contre-indications.' : 'Arrivez cinq minutes avant. Un rappel vous est envoyé la veille.'),
+      actions: rdPasse ? [{ label: 'Noter mon ressenti', onClick: () => this.aller('ressenti') }] : [
+        { label: 'Déplacer', onClick: () => this.deplacer(rd.id) },
+        { label: 'Annuler', onClick: () => this.setState({ confirmerAnnulation: true }) }
+      ],
+      confirmerAnnulation: s.confirmerAnnulation,
+      garder: () => this.setState({ confirmerAnnulation: false }),
+      annuler: () => {
+        this.aller('agenda', { rdvs: s.rdvs.filter((r) => r.id !== rd.id) });
+        this.notifier({ titre: 'Rendez-vous annulé', sousTitre: rd.prestation, detail: dateLongue(rd.date) + ' · ' + rd.heure, heure: 'maintenant', icon: 'calendar' });
+      }
+    } : { pole: 'sante', icon: 'calendar', titre: 'Rendez-vous', praticien: '', photo: undefined, date: '', statut: '', note: 'Choisissez un rendez-vous dans votre agenda.', actions: [], confirmerAnnulation: false, garder: () => {}, annuler: () => {} };
+
+    // ---------- Réservation
+    const dr = s.draft || this.nouveauDraft();
+    const pole = dr.pole != null ? POLES[dr.pole] : null;
+    const listePrest = pole ? PRESTATIONS[pole.key] : [];
+    const prest = pole && dr.prest != null ? listePrest[dr.prest] : null;
+    const listePrat = pole ? praticiensDe(pole.key, dr.prest) : [];
+    const recup = !!pole && (pole.key === 'recuperation' || listePrat.length === 1 && !listePrat[0].photo);
+    const prat = recup ? listePrat[0] : (dr.prat != null ? listePrat[dr.prat] : null);
     const total = recup ? 3 : 4;
-    const jourSemaine = JOURS_LONGS[(3 + s.jour - 1) % 7];
-    const dateTexte = jourSemaine.charAt(0).toUpperCase() + jourSemaine.slice(1) + ' ' + s.jour + ' octobre · ' + (s.creneau || '[heure]');
-
+    const setDraft = (patch) => this.setState({ draft: Object.assign({}, dr, patch) });
+    const moisCourant = dr.mois;
+    const nbJours = new Date(2026, moisCourant + 1, 0).getDate();
+    const fermes = [];
+    for (let d = 1; d <= nbJours; d++) {
+      const k = cle(2026, moisCourant, d);
+      if (dateObj(k).getDay() === 0 || k <= '2026-09-25' || this.creneauxDu(dr, k).every((c) => c.disabled)) fermes.push(d);
+    }
+    const jourCle = dr.jour ? cle(2026, moisCourant, dr.jour) : null;
+    const creneaux = this.creneauxDu(dr, jourCle);
+    const dispoDe = (d) => {
+      for (let i = 1; i < 30; i++) { const k = ajouterJours('2026-09-25', i); const c = this.creneauxDu(d, k).find((x) => !x.disabled); if (c) return { k: k, h: c.time }; }
+      return null;
+    };
+    const texteDispo = (x) => (x ? (x.k === '2026-09-26' ? 'Demain ' : dateLongue(x.k).slice(0, 3) + '. ' + dateObj(x.k).getDate() + ' · ') + x.h : 'Complet');
+    const dispos = listePrat.map((p, i) => dispoDe(Object.assign({}, dr, { prat: i })));
+    let meilleur = -1;
+    dispos.forEach((x, i) => { if (x && (meilleur < 0 || (x.k + heure24(x.h)) < (dispos[meilleur].k + heure24(dispos[meilleur].h)))) meilleur = i; });
+    const prochainDispo = meilleur >= 0 ? Object.assign({ i: meilleur }, dispos[meilleur]) : null;
     const rdv = {
-      pole: pole.key,
-      icon: pole.icon,
-      etape1: 'Étape 1 sur ' + total,
-      etape2: 'Étape 2 sur ' + total + ' · ' + pole.nom,
-      etape3: 'Étape 3 sur ' + total + ' · ' + prest.title,
-      etape4: 'Étape ' + total + ' sur ' + total,
-      poles: POLES.map((p, i) => Object.assign({}, p, { sel: i === s.pole, pick: () => this.setState({ pole: i, prest: 0, prat: 0 }) })),
-      prestations: prestations.map((p, i) => Object.assign({}, p, { sel: i === s.prest, pick: () => this.setState({ prest: i }) })),
-      praticiens: praticiens.map((p, i) => Object.assign({}, p, { sel: i === s.prat, pick: () => this.setState({ prat: i }) })),
-      jour: s.jour,
-      creneau: s.creneau,
-      creneauxLabel: 'Créneaux du ' + jourSemaine + ' ' + s.jour + ' octobre',
-      dateTexte: dateTexte,
-      prestation: prest.title,
-      praticien: recup ? 'Équipe Récupération' : (prat ? prat.name : ''),
-      photo: recup ? undefined : (prat ? prat.photo : undefined),
-      questionnaire: recup && prest.title === 'Pressothérapie'
+      pole: pole ? pole.key : 'sport',
+      icon: pole ? pole.icon : 'calendar',
+      etape1: dr.editId ? 'Déplacer un rendez-vous' : 'Étape 1 sur ' + total,
+      etape2: 'Étape 2 sur ' + total + (pole ? ' · ' + pole.nom : ''),
+      etape3: 'Étape 3 sur ' + total + (prest ? ' · ' + prest.title : ''),
+      etape4: dr.editId ? 'Nouveau créneau' : 'Étape ' + total + ' sur ' + total,
+      poles: POLES.map((p, i) => Object.assign({}, p, { sel: dr.pole === i, pick: () => setDraft({ pole: i, prest: null, prat: null, jour: null, creneau: null }) })),
+      prestations: listePrest.map((p, i) => Object.assign({}, p, { sel: dr.prest === i, pick: () => setDraft({ prest: i, prat: null, jour: null, creneau: null }) })),
+      praticiens: listePrat.map((p, i) => Object.assign({}, p, { dispo: texteDispo(dispos[i]), sel: dr.prat === i, pick: () => setDraft({ prat: i, jour: null, creneau: null }) })),
+      sansPole: dr.pole == null,
+      sansPrestation: dr.prest == null,
+      sansPraticien: !recup && dr.prat == null,
+      mois: moisCourant,
+      moisTitre: cap(MOIS[moisCourant]) + ' 2026',
+      creneauxY: ((new Date(2026, moisCourant, 1).getDay() + 6) % 7 + nbJours) > 35 ? 586 : 538,
+      moisPrecedent: () => { if (moisCourant > 8) setDraft({ mois: moisCourant - 1, jour: null, creneau: null }); },
+      moisSuivant: () => { if (moisCourant < 11) setDraft({ mois: moisCourant + 1, jour: null, creneau: null }); },
+      joursFermes: fermes,
+      jour: dr.jour,
+      creneaux: creneaux,
+      aDesCreneaux: creneaux.length > 0,
+      sansCreneau: creneaux.length === 0,
+      messageJour: dr.jour ? 'Aucun créneau libre ce jour-là. Choisissez une autre date.' : 'Choisissez une date pour voir les créneaux libres.',
+      creneau: dr.creneau,
+      creneauxLabel: jourCle ? 'Créneaux du ' + dateLongue(jourCle).toLowerCase() : 'Créneaux',
+      nonConfirmable: !dr.creneau,
+      boutonConfirmer: dr.editId ? 'Déplacer le rendez-vous' : 'Confirmer'
     };
 
-    const agendaItems = [
-      { tone: 'yellow', date: 'Vendredi 25 septembre, 18 h', title: 'Séance de sport', subtitle: 'Préparation physique', icon: 'run', done: true },
-      s.reserve
-        ? { tone: pole.tone, date: dateTexte.replace(' · ', ', '), title: prest.title, subtitle: rdv.praticien, icon: pole.icon }
-        : { tone: 'mint', date: 'Jeudi 8 octobre, 14 h', title: 'Kinésithérapie', subtitle: 'Praticien Santé', icon: 'health-1' },
-      { tone: 'gray', date: 'Lundi 19 octobre, 10 h', title: 'Bilan isocinétique', subtitle: 'Genou droit', icon: 'line-chart' }
-    ];
+    // ---------- Rendez-vous confirmé
+    const dern = s.rdvs.find((r) => r.id === s.dernierRdv);
+    const confirme = dern ? {
+      titre: s.dernierModifie ? 'Rendez-vous déplacé' : 'Rendez-vous confirmé',
+      pole: dern.pole, icon: POLE[dern.pole].icon, prestation: dern.prestation, praticien: dern.praticien, photo: dern.photo,
+      date: dateLongue(dern.date) + ' · ' + dern.heure,
+      note: dern.prestation === 'Pressothérapie' ? 'Avant votre première séance de pressothérapie, remplissez le questionnaire de contre-indications. Le centre le relit avant la séance.' : (dern.prestation === 'Kinésithérapie' ? 'Les dépassements d’honoraires de kinésithérapie sont indiqués par votre praticien.' : (dern.prestation === 'Étiopathie' ? 'L’étiopathie n’est pas remboursée par la Sécurité sociale ; certaines mutuelles en prennent une partie.' : 'Vous le retrouvez dans votre agenda.')),
+      actions: [{ label: 'Déplacer', onClick: () => this.deplacer(dern.id) }, { label: 'Détails', onClick: () => this.aller('rdvDetail', { detailId: dern.id }) }]
+    } : { titre: 'Rendez-vous confirmé', pole: 'sante', icon: 'calendar', prestation: '', praticien: '', photo: undefined, date: '', note: '', actions: [] };
 
+    // ---------- Suivi
+    const dernierRessenti = s.ressentis[s.ressentis.length - 1];
+    const histDouleur = [4, 5, 4, 3, 3, 2].concat(s.ressentis.map((r) => r.douleur));
+    const avenirBilan = trier(s.rdvs).filter((r) => r.pole === 'bilan' && !estPasse(r, s.journeeFaite))[0];
     const suivi = {
-      activite: s.seg === 0,
-      progres: s.seg === 1,
-      bilans: s.seg === 2,
-      moyenneLabel: ['Moyenne de la semaine', 'Séances ce mois', 'Bilans réalisés'][s.seg],
-      moyenne: ['102 kcal', '6', '2'][s.seg]
+      seg: s.seg,
+      activite: s.seg === 0, progres: s.seg === 1, bilans: s.seg === 2,
+      moyenneLabel: ['Moyenne sur 7 jours', 'Séances ce mois', 'Bilans réalisés'][s.seg],
+      moyenne: [moyenne + ' kcal', String(6 + (s.journeeFaite.seance ? 1 : 0)), '2'][s.seg],
+      douleurLabel: 'Douleur ressentie',
+      douleurValeur: histDouleur[histDouleur.length - 1] + '/10',
+      douleurHistorique: histDouleur.slice(-8),
+      douleurLegende: s.ressentis.length ? 'Dernière note aujourd’hui' : 'Six dernières séances',
+      douleurGraphe: 'Douleur notée après chaque séance : ' + histDouleur.slice(-8).join(', '),
+      notePhoto: dernierRessenti ? PHOTO.avatar : PHOTO.prep1,
+      noteNom: dernierRessenti ? 'Votre ressenti' : 'Préparateur physique',
+      noteRole: dernierRessenti ? 'Transmis à votre praticien' : 'Pôle Sport',
+      noteDate: dernierRessenti ? '25 sept.' : '22 sept.',
+      noteTexte: dernierRessenti ? ('Douleur ' + dernierRessenti.douleur + '/10, fatigue ' + (dernierRessenti.fatigue == null ? '—' : dernierRessenti.fatigue + '/10') + '.' + (dernierRessenti.note ? ' « ' + dernierRessenti.note + ' »' : '')) : 'Belle progression sur les ischio-jambiers. On garde deux séances de renforcement par semaine jusqu’au prochain bilan.',
+      prochainBilan: !!avenirBilan, sansBilan: !avenirBilan,
+      bilanDate: avenirBilan ? dateLongue(avenirBilan.date) + ' · ' + avenirBilan.heure : '',
+      bilanTitre: avenirBilan ? avenirBilan.prestation : '',
+      bilanPraticien: avenirBilan ? avenirBilan.praticien : '',
+      bilanPhoto: avenirBilan ? avenirBilan.photo : undefined,
+      bilanActions: avenirBilan ? [{ label: 'Déplacer', onClick: () => this.deplacer(avenirBilan.id) }, { label: 'Détails', onClick: () => this.aller('rdvDetail', { detailId: avenirBilan.id }) }] : []
     };
+
+    // ---------- Ressenti
+    const r = s.ressenti;
+    const ressenti = {
+      surtitre: s.journeeFaite.seance ? 'Séance du 25 septembre' : 'Votre dernière séance',
+      douleur: r.douleur, fatigue: r.fatigue, note: r.note,
+      incomplet: r.douleur == null,
+      aide: r.douleur != null && r.douleur >= 7 ? 'Douleur forte : votre praticien sera prévenu à l’envoi. L’application ne pose pas de diagnostic. Si la douleur est intense ou inhabituelle, appelez le centre au 01 84 74 34 20.' : 'Votre praticien voit ces réponses avant la prochaine séance. L’application ne pose pas de diagnostic : en cas de douleur forte ou inhabituelle, appelez le centre au 01 84 74 34 20.',
+      choisirDouleur: (x) => this.setState({ ressenti: Object.assign({}, s.ressenti, { douleur: x }) }),
+      choisirFatigue: (x) => this.setState({ ressenti: Object.assign({}, s.ressenti, { fatigue: x }) }),
+      envoyer: () => {
+        if (r.douleur == null) return;
+        this.aller('suivi', { seg: 1, ressentis: s.ressentis.concat([Object.assign({}, r)]), ressenti: { douleur: null, fatigue: null, note: '' } });
+        if (r.douleur >= 7) this.notifier({ titre: 'Douleur forte signalée', sousTitre: 'Votre praticien est prévenu', detail: 'Urgence : appelez le 15', heure: 'maintenant', icon: 'health-1' }, true);
+        else this.notifier({ titre: 'Ressenti envoyé', sousTitre: 'Transmis à votre praticien', detail: 'Douleur ' + r.douleur + '/10', heure: 'maintenant', icon: 'check' });
+      }
+    };
+
+    // ---------- Course et séance
+    const distC = s.course.simSecs / 360;
+    const course = {
+      distance: km(Math.min(2, distC)),
+      stats: [['17:30', 'Départ'], [mmss(s.course.simSecs), 'Temps'], [String(Math.round(distC * 62)), 'Calories']],
+      enPause: s.course.etat !== 'encours',
+      peutPasser: s.course.etat !== 'encours',
+      sousTitre: s.course.etat === 'fini' ? 'Course 2 km · terminée' : (s.course.etat === 'pause' ? 'Course 2 km · en pause' : 'Course 2 km')
+    };
+    const ph = SEANCE[s.seance.phase];
+    const seance = {
+      titre: s.seance.etat === 'pause' ? 'En pause' : (s.seance.etat === 'pret' ? 'Prêt ?' : ph.label),
+      temps: mmss(s.seance.reste),
+      progression: s.seance.etat === 'pret' ? 0 : 1 - s.seance.reste / ph.secs,
+      tempsLabel: ph.label + ' : ' + s.seance.reste + ' secondes restantes',
+      phase: s.seance.phase,
+      intervalles: SEANCE.map((x, i) => ({ label: x.label, value: String(i === s.seance.phase ? s.seance.reste : x.secs) })),
+      enPause: s.seance.etat === 'pause',
+      pauseLabel: s.seance.etat === 'encours' ? 'Mettre en pause' : 'Reprendre',
+      sousTitre: 'Étape ' + (s.seance.phase + 1) + ' sur ' + SEANCE.length
+    };
+    const dS = s.derniereSeance;
+    const reussite = { bilan: dS ? dS.kcal + ' kcal dépensées' + (dS.km > 0 ? ' · ' + km(dS.km) + ' km courus' : '') : 'Bravo pour cette séance.' };
+
+    // ---------- Profil, compte, forfaits, centre
+    const forfaitCle = s.forfaitChoix || u.forfait;
+    const forfaitNom = (FORFAITS.find((x) => x.key === u.forfait) || FORFAITS[0]).title;
+    const reglages = [
+      { label: 'Informations du compte', onClick: () => this.aller('compte', { f: Object.assign({}, s.f, { cptNom: u.prenom + (u.nom ? ' ' + u.nom : ''), cptEmail: u.email, cptErreur: '' }) }) },
+      { label: 'Notifications', value: s.notifications ? 'Activées' : 'Désactivées', onClick: () => this.setState({ notifications: !s.notifications }) },
+      { label: 'Taille du texte', value: ['Petite', 'Moyenne', 'Grande'][s.texte], onClick: () => this.setState({ texte: (s.texte + 1) % 3 }) }
+    ];
+    const lignesHygie = [
+      { label: 'Forfaits et tarifs', value: forfaitNom, onClick: () => this.aller('forfaits', { forfaitChoix: u.forfait }) },
+      { label: 'Le centre', onClick: () => this.aller('centre') }
+    ];
+    const compte = {
+      surtitre: u.connecte ? 'Connecté' : 'Mode invité',
+      resume: 'Objectif : ' + DATA.objectifs[u.objectif].toLowerCase() + '. Forfait ' + forfaitNom + '. ' + Math.round(u.poidsKg) + ' kg, ' + Math.round(u.tailleCm) + ' cm.'
+    };
+    const centre = {
+      etat: 'Ouvert aujourd’hui jusqu’à 20 h',
+      contact: [
+        { label: '9, rue de la Petite Vitesse, Avon', onClick: () => this.notifier({ titre: 'Adresse copiable', sousTitre: '9, rue de la Petite Vitesse', detail: '77210 Avon', heure: '', icon: 'location' }, true) },
+        { label: '01 84 74 34 20', onClick: () => this.notifier({ titre: 'Appeler le centre', sousTitre: '01 84 74 34 20', detail: 'Lundi au vendredi 8 h – 20 h, samedi 9 h – 13 h', heure: '', icon: 'phone' }, true) },
+        { label: 'contact@hygiesportsante.fr', onClick: () => this.notifier({ titre: 'Écrire au centre', sousTitre: 'contact@hygiesportsante.fr', detail: 'Réponse sous [délai]', heure: '', icon: 'mail' }, true) }
+      ]
+    };
+
+    // ---------- Assistant
+    const avenirAll = trier(s.rdvs).filter((x) => !estPasse(x, s.journeeFaite));
+    const assistant = {
+      messages: s.messages.slice(-6).map((m) => Object.assign({}, m, { classe: 'sw-bubble sw-bubble--' + m.from })),
+      suggestions: avenirAll.length ? ['Mon prochain rendez-vous', 'Déplacer un rendez-vous', 'Horaires du centre'] : ['Horaires du centre', 'Prendre rendez-vous']
+    };
+
+    const f = Object.assign({}, s.f, {
+      codeTexte: 'Saisissez le code envoyé à ' + (s.codeEmail || 'votre adresse e-mail') + '.',
+      codeIncomplet: (s.f.code || '').length < 4,
+      renvoiTexte: s.renvoi > 0 ? 'Renvoyer dans ' + s.renvoi + ' s' : 'Renvoyer'
+    });
+
+    const b = s.banniere;
 
     return {
-      yes: true,
-      n: NUM,
-      d: DATA,
-      is: is,
-      go: go,
-      notif: s.notif || !!this.props.notification,
-      seg: s.seg,
-      suivi: suivi,
-      rdv: rdv,
-      agendaItems: agendaItems,
-      coursePause: s.coursePause,
-      seancePause: s.seancePause,
-      seanceTitre: s.seancePause ? 'En pause' : 'C’est parti',
-      messages: s.messages,
-      forfaits: [
-        { meta: '140 € par mois', title: 'Essentiel', desc: '1 séance par semaine, bilan d’entrée.' },
-        { meta: '250 € par mois', title: 'Avancé', desc: '2 séances par semaine, bilans réguliers.' },
-        { meta: '300 € par mois', title: 'Performance', desc: '3 séances, accès aux praticiens santé.' }
-      ].map((f, i) => Object.assign({}, f, { sel: i === s.forfait, pick: () => this.setState({ forfait: i }) })),
-      lignesHygie: [
-        { label: 'Forfaits et tarifs', onClick: () => this.aller('forfaits') },
-        { label: 'Le centre', onClick: () => this.aller('centre') }
-      ],
-      actionsRdv: [
-        { label: 'Ajouter à l’agenda', onClick: () => this.aller('agenda') },
-        { label: 'Déplacer', onClick: () => this.aller('rdvCreneau') }
-      ],
+      yes: true, n: NUM, d: DATA, is: is, go: go, champ: champ, f: f,
+      user: { prenom: u.prenom, nomComplet: u.prenom + (u.nom ? ' ' + u.nom : '') },
+      profil: profil, activite: activite, journee: journee, agenda: agenda, detail: detail, rdv: rdv, confirme: confirme,
+      suivi: suivi, ressenti: ressenti, course: course, seance: seance, reussite: reussite,
+      reglages: reglages, lignesHygie: lignesHygie, compte: compte, centre: centre, assistant: assistant,
+      banniere: b ? { visible: true, titre: b.titre, sousTitre: b.sousTitre, detail: b.detail, heure: b.heure, icon: b.icon } : { visible: false },
+      forfaits: FORFAITS.map((x) => Object.assign({}, x, { sel: x.key === forfaitCle, pick: () => this.setState({ forfaitChoix: x.key }) })),
+      forfaitActuel: 'Votre forfait : ' + forfaitNom,
+      forfaitInchange: forfaitCle === u.forfait,
+      forfaitBouton: forfaitCle === u.forfait ? 'Forfait actuel' : 'Choisir ' + (FORFAITS.find((x) => x.key === forfaitCle) || FORFAITS[0]).title,
+
+      // Navigation
       onglet: (i) => this.aller(['accueil', 'agenda', 'suivi', 'profil'][i]),
       choisirSegment: (i) => this.setState({ seg: i }),
-      finirProfil: () => {
-        this.setState({ v: 'accueil', notif: true });
-        if (this.timer) clearTimeout(this.timer);
-        this.timer = setTimeout(() => this.setState({ notif: false }), 5000);
+      invite: () => this.aller('accueil', { user: Object.assign({}, u, { connecte: false }) }),
+
+      // Connexion
+      seConnecter: () => {
+        const e = s.f.loginEmail.trim(), p = s.f.loginMdp;
+        if (!emailValide(e)) return this.majF({ loginErreur: 'Indiquez une adresse e-mail valide.' });
+        if (p.length < 8) return this.majF({ loginErreur: 'Le mot de passe compte au moins 8 caractères.' });
+        if (e.toLowerCase() === u.email.toLowerCase() && p !== u.mdp) return this.majF({ loginErreur: 'Adresse e-mail ou mot de passe incorrect.' });
+        const prenom = e.toLowerCase() === u.email.toLowerCase() ? u.prenom : cap(e.split('@')[0].split(/[._-]/)[0]);
+        this.aller('accueil', { user: Object.assign({}, u, { connecte: true, prenom: prenom, email: e, nom: e.toLowerCase() === u.email.toLowerCase() ? u.nom : '' }), f: Object.assign({}, s.f, { loginMdp: '', loginErreur: '' }) });
+        this.notifier({ titre: 'Bon retour, ' + prenom, sousTitre: 'Prochain rendez-vous', detail: avenirAll[0] ? avenirAll[0].prestation + ' · ' + avenirAll[0].heure : 'Aucun pour le moment', heure: 'maintenant', icon: 'calendar' });
       },
-      envoyerRessenti: () => this.setState({ v: 'suivi', seg: 1 }),
+      versOubli: () => this.aller('oubli', { f: Object.assign({}, s.f, { oubliEmail: s.f.loginEmail, oubliErreur: '' }) }),
+
+      // Inscription et code
+      sInscrire: () => {
+        const F = s.f;
+        if (F.insNom.trim().length < 2) return this.majF({ insErreur: 'Indiquez votre prénom et votre nom.' });
+        if (!emailValide(F.insEmail)) return this.majF({ insErreur: 'Indiquez une adresse e-mail valide.' });
+        if (!mdpValide(F.insMdp)) return this.majF({ insErreur: 'Le mot de passe doit compter 8 caractères, dont un chiffre.' });
+        if (F.insMdp !== F.insMdp2) return this.majF({ insErreur: 'Les deux mots de passe sont différents.' });
+        const parts = F.insNom.trim().split(/\s+/);
+        this.aller('code', { codeMode: 'inscription', codeEmail: F.insEmail.trim(), user: Object.assign({}, u, { prenom: cap(parts[0]), nom: parts.slice(1).join(' '), email: F.insEmail.trim(), mdp: F.insMdp }), f: Object.assign({}, F, { insErreur: '', code: '', codeErreur: '' }) });
+        this.nouveauCode();
+      },
+      saisirCode: (c) => this.majF({ code: c, codeErreur: '' }),
+      verifierCode: () => {
+        if (s.f.code !== s.codeAttendu) return this.majF({ codeErreur: 'Code incorrect. Vérifiez l’e-mail reçu ou demandez un nouveau code.' });
+        if (s.codeMode === 'reset') this.aller('nouveau', { f: Object.assign({}, s.f, { code: '', nvMdp: '', nvMdp2: '', nvErreur: '' }) });
+        else this.aller('poids', { editionProfil: false, user: Object.assign({}, u, { connecte: true }), f: Object.assign({}, s.f, { code: '' }) });
+      },
+      renvoyerCode: () => { if (s.renvoi > 0) return; this.majF({ code: '', codeErreur: '' }); this.nouveauCode(); },
+      retourCode: () => this.aller(s.codeMode === 'reset' ? 'oubli' : 'inscription'),
+
+      // Mot de passe oublié
+      envoyerOubli: () => {
+        if (!emailValide(s.f.oubliEmail)) return this.majF({ oubliErreur: 'Indiquez une adresse e-mail valide.' });
+        this.aller('code', { codeMode: 'reset', codeEmail: s.f.oubliEmail.trim(), f: Object.assign({}, s.f, { oubliErreur: '', code: '', codeErreur: '' }) });
+        this.nouveauCode();
+      },
+      enregistrerMdp: () => {
+        if (!mdpValide(s.f.nvMdp)) return this.majF({ nvErreur: 'Le mot de passe doit compter 8 caractères, dont un chiffre.' });
+        if (s.f.nvMdp !== s.f.nvMdp2) return this.majF({ nvErreur: 'Les deux mots de passe sont différents.' });
+        if (s.f.nvMdp === u.mdp) return this.majF({ nvErreur: 'Choisissez un mot de passe différent de l’ancien.' });
+        this.aller('modifie', { user: Object.assign({}, u, { mdp: s.f.nvMdp, email: s.codeEmail || u.email }), f: Object.assign({}, s.f, { nvMdp: '', nvMdp2: '', nvErreur: '', loginEmail: s.codeEmail || s.f.loginEmail, loginMdp: '' }) });
+      },
+
+      // Profil de départ
+      choisirUnitePoids: (i) => this.setState({ unitePoids: i }),
+      choisirUniteTaille: (i) => this.setState({ uniteTaille: i }),
+      choisirPoids: (val) => this.setState({ user: Object.assign({}, u, { poidsKg: lb ? val / 2.20462 : val }) }),
+      choisirTaille: (val) => this.setState({ user: Object.assign({}, u, { tailleCm: pouces ? val * 2.54 : val }) }),
+      choisirObjectif: (i) => this.setState({ user: Object.assign({}, u, { objectif: i }) }),
+      retourPoids: () => this.aller(s.editionProfil ? 'profil' : 'code'),
+      finirProfil: () => {
+        if (s.editionProfil) {
+          this.aller('profil', { editionProfil: false });
+          this.notifier({ titre: 'Profil mis à jour', sousTitre: Math.round(u.poidsKg) + ' kg · ' + Math.round(u.tailleCm) + ' cm', detail: DATA.objectifs[u.objectif], heure: 'maintenant', icon: 'user' });
+        } else {
+          this.aller('accueil');
+          this.notifier({ titre: 'Bienvenue, ' + u.prenom, sousTitre: 'Votre profil est prêt', detail: 'Réservez votre bilan d’entrée pour commencer.', heure: 'maintenant', icon: 'user' });
+        }
+      },
+      modifierProfil: () => this.aller('poids', { editionProfil: true }),
+
+      // Compte
+      enregistrerCompte: () => {
+        const F = s.f;
+        if (F.cptNom.trim().length < 2) return this.majF({ cptErreur: 'Indiquez votre prénom et votre nom.' });
+        if (!emailValide(F.cptEmail)) return this.majF({ cptErreur: 'Indiquez une adresse e-mail valide.' });
+        const parts = F.cptNom.trim().split(/\s+/);
+        this.aller('profil', { user: Object.assign({}, u, { prenom: cap(parts[0]), nom: parts.slice(1).join(' '), email: F.cptEmail.trim() }), f: Object.assign({}, F, { cptErreur: '' }) });
+        this.notifier({ titre: 'Informations enregistrées', sousTitre: cap(parts[0]) + ' ' + parts.slice(1).join(' '), detail: F.cptEmail.trim(), heure: 'maintenant', icon: 'check' });
+      },
+      seDeconnecter: () => this.aller('bienvenue', { user: Object.assign({}, u, { connecte: false }), f: Object.assign({}, s.f, { loginEmail: u.email, loginMdp: '' }) }),
+
+      // Forfaits
+      choisirForfait: () => {
+        const choix = FORFAITS.find((x) => x.key === forfaitCle);
+        this.aller('profil', { user: Object.assign({}, u, { forfait: forfaitCle }), forfaitChoix: null });
+        this.notifier({ titre: 'Forfait ' + choix.title + ' demandé', sousTitre: choix.meta, detail: 'Le centre confirme avec vous le changement.', heure: 'maintenant', icon: 'check' });
+      },
+
+      // Réservation
+      nouveauRdv: () => this.aller('rdvSoin', { draft: this.nouveauDraft() }),
+      reserverBilan: () => this.aller('rdvPrestation', { draft: this.nouveauDraft({ pole: 2 }) }),
+      quitterRdv: () => this.aller(s.draft && s.draft.editId ? 'agenda' : 'accueil', { draft: null }),
       apresPrestation: () => this.aller(recup ? 'rdvCreneau' : 'rdvPraticien'),
-      retourCreneau: () => this.aller(recup ? 'rdvPrestation' : 'rdvPraticien'),
-      premierDispo: () => this.setState({ prat: 0, v: 'rdvCreneau' }),
-      confirmer: () => this.setState({ v: 'rdvConfirme', reserve: true }),
-      choisirJour: (j) => this.setState({ jour: j }),
-      choisirCreneau: (c) => this.setState({ creneau: c }),
-      pauseCourse: () => this.setState({ coursePause: !s.coursePause }),
-      pauseSeance: () => this.setState({ seancePause: !s.seancePause }),
+      versCreneau: () => this.aller('rdvCreneau'),
+      retourCreneau: () => this.aller(dr.editId ? 'rdvDetail' : (recup ? 'rdvPrestation' : 'rdvPraticien'), dr.editId ? { detailId: dr.editId } : {}),
+      premierDispo: () => {
+        const d = prochainDispo;
+        if (!d) return;
+        const t = dateObj(d.k);
+        this.aller('rdvCreneau', { draft: Object.assign({}, dr, { prat: d.i, mois: t.getMonth(), jour: t.getDate(), creneau: d.h }) });
+      },
+      choisirJour: (j) => setDraft({ jour: j, creneau: null }),
+      choisirCreneau: (c) => setDraft({ creneau: c }),
+      confirmer: () => {
+        if (!dr.creneau || !jourCle) return;
+        const praticien = prat ? prat.name : '';
+        if (dr.editId) {
+          const rdvs = s.rdvs.map((x) => (x.id === dr.editId ? Object.assign({}, x, { date: jourCle, heure: dr.creneau }) : x));
+          this.aller('rdvConfirme', { rdvs: rdvs, dernierRdv: dr.editId, dernierModifie: true, draft: null, agendaJour: jourCle, agendaSemaine: lundi(jourCle) });
+        } else {
+          const id = 'r' + s.prochainId;
+          const nouveau = { id: id, pole: pole.key, prestation: prest.title, praticien: praticien, photo: prat ? prat.photo : undefined, date: jourCle, heure: dr.creneau };
+          this.aller('rdvConfirme', { rdvs: s.rdvs.concat([nouveau]), prochainId: s.prochainId + 1, dernierRdv: id, dernierModifie: false, draft: null, agendaJour: jourCle, agendaSemaine: lundi(jourCle) });
+        }
+      },
+
+      // Séance
+      pauseCourse: () => {
+        if (s.course.etat === 'fini') return;
+        this.setState({ course: Object.assign({}, s.course, { etat: s.course.etat === 'encours' ? 'pause' : 'encours' }) });
+      },
+      versSeance: () => this.aller('seance', { journeeFaite: Object.assign({}, s.journeeFaite, { echauffement: true }), seance: { etat: 'encours', phase: 0, reste: SEANCE[0].secs } }),
+      pauseSeance: () => {
+        const e = s.seance.etat;
+        this.setState({ seance: Object.assign({}, s.seance, { etat: e === 'encours' ? 'pause' : 'encours' }) });
+      },
+      terminerSeance: () => this.finSeance(),
+      quitterSeance: () => this.aller('accueil', { seance: Object.assign({}, s.seance, { etat: s.seance.etat === 'encours' ? 'pause' : s.seance.etat }) }),
+
+      // Assistant
       envoyer: (texte) => {
-        if (!texte) return;
-        const suite = s.messages.concat([{ from: 'user', time: '', text: texte }, { from: 'assistant', time: '', text: this.reponse(texte) }]);
-        this.setState({ messages: suite.slice(-5) });
+        const t = (texte || '').trim();
+        if (!t) return;
+        if (/^prendre rendez-vous$/i.test(t)) { this.aller('rdvSoin', { draft: this.nouveauDraft() }); return; }
+        const rep = this.repondre(t);
+        const msgs = this.state.messages.concat([{ from: 'user', time: '', text: t }, { from: 'assistant', time: '', text: rep.texte }]);
+        this.setState({ messages: msgs });
+        if (rep.action) { if (this.tAssistant) clearTimeout(this.tAssistant); this.tAssistant = setTimeout(rep.action, 1400); }
       }
     };
   }

@@ -1,0 +1,51 @@
+const { chromium } = require('playwright');
+(async () => {
+  const browser = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome' });
+  const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
+  const errs = [];
+  page.on('pageerror', e => errs.push('pageerror: ' + e.message.slice(0, 300)));
+  page.on('console', m => { if (m.type() === 'error' && !/404/.test(m.text())) errs.push('console: ' + m.text().slice(0, 300)); });
+  const W = (ms) => page.waitForTimeout(ms);
+  const txt = async () => (await page.evaluate(() => document.body.innerText)).replace(/\s*\n\s*/g, ' | ');
+  const click = async (t) => { try { await page.getByText(t, { exact: true }).first().click({ timeout: 2500 }); } catch (e) { try { await page.getByRole('button', { name: t }).first().click({ timeout: 2500 }); } catch (e2) { errs.push('CLICK FAIL: ' + t); } } await W(350); };
+  const log = async (label) => console.log('\n## ' + label + '\n' + (await txt()).slice(0, 600));
+  await page.goto('http://127.0.0.1:8765/Main.dc.html'); await W(1500);
+  await click('Continuer sans compte');
+  // séance complète sans pause (durée réelle 110 s)
+  await click('Lancer'); await W(1000); await page.locator('.sw-run .sw-pause').first().click(); await W(200);
+  await click('Passer à la séance'); await W(12500); await log('séance après 12,5 s');
+  await page.screenshot({ path: 'f_seance2.png' });
+  await W(100000); await log('fin automatique'); await page.screenshot({ path: 'f_reussite2.png' });
+  await page.getByRole('button', { name: 'Accueil' }).first().click().catch(() => {}); await W(200);
+  await page.goto('http://127.0.0.1:8765/Main.dc.html'); await W(1200);
+  await click('Continuer sans compte');
+  await page.getByRole('button', { name: 'Prendre rendez-vous' }).first().click(); await W(200);
+  await click('Séance de sport'); await click('Continuer'); await click('Coaching individuel'); await click('Continuer'); await log('praticiens sport');
+  await click('Le premier disponible'); await W(300); await log('premier dispo'); await page.screenshot({ path: 'f_premier.png' });
+  await click('Confirmer'); await W(300); await log('confirmé');
+  await page.getByRole('button', { name: 'Accueil' }).first().click().catch(() => {});
+  await page.goto('http://127.0.0.1:8765/Main.dc.html'); await W(1200);
+  await click('Continuer sans compte');
+  await page.getByRole('button', { name: 'Parler à l’assistant Hygie' }).first().click(); await W(300);
+  await click('Mon prochain rendez-vous'); await W(200);
+  await click('Horaires du centre'); await W(200);
+  await log('assistant'); await page.screenshot({ path: 'f_assistant2.png' });
+  await click('Déplacer un rendez-vous'); await W(1800); await log('assistant -> déplacer');
+  await page.getByRole('button', { name: 'Accueil' }).first().click().catch(() => {});
+  // Suivi bilans et réserver un bilan
+  await page.goto('http://127.0.0.1:8765/Main.dc.html'); await W(1200);
+  await click('Continuer sans compte'); await page.getByRole('button', { name: 'Suivi' }).first().click(); await W(200);
+  await click('Bilans'); await log('suivi bilans'); await page.screenshot({ path: 'f_bilans.png' });
+  await click('Détails'); await W(200); await log('détail bilan');
+  await click('Annuler'); await click('Confirmer l’annulation'); await W(200);
+  await page.getByRole('button', { name: 'Suivi' }).first().click(); await W(200); await click('Bilans'); await log('suivi sans bilan');
+  await click('Réserver un bilan'); await W(200); await log('réserver un bilan');
+  // novembre (6 lignes)
+  await click('Bilan fonctionnel'); await click('Continuer'); await click('Continuer'); await W(200);
+  await page.getByRole('button', { name: 'Mois suivant' }).first().click(); await W(200);
+  await page.getByRole('button', { name: 'Mois suivant' }).first().click(); await W(200);
+  await page.locator('.sw-cal__day:not([disabled])', { hasText: /^30$/ }).first().click().catch(() => errs.push('no 30')); await W(300);
+  await log('novembre'); await page.screenshot({ path: 'f_novembre.png' });
+  console.log('\n\nERREURS:\n' + errs.join('\n'));
+  await browser.close();
+})();
